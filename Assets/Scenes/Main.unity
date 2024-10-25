@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.42317495, g: 0.6437007, b: 0.79170823, a: 1}
+  m_IndirectSpecularColor: {r: 0.42221254, g: 0.64316183, b: 0.793691, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6664,8 +6664,6 @@ MonoBehaviour:
   _animator: {fileID: 9036980634233495087}
   _cameraTransform: {fileID: 1589245845}
   _moveSpeed: 5
-  _cameraDistance: 5
-  _cameraHeight: 2
 --- !u!143 &9036980634233495089
 CharacterController:
   m_ObjectHideFlags: 0
