@@ -89,7 +89,10 @@ public class VocabularyManager : MonoBehaviour
         foreach (string s in csvReader.easyVocabularyData)
         {
             if (cnt == 0 || cnt % 2 == 0)
-                easyVocabulary_mean.Add(s, csvReader.easyVocabularyData[cnt + 1]);
+            {
+                if(!easyVocabulary_mean.ContainsKey(s))
+                    easyVocabulary_mean.Add(s, csvReader.easyVocabularyData[cnt + 1]);
+            }
             cnt++;
         }
         cnt = 0;
