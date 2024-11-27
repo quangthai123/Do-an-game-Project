@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using System.IO;
 using UnityEngine;
 
 public class movePlayer : MonoBehaviour
@@ -9,21 +11,27 @@ public class movePlayer : MonoBehaviour
     [SerializeField] private Transform _cameraTransform;
     private Vector3 moveVector;
     private float gravity;
+    private Vector3 move;
+    private Vector3 moveDirection;
+    public playerData _playerData;
     [SerializeField] private float _moveSpeed = 5f;
-    private CharacterController _characterController;
+    [SerializeField] private CharacterController _characterController;
     private Vector3 _velocity;
-    [SerializeField] private float rotationSpeed = 0.1f;
-    private void Start()
+
+    void Start()
     {
         _characterController = GetComponent<CharacterController>();
+        transform.position = _playerData.GetPosition();
+        Debug.Log(transform.position);
     }
 
-    private void Update()
+    void Update()
     {
         Move();
         Gravity();
+       savePosition();
     }
-    protected void Gravity()
+    public void Gravity()
     {
         if (_characterController.isGrounded)
         {
@@ -36,22 +44,21 @@ public class movePlayer : MonoBehaviour
         moveVector = new Vector3(0, gravity * .2f * Time.deltaTime, 0);
         _characterController.Move(moveVector);
     }
-    protected void Move()
+    public void Move()
     {
-        Vector3 move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical).normalized;
+        move = new Vector3(_joystick.Horizontal, 0, _joystick.Vertical).normalized;
         if (move.magnitude > 0.1f)
         {
             Vector3 cameraForward = _cameraTransform.forward;
             cameraForward.y = 0;
             cameraForward.Normalize();
-            Vector3 moveDirection = cameraForward * move.z + _cameraTransform.right * move.x;
+            moveDirection = cameraForward * move.z + _cameraTransform.right * move.x;
             _characterController.Move(moveDirection * _moveSpeed * Time.deltaTime);
 
             if (moveDirection != Vector3.zero)
             {
                 Quaternion targetRotation = Quaternion.LookRotation(moveDirection);
                 transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, Time.deltaTime * 10f);
-                // _cameraTransform.rotation = Quaternion.Slerp(_cameraTransform.rotation, targetRotation, Time.deltaTime * 10f);
             }
             _animator.SetBool("isRunning", true);
         }
@@ -60,4 +67,10 @@ public class movePlayer : MonoBehaviour
             _animator.SetBool("isRunning", false);
         }
     }
+    public void savePosition()
+    {
+
+       _playerData.position = transform.position;
+    }
+
 }
