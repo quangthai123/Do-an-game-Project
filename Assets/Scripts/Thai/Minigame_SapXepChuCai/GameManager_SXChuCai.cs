@@ -10,8 +10,22 @@ public class GameManager_SXChuCai : MonoBehaviour
     public int currentWordLength;
     public List<Sprite> allAlphabetSprites;
     public Vocabulary currentVocabulary;
-    [SerializeField] private Image vocaImage;
-    [SerializeField] private TextMeshProUGUI vocaText;
+    public int currentAlphabetNumOnSlot = 0;
+    [Header("UI")]
+    [SerializeField] private Image vocaImageGamePlay;
+    [SerializeField] private Image vocaImageEndLv;
+    [SerializeField] private TextMeshProUGUI vocaTextGamePlayTest;
+    [SerializeField] private TextMeshProUGUI vocaTextEndLv;
+    [SerializeField] private TextMeshProUGUI vocaMeaningText;
+    [SerializeField] private Transform selectDiffUI;
+    [SerializeField] private Transform EndLvUI;
+    [SerializeField] private TextMeshProUGUI timerText;
+    [SerializeField] private List<Transform> hearts;
+    [SerializeField] private Transform blurBlackScreen;
+    [SerializeField] private Transform TimeOutNoti;
+    private int life = 3;
+    private float timer = 0;
+    private bool timeOut = false;
     private void Awake()
     {
         if (instance != null)
@@ -19,14 +33,61 @@ public class GameManager_SXChuCai : MonoBehaviour
         else
             instance = this;
     }
+    private void Start()
+    {
+        selectDiffUI.gameObject.SetActive(true);
+        EndLvUI.gameObject.SetActive(false);
+    }
     public void GetRandomEasyVocabulary()
     {
         currentVocabulary = VocabularyManager.instance.GetRandomEasyVocabulary();
-        vocaImage.sprite = currentVocabulary.image;
-        vocaText.text = currentVocabulary.vocabulary;
+        GetVocabulary();
+    }
+    public void GetRandomMediumVocabulary()
+    {
+        currentVocabulary = VocabularyManager.instance.GetRandomMediumVocabulary();
+        GetVocabulary();
+    }
+    public void GetRandomHardVocabulary()
+    {
+        currentVocabulary = VocabularyManager.instance.GetRandomHardVocabulary();
+        GetVocabulary();
+    }
+    private void GetVocabulary()
+    {
+        vocaImageGamePlay.sprite = currentVocabulary.image;
+        vocaImageEndLv.sprite = currentVocabulary.image;
+        vocaTextGamePlayTest.text = currentVocabulary.vocabulary;
+        vocaTextEndLv.text = currentVocabulary.vocabulary;
+        vocaMeaningText.text = currentVocabulary.mean;
         currentWordLength = currentVocabulary.vocabulary.Length;
         PerfectWordHolder.instance.ActiveSlots();
         AlphabetHolder.instance.GetAlphabets();
+    }
+    private void Update()
+    {
+        if(timer > 0f && !timeOut && !EndLvUI.gameObject.activeInHierarchy)
+        {
+            timer -= Time.deltaTime;
+        }
+        timerText.text = (int)timer + "";
+        CheckTimeOut();
+    }
+    private void CheckTimeOut()
+    {
+        if(!timeOut && timer <= 0f && !selectDiffUI.gameObject.activeInHierarchy)
+        {
+            Debug.Log("Time Out!");
+            timeOut = true;
+            life--;
+            blurBlackScreen.gameObject.SetActive(true);
+            TimeOutNoti.gameObject.SetActive(true);
+            Invoke("DisappearAHeart", 1f);
+        }
+    }
+    private void DisappearAHeart()
+    {
+        hearts[life].Find("Heart_RedFx").gameObject.SetActive(true);
     }
     public void ChangeDifficulty(int diff)
     {
@@ -34,14 +95,21 @@ public class GameManager_SXChuCai : MonoBehaviour
         {
             case 0:
                 DifficultyManager.instance.Mode = Difficulty.easy;
+                timer = 10f;
+                GetRandomEasyVocabulary();
                 break;
             case 1:
                 DifficultyManager.instance.Mode = Difficulty.normal;
+                timer = 20f;
+                GetRandomMediumVocabulary();
                 break;
             case 2:
                 DifficultyManager.instance.Mode = Difficulty.hard;
+                timer = 30f;
+                GetRandomHardVocabulary();
                 break;
         }
+        selectDiffUI.gameObject.SetActive(false);
     }
     public Sprite GetSpriteByName(char alphabet)
     {
@@ -61,5 +129,39 @@ public class GameManager_SXChuCai : MonoBehaviour
     public bool CheckAlphabet(char alphabet, int index)
     {
         return currentVocabulary.vocabulary[index] == alphabet;
+    }
+    public void OnClickNextLv()
+    {
+        PerfectWordHolder.instance.ReturnAllAlphabetToHolder();
+        switch (DifficultyManager.instance.Mode)
+        {
+            case Difficulty.easy:
+                GetRandomEasyVocabulary();
+                timer = 10f;
+                break;
+            case Difficulty.normal:
+                GetRandomMediumVocabulary();
+                timer = 20f;
+                break;
+            case Difficulty.hard:
+                GetRandomHardVocabulary();
+                timer = 30f;
+                break;
+        }
+        EndLvUI.gameObject.SetActive(false);
+        TimeOutNoti.gameObject.SetActive(false);
+        blurBlackScreen.gameObject.SetActive(false);
+        currentAlphabetNumOnSlot = 0;
+        timeOut = false;
+    }
+    public void EnableEndGameUI() => EndLvUI.gameObject.SetActive(true);
+    public void CheckEndLv()
+    {
+        if (currentWordLength != currentAlphabetNumOnSlot)
+            return;
+        if (PerfectWordHolder.instance.CheckPerfectWordWhenFullSlot())
+        {
+            EndLvUI.gameObject.SetActive(true);
+        }
     }
 }

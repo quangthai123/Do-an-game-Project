@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class PerfectWordHolder : MonoBehaviour
 {
     public static PerfectWordHolder instance { get; private set; }
-    private string currentWordPut;
     private void Awake()
     {
         if (instance != null)
@@ -25,19 +24,25 @@ public class PerfectWordHolder : MonoBehaviour
             transform.GetChild(i).gameObject.SetActive(true);
         }
     }
-    //public void CheckWrongAlphabetAndPassLv()
-    //{
-    //    int cnt = -1;
-    //    foreach(Transform slot in transform)
-    //    {
-    //        cnt++;
-    //        if (!slot.Find("Alphabet"))
-    //            continue;
-    //        char alphabet = slot.Find("Alphabet").GetComponent<Image>().sprite.name;
-    //        if(!GameManager_SXChuCai.instance.CheckAlphabet(alphabet, cnt))
-    //        {
-    //            slot.Find("Alphabet").Find("RedFx").gameObject.SetActive(false);
-    //        }
-    //    }
-    //}
+    public void ReturnAllAlphabetToHolder()
+    {
+        foreach(Transform slot in transform)
+        {
+            if(slot.Find("Alphabet"))
+            {
+                slot.Find("Alphabet").GetComponent<DraggableItem>().ReturnHolderForNextLv();
+            }
+        }
+    }
+    public bool CheckPerfectWordWhenFullSlot()
+    {
+        foreach(Transform slot in transform)
+        {
+            if (!slot.gameObject.activeInHierarchy)
+                continue;
+            if (slot.Find("Alphabet").Find("RedFx").gameObject.activeInHierarchy)          
+                return false;       
+        }
+        return true;
+    }
 }

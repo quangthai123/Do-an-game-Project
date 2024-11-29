@@ -49,6 +49,7 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         if(!hasPut || (hasPut && !transform.Find("RedFx").gameObject.activeInHierarchy) || backToHolder)
             return;
         backToHolder = true;
+        GameManager_SXChuCai.instance.currentAlphabetNumOnSlot--;
         //GetComponent<Image>().raycastTarget = false;
         transform.SetParent(transform.root, true);
         StartCoroutine(StartMoveBackToHolder());
@@ -62,6 +63,13 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
         }
         transform.SetParent(originalParent, true);
         //GetComponent<Image>().raycastTarget = true;
+        transform.localScale /= (9f / 8f);
+        transform.Find("RedFx").gameObject.SetActive(false);
+        hasPut = false;
+    }
+    public void ReturnHolderForNextLv()
+    {
+        transform.SetParent(originalParent, true);
         transform.localScale /= (9f / 8f);
         transform.Find("RedFx").gameObject.SetActive(false);
         hasPut = false;

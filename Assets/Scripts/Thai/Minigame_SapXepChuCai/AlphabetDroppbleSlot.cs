@@ -23,7 +23,6 @@ public class AlphabetDroppbleSlot : MonoBehaviour, IDropHandler
         item.transform.localScale *= (9f / 8f);
         item.GetComponent<DraggableItem>().currentParent = transform;
         item.GetComponent<DraggableItem>().hasPut = true;
-        //item.GetComponent<DraggableItem>().backToHolder = true;
         alphabetBlur.gameObject.SetActive(false);
         CheckAlphabet();
     }
@@ -58,5 +57,8 @@ public class AlphabetDroppbleSlot : MonoBehaviour, IDropHandler
             Debug.Log("Wrong Alphabet on " + transform.GetSiblingIndex());
             item.transform.Find("RedFx").gameObject.SetActive(true);
         }
+        GameManager_SXChuCai.instance.currentAlphabetNumOnSlot++;
+        Invoke("CheckEndLv", .2f);
     }
+    private void CheckEndLv() => GameManager_SXChuCai.instance.CheckEndLv();
 }
