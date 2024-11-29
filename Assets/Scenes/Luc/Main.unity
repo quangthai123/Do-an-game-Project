@@ -5089,6 +5089,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Game2
       objectReference: {fileID: 0}
+    - target: {fileID: 7847238406723668734, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
+      propertyPath: m_text
+      value: "Tr\xF2 ch\u01A1i 2"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7430,6 +7434,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Game4
       objectReference: {fileID: 0}
+    - target: {fileID: 7847238406723668734, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
+      propertyPath: m_text
+      value: "Tr\xF2 ch\u01A1i 4"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -7569,6 +7577,10 @@ PrefabInstance:
     - target: {fileID: 7127184881841573530, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
       propertyPath: m_TagString
       value: Game3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847238406723668734, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
+      propertyPath: m_text
+      value: "Tr\xF2 ch\u01A1i 3"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -9751,6 +9763,10 @@ PrefabInstance:
       propertyPath: m_TagString
       value: Game1
       objectReference: {fileID: 0}
+    - target: {fileID: 7847238406723668734, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
+      propertyPath: m_text
+      value: "Tr\xF2 ch\u01A1i 1"
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11280,6 +11296,10 @@ PrefabInstance:
     - target: {fileID: 7156915011831212125, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
       propertyPath: m_TagString
       value: Untagged
+      objectReference: {fileID: 0}
+    - target: {fileID: 7847238406723668734, guid: 676c27700a67c1f4c8752ddc858a78c0, type: 3}
+      propertyPath: m_text
+      value: "Th\u01B0 vi\u1EC7n"
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
