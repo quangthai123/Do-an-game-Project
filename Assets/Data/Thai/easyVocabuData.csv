@@ -20,13 +20,13 @@ mum,mẹ
 dad,bố
 baby,em bé
 calf,con bê
-uncle,"chú, bác trai, cậu"
+uncle,chú/bác trai/cậu
 aunt,cô
 pupil,học sinh
 class ,lớp học
 board,bảng
 book,quyển sách
-table,bàn học
+table,bàn
 chair,ghế
 paper,giấy
 pen,bút
@@ -82,7 +82,6 @@ rug,thảm trải sàn
 fan,cái quạt
 clock,đồng hồ
 bin,thùng rác
-table,bàn
 sofa,ghế sofa
 bench,ghế bành
 vase,lọ hoa
@@ -107,9 +106,7 @@ rainy,mưa
 sunny,nắng
 windy,gió
 icy,đóng băng
-gale,gió giật
 fog,sương mù
-mist,sương muối
 flood,lũ
 cake,bánh
 pizza,bánh pizza
@@ -129,7 +126,7 @@ nurse,y tá
 bike,xe đạp
 car,ô tô
 bus,xe buýt
-coach,xe khách
+coach,huấn luyện viên
 taxi,xe taxi
 train,tàu hỏa
 boat,con thuyền
@@ -137,7 +134,6 @@ ship,tàu thủy
 ferry,phà
 tube,tàu điện ngầm
 plane,máy bay
-go,đi
 run,chạy
 eat,ăn
 sit,ngồi
@@ -164,7 +160,6 @@ tie,cà vạt
 shoe,giày
 boot,ủng
 ring,nhẫn
-bag,cái túi
 bib,yếm
 music,âm nhạc
 golf,đánh gôn
@@ -174,13 +169,10 @@ iron,sắt
 silver,bạc
 wood,gỗ
 wool,len
-paper,giấy
 brick,gạch
-ash,tro
 clay,đất sét
 cloth,vải
 dust,bụi
-lead,chì
 mud,bùn
 nylon,ni-lông
 silk,lụa
@@ -191,7 +183,6 @@ coal,than đá
 soil,đất
 tent,lều
 axe,cái rìu
-mat,tấm thảm
 snow,tuyết
 pine,cây thông
 card,thẻ
