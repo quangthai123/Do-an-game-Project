@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657826, g: 0.49641263, b: 0.57481676, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -13230,6 +13230,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 677006756}
     m_Modifications:
+    - target: {fileID: 7586033223292107507, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
+      propertyPath: csvFile_easy
+      value: 
+      objectReference: {fileID: 4900000, guid: e5b648b379dd60a4991eee528c7384c0, type: 3}
     - target: {fileID: 7586033223292107507, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
       propertyPath: csvFile_hard
       value: 
