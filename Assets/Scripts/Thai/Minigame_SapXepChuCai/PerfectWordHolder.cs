@@ -22,6 +22,7 @@ public class PerfectWordHolder : MonoBehaviour
         for(int i=0; i<GameManager_SXChuCai.instance.currentWordLength; i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
+            transform.GetChild(i).GetComponent<Animator>().ResetTrigger("CanDance");
         }
     }
     public void ReturnAllAlphabetToHolder()
@@ -44,5 +45,12 @@ public class PerfectWordHolder : MonoBehaviour
                 return false;       
         }
         return true;
+    }
+    public void CreateFx()
+    {
+        foreach (Transform slot in transform)
+        {
+            slot.GetComponent<Animator>().SetTrigger("CanDance");
+        }
     }
 }

@@ -26,6 +26,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     private int life = 3;
     private float timer = 0;
     private bool timeOut = false;
+    private bool outOfVoca = false;
     private void Awake()
     {
         if (instance != null)
@@ -41,6 +42,11 @@ public class GameManager_SXChuCai : MonoBehaviour
     public void GetRandomEasyVocabulary()
     {
         currentVocabulary = VocabularyManager.instance.GetRandomEasyVocabulary();
+        if (currentVocabulary == null)
+        {
+            outOfVoca = true;
+            return;
+        }
         GetVocabulary();
     }
     public void GetRandomMediumVocabulary()
@@ -61,6 +67,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         vocaTextEndLv.text = currentVocabulary.vocabulary;
         vocaMeaningText.text = currentVocabulary.mean;
         currentWordLength = currentVocabulary.vocabulary.Length;
+        AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
         PerfectWordHolder.instance.ActiveSlots();
         AlphabetHolder.instance.GetAlphabets();
     }
@@ -89,7 +96,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     {
         hearts[life].Find("Heart_RedFx").gameObject.SetActive(true);
     }
-    public void ChangeDifficulty(int diff)
+    public void OnSelectDifficulty(int diff)
     {
         switch(diff)
         {
@@ -110,6 +117,7 @@ public class GameManager_SXChuCai : MonoBehaviour
                 break;
         }
         selectDiffUI.gameObject.SetActive(false);
+        AudioManager.instance.PlayCurrentWordAudio();
     }
     public Sprite GetSpriteByName(char alphabet)
     {
@@ -148,11 +156,17 @@ public class GameManager_SXChuCai : MonoBehaviour
                 timer = 30f;
                 break;
         }
+        if(outOfVoca)
+        {
+            // enable win UI
+            return;
+        }
         EndLvUI.gameObject.SetActive(false);
         TimeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         currentAlphabetNumOnSlot = 0;
         timeOut = false;
+        AudioManager.instance.PlayCurrentWordAudio();
     }
     public void EnableEndGameUI() => EndLvUI.gameObject.SetActive(true);
     public void CheckEndLv()
@@ -161,7 +175,13 @@ public class GameManager_SXChuCai : MonoBehaviour
             return;
         if (PerfectWordHolder.instance.CheckPerfectWordWhenFullSlot())
         {
-            EndLvUI.gameObject.SetActive(true);
+            PassLvEffect();
+            Invoke("EnablePassLvUI", 1.5f);
         }
     }
+    public void PassLvEffect()
+    {
+        PerfectWordHolder.instance.CreateFx();
+    }
+    private void EnablePassLvUI() => EndLvUI.gameObject.SetActive(true);
 }

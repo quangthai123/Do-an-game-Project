@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b473fc8b70ee7a42964eec9772eebbe, type: 3}
   m_Name: Vocabulary_audio
   m_EditorClassIdentifier: 
-  audioClips:
+  easyAudios:
   - {fileID: 8300000, guid: 5b9ae8c7de500254ea5ef5244939f745, type: 3}
   - {fileID: 8300000, guid: 612b60a46a08067438dcafd5a46357d4, type: 3}
   - {fileID: 8300000, guid: de8d92ab1ca56634b8ac421643b82794, type: 3}
@@ -203,3 +203,5 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ed39df3cd85f54a4e9a4204d7aeb3b1e, type: 3}
   - {fileID: 8300000, guid: abd45fe65d56f1d4997963f0e6882683, type: 3}
   - {fileID: 8300000, guid: 1458ea86bce2a754ea23f8ef18de84c9, type: 3}
+  mediumAudios: []
+  hardAudios: []

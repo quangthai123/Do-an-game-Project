@@ -74,13 +74,11 @@ hexagon,hình lục giác
 cylinder,hình trụ
 cloudy,mây
 drizzle,mưa phùn
-shower,mưa rào nhẹ
+shower,vòi sen
 freezing,băng giá
 tornado,lốc xoáy
 stormy,bão
 thunder,sấm chớp
-foggy,sương mù nhiều
-lightning,sét
 rainbow,cầu vồng 
 hamburger,bánh hamburger
 biscuit,bánh quy
@@ -108,7 +106,6 @@ farmer,nông dân
 ambulance,xe cứu thương
 motorbike,xe máy
 helicopter,máy bay trực thăng
-swallow,nuốt
 listen,lắng nghe
 cycling,đạp xe
 fishing,câu cá
@@ -159,7 +156,7 @@ cotton,bông gòn
 crystal,pha lê
 gasoline,xăng
 gravel,sỏi
-mental,kim loại
+metal,kim loại
 bronze,đồng
 sewage,nước thải
 lighter,bật lửa
