@@ -18,13 +18,17 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private TextMeshProUGUI vocaTextEndLv;
     [SerializeField] private TextMeshProUGUI vocaMeaningText;
     [SerializeField] private Transform selectDiffUI;
-    [SerializeField] private Transform EndLvUI;
+    [SerializeField] private Transform endLvUI;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<Transform> hearts;
     [SerializeField] private Transform blurBlackScreen;
-    [SerializeField] private Transform TimeOutNoti;
+    [SerializeField] private Transform timeOutNoti;
+    [SerializeField] private TextMeshProUGUI scoreText;
+    [SerializeField] private Transform scoreFx;
+    [SerializeField] private int score = 0;
     private int life = 3;
     private float timer = 0;
+    private bool passLv = false;
     private bool timeOut = false;
     private bool outOfVoca = false;
     private void Awake()
@@ -37,7 +41,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     private void Start()
     {
         selectDiffUI.gameObject.SetActive(true);
-        EndLvUI.gameObject.SetActive(false);
+        endLvUI.gameObject.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
     {
@@ -73,22 +77,23 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     private void Update()
     {
-        if(timer > 0f && !timeOut && !EndLvUI.gameObject.activeInHierarchy)
+        if(timer > 0f && !timeOut && !endLvUI.gameObject.activeInHierarchy && !passLv)
         {
             timer -= Time.deltaTime;
         }
         timerText.text = (int)timer + "";
+        scoreText.text = score+"";
         CheckTimeOut();
     }
     private void CheckTimeOut()
     {
-        if(!timeOut && timer <= 0f && !selectDiffUI.gameObject.activeInHierarchy)
+        if(!timeOut && timer <= 0f && !selectDiffUI.gameObject.activeInHierarchy && !passLv)
         {
             Debug.Log("Time Out!");
             timeOut = true;
             life--;
             blurBlackScreen.gameObject.SetActive(true);
-            TimeOutNoti.gameObject.SetActive(true);
+            timeOutNoti.gameObject.SetActive(true);
             Invoke("DisappearAHeart", 1f);
         }
     }
@@ -161,27 +166,70 @@ public class GameManager_SXChuCai : MonoBehaviour
             // enable win UI
             return;
         }
-        EndLvUI.gameObject.SetActive(false);
-        TimeOutNoti.gameObject.SetActive(false);
+        endLvUI.gameObject.SetActive(false);
+        timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         currentAlphabetNumOnSlot = 0;
         timeOut = false;
+        passLv = false;
         AudioManager.instance.PlayCurrentWordAudio();
     }
-    public void EnableEndGameUI() => EndLvUI.gameObject.SetActive(true);
+    public void EnableEndGameUI() => endLvUI.gameObject.SetActive(true);
     public void CheckEndLv()
     {
         if (currentWordLength != currentAlphabetNumOnSlot)
             return;
         if (PerfectWordHolder.instance.CheckPerfectWordWhenFullSlot())
         {
+            passLv = true;
             PassLvEffect();
-            Invoke("EnablePassLvUI", 1.5f);
+            scoreFx.gameObject.SetActive(true);
+            switch (DifficultyManager.instance.Mode)
+            {
+                case Difficulty.easy:
+                    scoreFx.GetComponent<ScoreFx>().scoreText.text = "+10";
+                    break;
+                case Difficulty.normal:
+                    scoreFx.GetComponent<ScoreFx>().scoreText.text = "+20";
+                    break;
+                case Difficulty.hard:
+                    scoreFx.GetComponent<ScoreFx>().scoreText.text = "+30";
+                    break;
+            }
+            Invoke("EnablePassLvUI", 3.5f);
         }
     }
     public void PassLvEffect()
     {
         PerfectWordHolder.instance.CreateFx();
     }
-    private void EnablePassLvUI() => EndLvUI.gameObject.SetActive(true);
+    private void EnablePassLvUI() => endLvUI.gameObject.SetActive(true);
+    public void AddScore()
+    {
+        switch (DifficultyManager.instance.Mode)
+        {
+            case Difficulty.easy:
+                score += 10;
+                break;
+            case Difficulty.normal:
+                score += 20;
+                break;
+            case Difficulty.hard:
+                score += 30;
+                break;
+        }
+        StartCoroutine(AddScoreByTimerRemain());
+    }
+    private IEnumerator AddScoreByTimerRemain()
+    {
+        float timerToSubstract = timer / 10f;
+        float scoreToAdd = 0;
+        while (timer > 0)
+        {
+            yield return new WaitForSeconds(.1f);
+            timer -= timerToSubstract;
+            scoreToAdd += timerToSubstract;
+            score += (int)scoreToAdd;
+        }
+    }
 }
