@@ -25,7 +25,9 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private Transform timeOutNoti;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Transform scoreFx;
+    [SerializeField] private Transform addScoreFx;
     [SerializeField] private int score = 0;
+    [SerializeField] private int addScore = 0;
     private int life = 3;
     private float timer = 0;
     private bool passLv = false;
@@ -42,6 +44,8 @@ public class GameManager_SXChuCai : MonoBehaviour
     {
         selectDiffUI.gameObject.SetActive(true);
         endLvUI.gameObject.SetActive(false);
+        scoreFx.gameObject.SetActive(false);
+        addScoreFx.gameObject.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
     {
@@ -83,6 +87,8 @@ public class GameManager_SXChuCai : MonoBehaviour
         }
         timerText.text = (int)timer + "";
         scoreText.text = score+"";
+        if(addScoreFx.gameObject.activeInHierarchy)
+            addScoreFx.GetComponent<AddScoreFx>().addScoreText.text = "+"+addScore;
         CheckTimeOut();
     }
     private void CheckTimeOut()
@@ -172,6 +178,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         currentAlphabetNumOnSlot = 0;
         timeOut = false;
         passLv = false;
+        addScore = 0;
         AudioManager.instance.PlayCurrentWordAudio();
     }
     public void EnableEndGameUI() => endLvUI.gameObject.SetActive(true);
@@ -202,6 +209,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     public void PassLvEffect()
     {
         PerfectWordHolder.instance.CreateFx();
+        Player.Instance.SetAnim("Victory");
     }
     private void EnablePassLvUI() => endLvUI.gameObject.SetActive(true);
     public void AddScore()
@@ -218,18 +226,20 @@ public class GameManager_SXChuCai : MonoBehaviour
                 score += 30;
                 break;
         }
+        addScoreFx.gameObject.SetActive(true);
         StartCoroutine(AddScoreByTimerRemain());
     }
     private IEnumerator AddScoreByTimerRemain()
     {
         float timerToSubstract = timer / 10f;
-        float scoreToAdd = 0;
         while (timer > 0)
         {
             yield return new WaitForSeconds(.1f);
+            int currentTimer = (int)timer;
             timer -= timerToSubstract;
-            scoreToAdd += timerToSubstract;
-            score += (int)scoreToAdd;
+            if ((int)timer < currentTimer)
+                addScore += 1;
         }
     }
+    public void AddBonusScore() => score += addScore;
 }
