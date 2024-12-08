@@ -185,8 +185,8 @@ MonoBehaviour:
     - Thursday
     - Tuesday
     correctAns: Tuesday
-    questionType: 1
-    qustionImage: {fileID: 21300000, guid: e813dafae887fef44a1666928a1ef85c, type: 3}
+    questionType: 0
+    qustionImage: {fileID: 0}
     qustionClip: {fileID: 0}
     qustionVideo: {fileID: 0}
   - questionInfor: Quess the animal?

@@ -10,6 +10,7 @@ public class QuizManager : MonoBehaviour
     [SerializeField] private float timeLimit = 30f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip correctAnswerSFX;
+    // [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioClip gameOverSFX;
     [SerializeField] private AudioClip errorSFX;
 
@@ -85,7 +86,7 @@ public class QuizManager : MonoBehaviour
         if (answered == selectedQuestion.correctAns)
         {
             correctAns = true;
-            scoreCOunt += 50;
+            scoreCOunt += 10;
             quizUI.ScoreText.text = "Score: " + scoreCOunt;
             audioSource.PlayOneShot(correctAnswerSFX);
             Debug.Log("Correct Answer!");
