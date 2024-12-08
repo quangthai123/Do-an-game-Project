@@ -17,6 +17,17 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private TMPro.TextMeshProUGUI questionText, scoreText, timerText;
     [SerializeField] private List<Button> options, uiButtons;
     [SerializeField] private TextMeshProUGUI finalScoreText;
+    [SerializeField] private AudioClip touchSFX;
+    [SerializeField] private AudioSource audioSource;
+    [SerializeField] private GameObject Star1;
+    [SerializeField] private GameObject Star2;
+    [SerializeField] private GameObject Star3;
+
+
+    [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
+    [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
+    [SerializeField] private Sprite[] numberSprites;   // Các sprite từ 0 đến 9
+
 
     private Question question;
     private bool answered;
@@ -27,6 +38,12 @@ public class QuizUI : MonoBehaviour
     public GameObject GameOverPanel { get { return gameOverPanel; } }
 
 
+    public void Play()
+    {
+        mainMenuPanel.SetActive(false);
+        gameMenuPanel.SetActive(true);
+        audioSource.PlayOneShot(touchSFX);
+    }
     void Awake()
     {
 
@@ -148,17 +165,65 @@ public class QuizUI : MonoBehaviour
                 break;
             case "Mix":
                 quizManager.StartGame(2);
-                mainMenuPanel.SetActive(false);
-                gameMenuPanel.SetActive(true);
+                // mainMenuPanel.SetActive(false);
+                // gameMenuPanel.SetActive(true);
                 break;
 
         }
     }
+
+
     public void ShowGameOverPanel(int score)
     {
-        finalScoreText.text = "Score: " + score.ToString();  // Cập nhật điểm số
-        gameOverPanel.SetActive(true);  // Hiển thị panel Game Over
+        foreach (Transform child in scoreContainer)
+        {
+            Destroy(child.gameObject);
+        }
+
+        string scoreString = score.ToString();
+
+        foreach (char digit in scoreString)
+        {
+            int number = digit - '0'; // Chuyển ký tự thành số nguyên
+
+            // Tạo một UI Image mới từ Prefab
+            GameObject newNumber = Instantiate(numberPrefab, scoreContainer);
+
+            // Gán sprite tương ứng cho số
+            Image numberImage = newNumber.GetComponent<Image>();
+            numberImage.sprite = numberSprites[number];
+        }
+
+        gameOverPanel.SetActive(true);
+
+        if (score < 10)
+        {
+            Star1.SetActive(false);
+            Star2.SetActive(false);
+            Star3.SetActive(false);
+        }
+        else if (score <= 50)
+        {
+            Star1.SetActive(true);
+            Star2.SetActive(false);
+            Star3.SetActive(false);
+        }
+        else if (score <= 100)
+        {
+            Star1.SetActive(true);
+            Star2.SetActive(true);
+            Star3.SetActive(false);
+        }
+        else // scoreString > 100
+        {
+            Star1.SetActive(true);
+            Star2.SetActive(true);
+            Star3.SetActive(true);
+        }
+
+        Debug.Log("" + scoreString);
     }
+
 
     public void RetryButton()
     {
