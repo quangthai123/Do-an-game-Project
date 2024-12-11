@@ -31,6 +31,7 @@ public class VocabularyManager : MonoBehaviour
     private List<Vocabulary> hardVocabulariesRemain;
     [SerializeField] private int easyVocaRemainQuantity;
     [SerializeField] private int mediumVocaRemainQuantity;
+    [SerializeField] private int hardVocaRemainQuantity;
     public Dictionary<string, string> easyVocabulary_mean { get; private set; } = new Dictionary<string, string>();
     public Dictionary<string, string> mediumVocabulary_mean { get; private set; } = new Dictionary<string, string>();
     public Dictionary<string, string> hardVocabulary_mean { get; private set; } = new Dictionary<string, string>();
@@ -89,8 +90,16 @@ public class VocabularyManager : MonoBehaviour
     }
     public Vocabulary GetRandomHardVocabulary()
     {
-        int rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
-        return hardVocabularies[rd];
+        if (hardVocabulariesRemain.Count < 1)
+        {
+            Debug.Log("Out of voca!");
+            return null;
+        }
+        int rd = UnityEngine.Random.Range(0, hardVocabulariesRemain.Count);
+        int index = hardVocabularies.IndexOf(hardVocabulariesRemain[rd]);
+        hardVocabulariesRemain.Remove(hardVocabulariesRemain[rd]);
+        hardVocaRemainQuantity = hardVocabulariesRemain.Count;
+        return hardVocabularies[index];
     }
     private void LoadVocabularies()
     {
@@ -104,11 +113,11 @@ public class VocabularyManager : MonoBehaviour
         {
             mediumVocabularies.Add(new Vocabulary(item.Key, item.Value, mediumVocaImages[cnt], mediumAudios[cnt++]));
         }
-        //cnt = 0;
-        //foreach (var item in hardVocabulary_mean)
-        //{
-        //    hardVocabularies.Add(new Vocabulary(item.Key, item.Value, hardVocaImages[cnt], hardAudios[cnt++]));
-        //}
+        cnt = 0;
+        foreach (var item in hardVocabulary_mean)
+        {
+            hardVocabularies.Add(new Vocabulary(item.Key, item.Value, hardVocaImages[cnt], hardAudios[cnt++]));
+        }
     }
 
     private void LoadVocabularyImage()

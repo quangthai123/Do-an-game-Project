@@ -5,14 +5,6 @@ using UnityEngine.UI;
 
 public class PerfectWordHolder : MonoBehaviour
 {
-    public static PerfectWordHolder instance { get; private set; }
-    private void Awake()
-    {
-        if (instance != null)
-            Destroy(gameObject);
-        else
-            instance = this;
-    }
     public void ActiveSlots()
     {
         foreach(Transform slot in transform)

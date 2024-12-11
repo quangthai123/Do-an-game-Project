@@ -35,6 +35,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
+    [SerializeField] private PerfectWordHolder perfectWordHolder;
     private int life = 3;
     private float timer = 0;
     private int lv = 1;
@@ -87,7 +88,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         vocaMeaningTextGOVUI.text = currentVocabulary.mean;
         currentWordLength = currentVocabulary.vocabulary.Length;
         AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
-        PerfectWordHolder.instance.ActiveSlots();
+        perfectWordHolder.ActiveSlots();
         AlphabetHolder.instance.GetAlphabets();
     }
     private void Update()
@@ -168,7 +169,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void OnClickNextLv()
     {
-        PerfectWordHolder.instance.ReturnAllAlphabetToHolder();
+        perfectWordHolder.ReturnAllAlphabetToHolder();
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
@@ -223,7 +224,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     {
         if (currentWordLength != currentAlphabetNumOnSlot)
             return;
-        if (PerfectWordHolder.instance.CheckPerfectWordWhenFullSlot())
+        if (perfectWordHolder.CheckPerfectWordWhenFullSlot())
         {
             startTimer = false;
             PassLvEffect();
@@ -245,7 +246,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void PassLvEffect()
     {
-        PerfectWordHolder.instance.CreateFx();
+        perfectWordHolder.CreateFx();
         Player.Instance.SetAnim("Victory");
     }
     private void EnablePassLvUI()
@@ -293,7 +294,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         currentAlphabetNumOnSlot = 0;
         addScore = 0;
         timeOut = false;
-        PerfectWordHolder.instance.ReturnAllAlphabetToHolder();
+        perfectWordHolder.ReturnAllAlphabetToHolder();
         timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         playPartUI.SetOnState(false);
