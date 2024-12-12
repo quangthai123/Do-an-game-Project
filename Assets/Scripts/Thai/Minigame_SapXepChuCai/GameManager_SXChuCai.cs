@@ -35,7 +35,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
-    [SerializeField] private PerfectWordHolder perfectWordHolder;
+    [SerializeField] private List<GameObject> perfectWordHolders;
     private int life = 3;
     private float timer = 0;
     private int lv = 1;
@@ -88,8 +88,38 @@ public class GameManager_SXChuCai : MonoBehaviour
         vocaMeaningTextGOVUI.text = currentVocabulary.mean;
         currentWordLength = currentVocabulary.vocabulary.Length;
         AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
-        perfectWordHolder.ActiveSlots();
+        for(int i=0; i<=3; i++)
+        {
+            perfectWordHolders[i].SetActive(false);
+        }
+        if (DifficultyManager.instance.Mode != Difficulty.hard)
+        {
+            perfectWordHolders[0].SetActive(true);
+            perfectWordHolders[0].GetComponent<PerfectWordHolder>().ActiveSlots();
+        }
+        else
+        {
+            for(int i=1; i<=GetCurrentVocaPartQuantity(); i++)
+            {
+                perfectWordHolders[i].SetActive(true);
+                perfectWordHolders[i].GetComponent<PerfectWordHolder>().ActiveSlotsOnHardMode();
+            }
+        }
         AlphabetHolder.instance.GetAlphabets();
+    }
+    public int GetVocaPartLength(int partIndex)
+    {
+        return GetCurrentVocaPartsOnHardMode()[partIndex-1].Length;
+    }
+    private string[] GetCurrentVocaPartsOnHardMode()
+    {
+        string[] vocaParts = currentVocabulary.vocabulary.Split(new string[] { " " }, System.StringSplitOptions.None);
+        return vocaParts;
+    }
+    public int GetCurrentVocaPartQuantity()
+    {   
+        Debug.Log(GetCurrentVocaPartsOnHardMode().Length);
+        return GetCurrentVocaPartsOnHardMode().Length;
     }
     private void Update()
     {
@@ -163,13 +193,21 @@ public class GameManager_SXChuCai : MonoBehaviour
         int rdIndex = Random.Range(1, allAlphabetSprites.Count);
         return allAlphabetSprites[rdIndex];
     }
-    public bool CheckAlphabet(char alphabet, int index)
+    public bool CheckAlphabet(char alphabet, int index, int holderLocation)
     {
-        return currentVocabulary.vocabulary[index] == alphabet;
+        if (holderLocation != 0)
+        {
+            return this.GetCurrentVocaPartsOnHardMode()[holderLocation-1][index] == alphabet;
+        }
+        string voca = currentVocabulary.vocabulary;
+        return voca[index] == alphabet;
     }
     public void OnClickNextLv()
     {
-        perfectWordHolder.ReturnAllAlphabetToHolder();
+        for(int i=0; i<=3; i++)
+        {
+            perfectWordHolders[i].GetComponent<PerfectWordHolder>().ReturnAllAlphabetToHolder();
+        }
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
@@ -220,11 +258,28 @@ public class GameManager_SXChuCai : MonoBehaviour
         else
             gameOverUI.gameObject.SetActive(true);
     }
+    private bool CheckPerfectWordWhenFullSlot()
+    {
+        if(DifficultyManager.instance.Mode != Difficulty.hard) 
+            return perfectWordHolders[0].GetComponent<PerfectWordHolder>().CheckPerfectWordWhenFullSlot();
+        else
+        {
+            for(int i=1;i<=GetCurrentVocaPartQuantity(); i++)
+            {
+                if (!perfectWordHolders[i].GetComponent<PerfectWordHolder>().CheckPerfectWordWhenFullSlot())
+                {
+                    Debug.Log("hàng "+i+" sai!");        
+                    return false;
+                }
+            }
+            return true;
+        }
+    }
     public void CheckEndLv()
     {
         if (currentWordLength != currentAlphabetNumOnSlot)
             return;
-        if (perfectWordHolder.CheckPerfectWordWhenFullSlot())
+        if (this.CheckPerfectWordWhenFullSlot())
         {
             startTimer = false;
             PassLvEffect();
@@ -246,7 +301,10 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void PassLvEffect()
     {
-        perfectWordHolder.CreateFx();
+        for (int i = 0; i <= 3; i++)
+        {
+            perfectWordHolders[i].GetComponent<PerfectWordHolder>().CreateFx();
+        }
         Player.Instance.SetAnim("Victory");
     }
     private void EnablePassLvUI()
@@ -294,7 +352,10 @@ public class GameManager_SXChuCai : MonoBehaviour
         currentAlphabetNumOnSlot = 0;
         addScore = 0;
         timeOut = false;
-        perfectWordHolder.ReturnAllAlphabetToHolder();
+        for (int i = 0; i <= 3; i++)
+        {
+            perfectWordHolders[i].GetComponent<PerfectWordHolder>().ReturnAllAlphabetToHolder();
+        }
         timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         playPartUI.SetOnState(false);

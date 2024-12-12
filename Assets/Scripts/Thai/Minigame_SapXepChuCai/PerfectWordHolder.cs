@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class PerfectWordHolder : MonoBehaviour
 {
+    [Range(0, 3)] public int slotLocation;  
     public void ActiveSlots()
     {
         foreach(Transform slot in transform)
@@ -12,6 +13,18 @@ public class PerfectWordHolder : MonoBehaviour
             slot.gameObject.SetActive(false);
         }
         for(int i=0; i<GameManager_SXChuCai.instance.currentWordLength; i++)
+        {
+            transform.GetChild(i).gameObject.SetActive(true);
+            transform.GetChild(i).GetComponent<Animator>().ResetTrigger("CanDance");
+        }
+    }
+    public void ActiveSlotsOnHardMode()
+    {
+        foreach (Transform slot in transform)
+        {
+            slot.gameObject.SetActive(false);
+        }
+        for (int i = 0; i < GameManager_SXChuCai.instance.GetVocaPartLength(slotLocation); i++)
         {
             transform.GetChild(i).gameObject.SetActive(true);
             transform.GetChild(i).GetComponent<Animator>().ResetTrigger("CanDance");
