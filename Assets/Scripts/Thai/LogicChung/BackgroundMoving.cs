@@ -16,7 +16,7 @@ public class BackgroundMoving : MonoBehaviour
     }
     void Update()
     {
-        if(canMove)
+        if(canMove && Time.timeScale != 0f)
         {
             transform.Translate(new Vector2(speed, 0f));
             if (Mathf.Abs(transform.position.x - startPosX) > transform.GetChild(0).GetComponent<RectTransform>().rect.width * canvas.scaleFactor)

@@ -31,11 +31,13 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private Transform scoreFx;
     [SerializeField] private Transform addScoreFx;
     [SerializeField] private TextMeshProUGUI lvText;
+    [SerializeField] private GameObject pauseUI;
     [SerializeField] private int score = 0;
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
     [SerializeField] private List<GameObject> perfectWordHolders;
+    
     private int life = 3;
     private float timer = 0;
     private int lv = 1;
@@ -55,6 +57,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         endLvUI.gameObject.SetActive(false);
         scoreFx.gameObject.SetActive(false);
         addScoreFx.gameObject.SetActive(false);
+        pauseUI.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
     {
@@ -176,6 +179,7 @@ public class GameManager_SXChuCai : MonoBehaviour
                 break;
         }
         selectDiffUI.gameObject.SetActive(false);
+        VocabularyManager.instance.ResetVocabulariesRemain();
         SetRunToNextLvState();
     }
     public Sprite GetSpriteByName(char alphabet)
@@ -277,7 +281,7 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void CheckEndLv()
     {
-        if (currentWordLength != currentAlphabetNumOnSlot)
+        if (currentWordLength != currentAlphabetNumOnSlot && DifficultyManager.instance.Mode != Difficulty.hard)
             return;
         if (this.CheckPerfectWordWhenFullSlot())
         {
@@ -359,6 +363,8 @@ public class GameManager_SXChuCai : MonoBehaviour
         timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         playPartUI.SetOnState(false);
+        pauseUI.SetActive(false);
+        Time.timeScale = 1;
         for(int i=0; i < 3; i++ )
         {
             hearts[i].GetComponent<Image>().color = Color.white;
@@ -384,4 +390,16 @@ public class GameManager_SXChuCai : MonoBehaviour
         Invoke("PlayWordAudio", .5f);
     }
     private void PlayWordAudio() => AudioManager.instance.PlayCurrentWordAudio();
+    public void OnClickPauseGame()
+    {
+        if(!startTimer)
+            return;
+        Time.timeScale = 0f;
+        pauseUI.SetActive(true);
+    }
+    public void OnClickContinueGame()
+    {
+        Time.timeScale = 1f;
+        pauseUI.SetActive(false);
+    }
 }
