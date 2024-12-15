@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -32,12 +32,15 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private Transform addScoreFx;
     [SerializeField] private TextMeshProUGUI lvText;
     [SerializeField] private GameObject pauseUI;
+    [SerializeField] private List<GameObject> perfectWordHolders;
+    [SerializeField] private TextMeshProUGUI titleEndLvText;
+    [SerializeField] private GameObject exitOrReplayNoti;
+    [SerializeField] private TextMeshProUGUI exitOrReplayTitleTxt;
+    [SerializeField] private TextMeshProUGUI scoreNotiOnExitOrReplayNoti;
     [SerializeField] private int score = 0;
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
-    [SerializeField] private List<GameObject> perfectWordHolders;
-    
     private int life = 3;
     private float timer = 0;
     private int lv = 1;
@@ -57,6 +60,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         endLvUI.gameObject.SetActive(false);
         scoreFx.gameObject.SetActive(false);
         addScoreFx.gameObject.SetActive(false);
+        exitOrReplayNoti.SetActive(false);
         pauseUI.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
@@ -132,6 +136,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         }
         timerText.text = (int)timer + "";
         scoreText.text = score+"";
+        scoreNotiOnExitOrReplayNoti.text = score + "";
         lvText.text = "Level " + lv;
         if(addScoreFx.gameObject.activeInHierarchy)
             addScoreFx.GetComponent<AddScoreFx>().addScoreText.text = "+"+addScore;
@@ -147,6 +152,7 @@ public class GameManager_SXChuCai : MonoBehaviour
             life--;
             blurBlackScreen.gameObject.SetActive(true);
             timeOutNoti.gameObject.SetActive(true);
+            titleEndLvText.text = "Ouch!";
             Invoke("TimeOutFx", 1f);
         }
     }
@@ -250,10 +256,24 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void OnSelectExitBtn()
     {
+        exitOrReplayTitleTxt.text = "Bạn muốn chơi lại?";
+        exitOrReplayNoti.SetActive(true);
+    }
+    public void OnSelectQuitGameBtn()
+    {
+        exitOrReplayTitleTxt.text = "Bạn muốn thoát game?";
+        exitOrReplayNoti.SetActive(true);
+    }
+    public void OnClickOkExitOrReplayBtn()
+    {
         endLvUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(false);
         selectDiffUI.gameObject.SetActive(true);
         ResetGameState();
+    }
+    public void OnClickNoExitOrReplayBtn()
+    {
+        exitOrReplayNoti.SetActive(false);
     }
     public void EnableEndGameUI()
     {
@@ -272,7 +292,7 @@ public class GameManager_SXChuCai : MonoBehaviour
             {
                 if (!perfectWordHolders[i].GetComponent<PerfectWordHolder>().CheckPerfectWordWhenFullSlot())
                 {
-                    Debug.Log("h�ng "+i+" sai!");        
+                    Debug.Log("hàng "+i+" sai!");        
                     return false;
                 }
             }
@@ -288,6 +308,7 @@ public class GameManager_SXChuCai : MonoBehaviour
             startTimer = false;
             PassLvEffect();
             scoreFx.gameObject.SetActive(true);
+            titleEndLvText.text = "Wonderful!";
             switch (DifficultyManager.instance.Mode)
             {
                 case Difficulty.easy:
@@ -356,6 +377,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         currentAlphabetNumOnSlot = 0;
         addScore = 0;
         timeOut = false;
+        startTimer = false;
         for (int i = 0; i <= 3; i++)
         {
             perfectWordHolders[i].GetComponent<PerfectWordHolder>().ReturnAllAlphabetToHolder();
@@ -364,6 +386,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         blurBlackScreen.gameObject.SetActive(false);
         playPartUI.SetOnState(false);
         pauseUI.SetActive(false);
+        exitOrReplayNoti.SetActive(false);
         Time.timeScale = 1;
         for(int i=0; i < 3; i++ )
         {
