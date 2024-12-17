@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager_SXChuCai : MonoBehaviour
+public class GameManager_SXChuCai : GameManager
 {
     public static GameManager_SXChuCai instance { get; private set; }
     public int currentWordLength;
@@ -37,13 +37,11 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private GameObject exitOrReplayNoti;
     [SerializeField] private TextMeshProUGUI exitOrReplayTitleTxt;
     [SerializeField] private TextMeshProUGUI scoreNotiOnExitOrReplayNoti;
-    [SerializeField] private int score = 0;
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
     private int life = 3;
     private float timer = 0;
-    private int lv = 1;
     private bool timeOut = false;
     private bool outOfVoca = false;
     private bool startTimer = false;
