@@ -12,7 +12,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d76dcbafd0198244a95321444d291e4, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
+<<<<<<< HEAD
   position: {x: -23.112644, y: 2.4105186, z: 71.77855}
   expValue: 5
   expMax: 10
   levelValue: 1
+=======
+  position: {x: 42.579998, y: 3.0831156, z: 62}
+  expValue: 66
+  expMax: 90
+  levelValue: 9
+>>>>>>> upstream/main

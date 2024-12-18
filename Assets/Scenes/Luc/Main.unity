@@ -1923,6 +1923,7 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 196906953}
   m_CullTransparentMesh: 1
+<<<<<<< HEAD
 --- !u!1 &207479829
 GameObject:
   m_ObjectHideFlags: 0
@@ -2057,6 +2058,8 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207479829}
   m_CullTransparentMesh: 1
+=======
+>>>>>>> upstream/main
 --- !u!1 &220474178
 GameObject:
   m_ObjectHideFlags: 0
@@ -5741,8 +5744,13 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
+<<<<<<< HEAD
     rgba: 4278255095
   m_fontColor: {r: 0.96805316, g: 0.990566, b: 0, a: 1}
+=======
+    rgba: 4287943141
+  m_fontColor: {r: 0.8962264, g: 0.8213301, b: 0.57916516, a: 1}
+>>>>>>> upstream/main
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -6283,7 +6291,10 @@ RectTransform:
   - {fileID: 2065761270}
   - {fileID: 1544562296}
   - {fileID: 944931030}
+<<<<<<< HEAD
   - {fileID: 207479830}
+=======
+>>>>>>> upstream/main
   m_Father: {fileID: 1460130804}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
@@ -7045,8 +7056,13 @@ GameObject:
   m_Component:
   - component: {fileID: 1340280086}
   - component: {fileID: 1340280088}
+<<<<<<< HEAD
   - component: {fileID: 1340280090}
   - component: {fileID: 1340280091}
+=======
+  - component: {fileID: 1340280089}
+  - component: {fileID: 1340280090}
+>>>>>>> upstream/main
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -7082,6 +7098,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 7de55067f3a7a77459c402b319d2a1ba, type: 2}
+<<<<<<< HEAD
 --- !u!114 &1340280090
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7100,6 +7117,9 @@ MonoBehaviour:
   _playerData: {fileID: 11400000, guid: 7de55067f3a7a77459c402b319d2a1ba, type: 2}
   _expPlayer: {fileID: 1340280088}
 --- !u!114 &1340280091
+=======
+--- !u!114 &1340280089
+>>>>>>> upstream/main
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -7112,6 +7132,25 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerData: {fileID: 11400000, guid: 7de55067f3a7a77459c402b319d2a1ba, type: 2}
+<<<<<<< HEAD
+=======
+--- !u!114 &1340280090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1340280085}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a4c2b197fbc7ca47aa917912b4ae266, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  expBar: {fileID: 1544562297}
+  level: {fileID: 944931031}
+  _playerData: {fileID: 11400000, guid: 7de55067f3a7a77459c402b319d2a1ba, type: 2}
+  _expPlayer: {fileID: 1340280088}
+>>>>>>> upstream/main
 --- !u!1001 &1371510709
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9017,6 +9056,7 @@ RectTransform:
   m_AnchoredPosition: {x: -24, y: 0}
   m_SizeDelta: {x: -1820, y: -834}
   m_Pivot: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
 --- !u!1 &1679808422
 GameObject:
   m_ObjectHideFlags: 0
@@ -9048,6 +9088,8 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+=======
+>>>>>>> upstream/main
 --- !u!1 &1727410287
 GameObject:
   m_ObjectHideFlags: 0
@@ -10314,8 +10356,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 88.89, y: -74.999985}
   m_SizeDelta: {x: 109.22, y: 109.6738}
+=======
+  m_AnchoredPosition: {x: 75, y: -75}
+  m_SizeDelta: {x: 130, y: 130}
+>>>>>>> upstream/main
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2065761271
 MonoBehaviour:
@@ -10389,8 +10436,13 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
+<<<<<<< HEAD
   m_AnchoredPosition: {x: 0.2818, y: 0.2819}
   m_SizeDelta: {x: 99.5611, y: 100.5576}
+=======
+  m_AnchoredPosition: {x: 0.1, y: 0.6}
+  m_SizeDelta: {x: 120, y: 120}
+>>>>>>> upstream/main
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2086552349
 MonoBehaviour:
@@ -13681,4 +13733,7 @@ SceneRoots:
   - {fileID: 1760814598}
   - {fileID: 1340280086}
   - {fileID: 161629644}
+<<<<<<< HEAD
   - {fileID: 1679808423}
+=======
+>>>>>>> upstream/main

@@ -3,14 +3,7 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags:
-  - Library
-  - Game1
-  - Game2
-  - Game3
-  - Game4
-  - Noti_success
-  - Noti_fail
+  tags: []
   layers:
   - Default
   - TransparentFX
