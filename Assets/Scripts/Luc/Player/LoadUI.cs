@@ -11,31 +11,23 @@ using static Cinemachine.DocumentationSortingAttribute;
 public class LoadUI : MonoBehaviour
 {
     private string filePath;
-<<<<<<< HEAD
     public Data data;
-=======
->>>>>>> upstream/main
+
     public Slider expBar;
     public TextMeshProUGUI level;
     public playerData _playerData;
     public expPlayer _expPlayer;
-<<<<<<< HEAD
 
-=======
     void Start()
     {
         filePath = "D:\\project unity\\du an\\Do-an-game-Project\\Assets\\Data\\savegame.json";
         Debug.Log("File will be saved at: " + Application.persistentDataPath);
         LoadGame();
     }
->>>>>>> upstream/main
     void Update()
     {
         updateUI();
     }
-<<<<<<< HEAD
-    
-=======
     public void LoadGame()
     {
         FileInfo fileinfo = new FileInfo(filePath);
@@ -59,7 +51,6 @@ public class LoadUI : MonoBehaviour
 
         }
     }
->>>>>>> upstream/main
     public void updateUI()
     {
         expBar.value = _playerData.GetExpValue();
