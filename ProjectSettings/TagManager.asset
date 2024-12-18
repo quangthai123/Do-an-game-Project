@@ -9,6 +9,8 @@ TagManager:
   - Game2
   - Game3
   - Game4
+  - Noti_success
+  - Noti_fail
   layers:
   - Default
   - TransparentFX
