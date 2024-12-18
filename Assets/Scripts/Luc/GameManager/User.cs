@@ -2,12 +2,12 @@
 public class User 
 {
     public string Username;
-    public int Password;
+    public string Password;
     public int Exp;
     public int MaxExp;
     public int Level;
 
-    public User(string name, int password, int exp, int maxExp, int level)
+    public User(string name, string password, int exp, int maxExp, int level)
     {
         this.Username = name;
         this.Password = password;

@@ -54,7 +54,7 @@ public class Data : MonoBehaviour
             if (Pass_sighup.text == Pass_sighupAgain.text)
             {
                 string UseID = System.Guid.NewGuid().ToString();
-                User newUser = new User(Username_sighup.text, int.Parse(Pass_sighup.text), 0, 10, 1);
+                User newUser = new User(Username_sighup.text, Pass_sighup.text, 0, 10, 1);
                 string json = JsonUtility.ToJson(newUser);
                 await Database.Child("user").Child(UseID).SetRawJsonValueAsync(json);
 
