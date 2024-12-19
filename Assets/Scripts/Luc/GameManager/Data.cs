@@ -86,6 +86,7 @@ public class Data : MonoBehaviour
                     _playerData.expValue = int.Parse(userSnapshot.Child("Exp").Value.ToString());
                     _playerData.levelValue = int.Parse(userSnapshot.Child("Level").Value.ToString());
                     _playerData.expMax = int.Parse(userSnapshot.Child("MaxExp").Value.ToString());
+                Debug.Log("lay data ok");
                     start_Menu.Main_menu.SetActive(true);
                     start_Menu.Login.SetActive(false);
                     return;
