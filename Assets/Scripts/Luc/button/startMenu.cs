@@ -76,7 +76,7 @@ public class startMenu : MonoBehaviour
     public void StartGame()
     {
         SfxButton.Play();
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("Screen Main");
     }
     public void InstructGame()
     {

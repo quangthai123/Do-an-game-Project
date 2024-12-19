@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Luc/Start Game.unity
+    guid: d884626273fc1734786ac0b6b7ea98c8
+  - enabled: 1
+    path: Assets/Scenes/Luc/Screen Main.unity
+    guid: 5a0c9afa0ef6fb54699089358cf768fd
+  - enabled: 1
+    path: Assets/Scenes/Luc/Library.unity
+    guid: 671a93ac86d510e4f84eff97143563d1
   m_configObjects: {}
