@@ -9,8 +9,11 @@ public class Vocabulary
     public string vocabulary;
     public string mean;
     public Sprite image;
+
+
     public AudioClip audio;
     public Vocabulary(string _vocabulary, string _mean, Sprite _image, AudioClip _audio)
+
     {
         this.vocabulary = _vocabulary;
         this.mean = _mean;
@@ -31,13 +34,13 @@ public class VocabularyManager : MonoBehaviour
     private List<Vocabulary> hardVocabulariesRemain;
     [SerializeField] private int easyVocaRemainQuantity;
     [SerializeField] private int mediumVocaRemainQuantity;
+    [SerializeField] private int hardVocaRemainQuantity;
     public Dictionary<string, string> easyVocabulary_mean { get; private set; } = new Dictionary<string, string>();
     public Dictionary<string, string> mediumVocabulary_mean { get; private set; } = new Dictionary<string, string>();
     public Dictionary<string, string> hardVocabulary_mean { get; private set; } = new Dictionary<string, string>();
     private List<Sprite> easyVocaImages;
     private List<Sprite> mediumVocaImages;
     private List<Sprite> hardVocaImages;
-
     private List<AudioClip> easyAudios;
     private List<AudioClip> mediumAudios;
     private List<AudioClip> hardAudios;
@@ -55,11 +58,20 @@ public class VocabularyManager : MonoBehaviour
         LoadVocabularyImage();
         LoadVocabularyAudio();
         LoadVocabularies();
-        easyVocabulariesRemain = new List<Vocabulary>(easyVocabularies);
-        mediumVocabulariesRemain = new List<Vocabulary>(mediumVocabularies);
-        hardVocabulariesRemain = hardVocabularies;
+        ResetVocabulariesRemain();
+    }
+    private void Update()
+    {
         easyVocaRemainQuantity = easyVocabulariesRemain.Count;
         mediumVocaRemainQuantity = mediumVocabulariesRemain.Count;
+        hardVocaRemainQuantity = hardVocabulariesRemain.Count;
+    }
+    public void ResetVocabulariesRemain()
+    {
+        easyVocabulariesRemain = new List<Vocabulary>(easyVocabularies);
+        mediumVocabulariesRemain = new List<Vocabulary>(mediumVocabularies);
+        hardVocabulariesRemain = new List<Vocabulary>(hardVocabularies);
+
     }
     public Vocabulary GetRandomEasyVocabulary()
     {
@@ -89,26 +101,40 @@ public class VocabularyManager : MonoBehaviour
     }
     public Vocabulary GetRandomHardVocabulary()
     {
-        int rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
-        return hardVocabularies[rd];
+        if (hardVocabulariesRemain.Count < 1)
+        {
+            Debug.Log("Out of voca!");
+            return null;
+        }
+        int rd = UnityEngine.Random.Range(0, hardVocabulariesRemain.Count);
+        int index = hardVocabularies.IndexOf(hardVocabulariesRemain[rd]);
+        hardVocabulariesRemain.Remove(hardVocabulariesRemain[rd]);
+        hardVocaRemainQuantity = hardVocabulariesRemain.Count;
+        return hardVocabularies[index];
     }
     private void LoadVocabularies()
     {
         int cnt = 0;
         foreach (var item in easyVocabulary_mean)
         {
+
             easyVocabularies.Add(new Vocabulary(item.Key, item.Value, easyVocaImages[cnt], easyAudios[cnt++]));
+
         }
         cnt = 0;
         foreach (var item in mediumVocabulary_mean)
         {
+
             mediumVocabularies.Add(new Vocabulary(item.Key, item.Value, mediumVocaImages[cnt], mediumAudios[cnt++]));
+
         }
-        //cnt = 0;
-        //foreach (var item in hardVocabulary_mean)
-        //{
-        //    hardVocabularies.Add(new Vocabulary(item.Key, item.Value, hardVocaImages[cnt], hardAudios[cnt++]));
-        //}
+        cnt = 0;
+        foreach (var item in hardVocabulary_mean)
+        {
+
+            hardVocabularies.Add(new Vocabulary(item.Key, item.Value, hardVocaImages[cnt], hardAudios[cnt++]));
+
+        }
     }
 
     private void LoadVocabularyImage()

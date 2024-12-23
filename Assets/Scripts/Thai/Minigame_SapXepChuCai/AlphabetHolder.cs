@@ -54,7 +54,7 @@ public class AlphabetHolder : MonoBehaviour
                     {
                         transform.GetChild(i).gameObject.SetActive(true);
                     }
-                    gridLayoutGroup.constraintCount = 6;
+                    gridLayoutGroup.constraintCount = 12;
                     break;
             }
         }
@@ -98,6 +98,8 @@ public class AlphabetHolder : MonoBehaviour
         int cnt = 0;
         foreach (char c in voca)
         {
+            if (c == ' ')
+                continue;
             chars.Add(c);
             remainCharsIndex.Add(cnt++);
             int rdIndex = Random.Range(0, remainIndexList.Count);

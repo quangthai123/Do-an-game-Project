@@ -48,11 +48,14 @@ public class AlphabetDroppbleSlot : MonoBehaviour, IDropHandler
         if(DraggableItem.draggingItem == null)
             alphabetBlur.gameObject.SetActive(false);
     }
-
+    private int GetHolderLocation()
+    {
+        return transform.parent.GetComponent<PerfectWordHolder>().slotLocation;
+    }
     private void CheckAlphabet()
     {
         char[] c = item.GetComponent<Image>().sprite.name.ToCharArray();
-        if(!GameManager_SXChuCai.instance.CheckAlphabet(c[0], transform.GetSiblingIndex()))
+        if(!GameManager_SXChuCai.instance.CheckAlphabet(c[0], transform.GetSiblingIndex(), GetHolderLocation()))
         {
             Debug.Log("Wrong Alphabet on " + transform.GetSiblingIndex());
             item.transform.Find("RedFx").gameObject.SetActive(true);
