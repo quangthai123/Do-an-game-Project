@@ -30,12 +30,33 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         audioSource.PlayOneShot(touchSFX);
+        Time.timeScale = 1f;
     }
 
     public void Quit()
     {
         SceneManager.LoadScene("Main");
         audioSource.PlayOneShot(touchSFX);
+    }
+
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("LevelSelect");
+        audioSource.PlayOneShot(touchSFX);
+
+        // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        // int nextSceneIndex = currentSceneIndex + 1;
+
+        // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
+        // {
+        //     SceneManager.LoadScene(nextSceneIndex);
+        //     audioSource.PlayOneShot(touchSFX);
+        // }
+        // else
+        // {
+        //     Debug.LogWarning("No more levels to load!");
+        // }
     }
 
 
