@@ -9,8 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
-
-
+    [SerializeField] private MusicManager musicManager;
 
     public void Pause()
     {
@@ -33,9 +32,9 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 1f;
     }
 
-    public void Quit()
+    public void Home()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("StartScene");
         audioSource.PlayOneShot(touchSFX);
     }
 
@@ -43,21 +42,19 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelect");
         audioSource.PlayOneShot(touchSFX);
-
-        // int currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-
-        // int nextSceneIndex = currentSceneIndex + 1;
-
-        // if (nextSceneIndex < SceneManager.sceneCountInBuildSettings)
-        // {
-        //     SceneManager.LoadScene(nextSceneIndex);
-        //     audioSource.PlayOneShot(touchSFX);
-        // }
-        // else
-        // {
-        //     Debug.LogWarning("No more levels to load!");
-        // }
     }
 
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+        audioSource.PlayOneShot(touchSFX);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Screen Main");
+        audioSource.PlayOneShot(touchSFX);
+        musicManager.StopMusic();
+    }
 
 }
