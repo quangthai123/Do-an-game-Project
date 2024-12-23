@@ -8,9 +8,32 @@ public class MusicManager : MonoBehaviour
 
     public AudioClip BgMusic;
 
+    private static MusicManager instance;
+
+    private void Awake()
+    {
+        if (instance == null)
+        {
+            instance = this;
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
     private void Start()
     {
         musicSource.clip = BgMusic;
         musicSource.Play();
+    }
+
+    public void StopMusic()
+    {
+        if (musicSource.isPlaying)
+        {
+            musicSource.Stop();
+        }
     }
 }
