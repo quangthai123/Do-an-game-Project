@@ -8,7 +8,9 @@ public class Tongs : MonoBehaviour
     public float pickUpSpeedModifier { get; private set; }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.GetComponent<IItemType>() != null)
+        if(GetComponent<Rigidbody2D>().velocity.y > .1f)
+            return;
+        if (collision.GetComponent<IItemType>() != null)
         {
             canGoBack = true;
             if(collision.GetComponent<RacoonMovement>() != null)
