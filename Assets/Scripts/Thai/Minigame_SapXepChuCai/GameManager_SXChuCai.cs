@@ -9,7 +9,6 @@ public class GameManager_SXChuCai : GameManager
     public static GameManager_SXChuCai instance { get; private set; }
     public int currentWordLength;
     public List<Sprite> allAlphabetSprites;
-    public Vocabulary currentVocabulary;
     public int currentAlphabetNumOnSlot = 0;
     [Header("UI")]
     [SerializeField] private Image vocaImageGamePlay;
@@ -40,11 +39,7 @@ public class GameManager_SXChuCai : GameManager
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
-    private int life = 3;
-    private float timer = 0;
-    private bool timeOut = false;
-    private bool outOfVoca = false;
-    private bool startTimer = false;
+    
     private void Awake()
     {
         if (instance != null)
