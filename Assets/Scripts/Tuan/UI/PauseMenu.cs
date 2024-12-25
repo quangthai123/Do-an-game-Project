@@ -9,8 +9,7 @@ public class PauseMenu : MonoBehaviour
 
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
-
-
+    [SerializeField] private MusicManager musicManager;
 
     public void Pause()
     {
@@ -30,13 +29,32 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         audioSource.PlayOneShot(touchSFX);
+        Time.timeScale = 1f;
     }
 
-    public void Quit()
+    public void Home()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("StartScene");
         audioSource.PlayOneShot(touchSFX);
     }
 
+    public void NextLevel()
+    {
+        SceneManager.LoadScene("LevelSelect");
+        audioSource.PlayOneShot(touchSFX);
+    }
+
+    public void LevelSelect()
+    {
+        SceneManager.LoadScene("LevelSelect");
+        audioSource.PlayOneShot(touchSFX);
+    }
+
+    public void Exit()
+    {
+        SceneManager.LoadScene("Screen Main");
+        audioSource.PlayOneShot(touchSFX);
+        musicManager.StopMusic();
+    }
 
 }

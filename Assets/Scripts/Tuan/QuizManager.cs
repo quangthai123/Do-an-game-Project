@@ -7,7 +7,7 @@ public class QuizManager : MonoBehaviour
 {
     [SerializeField] private QuizUI quizUI;
     [SerializeField] private List<QuizDataScriptable> quizData;
-    [SerializeField] private float timeLimit = 30f;
+    [SerializeField] private float timeLimit = 60f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip correctAnswerSFX;
     // [SerializeField] private AudioClip touchSFX;
@@ -89,11 +89,9 @@ public class QuizManager : MonoBehaviour
             scoreCOunt += 10;
             quizUI.ScoreText.text = "Score: " + scoreCOunt;
             audioSource.PlayOneShot(correctAnswerSFX);
-            Debug.Log("Correct Answer!");
         }
         else
         {
-            Debug.Log("Wrong Answer!");
             audioSource.PlayOneShot(errorSFX);
             lifeRemaining--;
             quizUI.ReduceLife(lifeRemaining);
