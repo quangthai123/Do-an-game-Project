@@ -5,7 +5,7 @@ using System.IO;  // Cần thiết để sử dụng File.Exists()
 public class QuestionLoader : MonoBehaviour
 {
     [SerializeField] private QuizDataScriptable quizDataScriptable;
-
+   
     void Start()
     {
         LoadQuestionsForCurrentScene();
@@ -56,7 +56,8 @@ public class QuestionLoader : MonoBehaviour
                         break;
                 }
 
-                quizDataScriptable.questions.Add(question);  // Thêm câu hỏi vào danh sách
+                quizDataScriptable.questions.Add(question);
+                // Thêm câu hỏi vào danh sách
             }
 
             Debug.Log($"Questions loaded for {sceneName}");

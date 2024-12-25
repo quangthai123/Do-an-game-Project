@@ -22,8 +22,6 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star1;
     [SerializeField] private GameObject Star2;
     [SerializeField] private GameObject Star3;
-
-
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
     [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
     [SerializeField] private Sprite[] numberSprites;   // Các sprite từ 0 đến 9
@@ -36,14 +34,9 @@ public class QuizUI : MonoBehaviour
     public TextMeshProUGUI ScoreText { get { return scoreText; } }
     public TextMeshProUGUI TimerText { get { return timerText; } }
     public GameObject GameOverPanel { get { return gameOverPanel; } }
+    public playerData _playerData;
 
 
-    public void Play()
-    {
-        mainMenuPanel.SetActive(false);
-        gameMenuPanel.SetActive(true);
-        audioSource.PlayOneShot(touchSFX);
-    }
     void Awake()
     {
 
@@ -60,7 +53,12 @@ public class QuizUI : MonoBehaviour
         }
 
     }
-
+    public void Play()
+    {
+        mainMenuPanel.SetActive(false);
+        gameMenuPanel.SetActive(true);
+        audioSource.PlayOneShot(touchSFX);
+    }
     public void SetQuestion(Question question)
     {
         //set the question
@@ -195,7 +193,22 @@ public class QuizUI : MonoBehaviour
         }
 
         gameOverPanel.SetActive(true);
-
+        Time.timeScale = 0;
+        if(_playerData.statusLv1 == true)
+        {
+            if(_playerData.scoreGame1< score)
+            {
+                _playerData.SetScoreGame1(score);
+            }
+        }
+        else if (_playerData.statusLv2 == true)
+        {
+            if (_playerData.scoreGame2 < score)
+            {
+                _playerData.SetScoreGame2(score);
+            }
+        }
+        
         if (score < 10)
         {
             Star1.SetActive(false);

@@ -7,7 +7,7 @@ public class QuizManager : MonoBehaviour
 {
     [SerializeField] private QuizUI quizUI;
     [SerializeField] private List<QuizDataScriptable> quizData;
-    [SerializeField] private float timeLimit = 30f;
+    [SerializeField] private float timeLimit = 60f;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private AudioClip correctAnswerSFX;
     // [SerializeField] private AudioClip touchSFX;
@@ -16,7 +16,7 @@ public class QuizManager : MonoBehaviour
 
     private List<Question> questions;
     private Question selectedQuestion;
-    private int scoreCOunt = 0;
+    private int scoreCount = 0;
     private float currentTime;
     private int lifeRemaining = 3;
 
@@ -26,7 +26,7 @@ public class QuizManager : MonoBehaviour
 
     public void StartGame(int index)
     {
-        scoreCOunt = 0;
+        scoreCount = 0;
         currentTime = timeLimit;
         lifeRemaining = 3;
 
@@ -75,7 +75,7 @@ public class QuizManager : MonoBehaviour
         {
             gameStatus = QuizGameStatus.Next;
             quizUI.GameOverPanel.SetActive(true);
-            quizUI.ShowGameOverPanel(scoreCOunt);
+            quizUI.ShowGameOverPanel(scoreCount);
         }
     }
 
@@ -86,8 +86,8 @@ public class QuizManager : MonoBehaviour
         if (answered == selectedQuestion.correctAns)
         {
             correctAns = true;
-            scoreCOunt += 10;
-            quizUI.ScoreText.text = "Score: " + scoreCOunt;
+            scoreCount += 10;
+            quizUI.ScoreText.text = "Score: " + scoreCount;
             audioSource.PlayOneShot(correctAnswerSFX);
             Debug.Log("Correct Answer!");
         }
@@ -98,17 +98,15 @@ public class QuizManager : MonoBehaviour
             lifeRemaining--;
             quizUI.ReduceLife(lifeRemaining);
 
-            // Kiểm tra khi hết mạng hoặc hết câu hỏi
             if (lifeRemaining <= 0 || questions.Count == 0)
             {
                 gameStatus = QuizGameStatus.Next;
-                quizUI.ShowGameOverPanel(scoreCOunt);
+                quizUI.ShowGameOverPanel(scoreCount);
                 audioSource.PlayOneShot(gameOverSFX);
 
             }
         }
 
-        // Kiểm tra câu hỏi còn lại để tiếp tục
         if (questions.Count > 0)
         {
             Invoke("SelectQuestion", .5f);
@@ -116,7 +114,7 @@ public class QuizManager : MonoBehaviour
         else
         {
             gameStatus = QuizGameStatus.Next;
-            quizUI.ShowGameOverPanel(scoreCOunt);
+            quizUI.ShowGameOverPanel(scoreCount);
         }
 
         return correctAns;
