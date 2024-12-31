@@ -25734,6 +25734,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   score: 0
+  selectDiffUI: {fileID: 1938759848}
+  pauseUI: {fileID: 409882618}
+  blurBlackScreen: {fileID: 1120951477}
+  currentVocabulary:
+    vocabulary: 
+    mean: 
+    image: {fileID: 0}
+    audio: {fileID: 0}
   currentWordLength: 0
   allAlphabetSprites:
   - {fileID: 21300000, guid: 1387277862c06824692f475289382191, type: 3}
@@ -25763,11 +25771,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c0750a511166c0544aea2940dde320fe, type: 3}
   - {fileID: 21300000, guid: cc92773fdf964fc46810cf4001795b61, type: 3}
   - {fileID: 21300000, guid: 6c557d669ac6a574a887f0fbd4391b66, type: 3}
-  currentVocabulary:
-    vocabulary: 
-    mean: 
-    image: {fileID: 0}
-    audio: {fileID: 0}
   currentAlphabetNumOnSlot: 0
   vocaImageGamePlay: {fileID: 448778842}
   vocaImageEndLv: {fileID: 831693802}
@@ -25777,7 +25780,6 @@ MonoBehaviour:
   vocaTextGOVUI: {fileID: 647641778}
   vocaMeaningText: {fileID: 1356912318}
   vocaMeaningTextGOVUI: {fileID: 144136405}
-  selectDiffUI: {fileID: 1938759848}
   endLvUI: {fileID: 411618847}
   gameOverUI: {fileID: 238147958}
   timerText: {fileID: 1108407760}
@@ -25785,13 +25787,11 @@ MonoBehaviour:
   - {fileID: 1862039531}
   - {fileID: 992786413}
   - {fileID: 1164638524}
-  blurBlackScreen: {fileID: 1120951477}
   timeOutNoti: {fileID: 1600226858}
   scoreText: {fileID: 757563568}
   scoreFx: {fileID: 1021251370}
   addScoreFx: {fileID: 2141445229}
   lvText: {fileID: 1714190445}
-  pauseUI: {fileID: 409882618}
   perfectWordHolders:
   - {fileID: 622559371}
   - {fileID: 287248328}

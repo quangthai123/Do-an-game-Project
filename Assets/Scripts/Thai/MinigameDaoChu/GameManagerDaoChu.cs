@@ -8,7 +8,6 @@ public class GameManagerDaoChu : GameManager
     public static GameManagerDaoChu Instance;
     public Action onPlayerTouchingAction;
     public Action onInitializeLv;
-    private bool invokeIntializeLv = false;
     private void Awake()
     {
         if(Instance != null)
@@ -16,14 +15,11 @@ public class GameManagerDaoChu : GameManager
         else
             Instance = this;
     }
-    private void Update()
-    {
-        if (!invokeIntializeLv)
-        {
-            InitializeLv();
-            invokeIntializeLv = true;
-        }
-    }
     public void OnTouching() => onPlayerTouchingAction?.Invoke();
     private void InitializeLv() => onInitializeLv?.Invoke();
+    public override void OnSelectDifficulty(int diff)
+    {
+        base.OnSelectDifficulty(diff);
+        InitializeLv();
+    }
 }

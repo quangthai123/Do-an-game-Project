@@ -19,18 +19,15 @@ public class GameManager_SXChuCai : GameManager
     [SerializeField] private TextMeshProUGUI vocaTextGOVUI;
     [SerializeField] private TextMeshProUGUI vocaMeaningText;
     [SerializeField] private TextMeshProUGUI vocaMeaningTextGOVUI;
-    [SerializeField] private Transform selectDiffUI;
     [SerializeField] private Transform endLvUI;
     [SerializeField] private Transform gameOverUI;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<Transform> hearts;
-    [SerializeField] private Transform blurBlackScreen;
     [SerializeField] private Transform timeOutNoti;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Transform scoreFx;
     [SerializeField] private Transform addScoreFx;
     [SerializeField] private TextMeshProUGUI lvText;
-    [SerializeField] private GameObject pauseUI;
     [SerializeField] private List<GameObject> perfectWordHolders;
     [SerializeField] private TextMeshProUGUI titleEndLvText;
     [SerializeField] private GameObject exitOrReplayNoti;
@@ -47,14 +44,13 @@ public class GameManager_SXChuCai : GameManager
         else
             instance = this;
     }
-    private void Start()
+    protected override void Start()
     {
-        selectDiffUI.gameObject.SetActive(true);
+        base.Start();
         endLvUI.gameObject.SetActive(false);
         scoreFx.gameObject.SetActive(false);
         addScoreFx.gameObject.SetActive(false);
         exitOrReplayNoti.SetActive(false);
-        pauseUI.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
     {
@@ -157,27 +153,24 @@ public class GameManager_SXChuCai : GameManager
             Player.Instance.SetAnim("Dead");
         hearts[life].Find("Heart_RedFx").gameObject.SetActive(true);
     }
-    public void OnSelectDifficulty(int diff)
+    public override void OnSelectDifficulty(int diff)
     {
+        base.OnSelectDifficulty(diff);
         switch(diff)
         {
             case 0:
-                DifficultyManager.instance.Mode = Difficulty.easy;
                 timer = 16f;
                 GetRandomEasyVocabulary();
                 break;
             case 1:
-                DifficultyManager.instance.Mode = Difficulty.normal;
                 timer = 26f;
                 GetRandomMediumVocabulary();
                 break;
             case 2:
-                DifficultyManager.instance.Mode = Difficulty.hard;
                 timer = 41f;
                 GetRandomHardVocabulary();
                 break;
         }
-        selectDiffUI.gameObject.SetActive(false);
         VocabularyManager.instance.ResetVocabulariesRemain();
         SetRunToNextLvState();
     }

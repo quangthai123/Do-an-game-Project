@@ -9,9 +9,9 @@ public class DraggableItem : MonoBehaviour, IBeginDragHandler, IDragHandler, IEn
     public static PointerEventData draggingItem;
     public static Sprite draggingItemSprite;
     public Transform currentParent;
-    private Transform originalParent;
     public bool hasPut = false;
     public bool backToHolder = false;
+    private Transform originalParent;
     public void OnBeginDrag(PointerEventData eventData)
     {
         if (draggingItem != null || hasPut)

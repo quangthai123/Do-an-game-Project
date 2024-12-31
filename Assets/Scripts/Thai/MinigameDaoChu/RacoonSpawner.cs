@@ -26,16 +26,27 @@ public class RacoonSpawner : Spawner
         switch(DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
-                for(int i=1; i <= 5; i++)
-                {
-                    float rdPosX = Random.Range(-9f, 9f);
-                    float rdPosY = Random.Range(-1f, -4.5f);                  
-                    Transform racoon = Spawn(RacoonName, new Vector2(rdPosX, rdPosY), Quaternion.identity);
-                    int rdDir = Random.Range(0, 2);
-                    if (rdDir == 1)
-                        racoon.GetComponent<RacoonMovement>().Flip();
-                }
+                SpawnRacoon(5);
                 break;
+            case Difficulty.normal:
+                SpawnRacoon(6);
+                break;
+            case Difficulty.hard:
+                SpawnRacoon(7);
+                break;
+        }
+    }
+
+    private void SpawnRacoon(int racoonNum)
+    {
+        for (int i = 1; i <= racoonNum; i++)
+        {
+            float rdPosX = Random.Range(-9f, 9f);
+            float rdPosY = Random.Range(-1f, -4.5f);
+            Transform racoon = Spawn(RacoonName, new Vector2(rdPosX, rdPosY), Quaternion.identity);
+            int rdDir = Random.Range(0, 2);
+            if (rdDir == 1)
+                racoon.GetComponent<RacoonMovement>().Flip();
         }
     }
 }
