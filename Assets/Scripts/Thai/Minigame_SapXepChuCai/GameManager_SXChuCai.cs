@@ -1,15 +1,14 @@
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameManager_SXChuCai : MonoBehaviour
+public class GameManager_SXChuCai : GameManager
 {
     public static GameManager_SXChuCai instance { get; private set; }
     public int currentWordLength;
     public List<Sprite> allAlphabetSprites;
-    public Vocabulary currentVocabulary;
     public int currentAlphabetNumOnSlot = 0;
     [Header("UI")]
     [SerializeField] private Image vocaImageGamePlay;
@@ -20,28 +19,24 @@ public class GameManager_SXChuCai : MonoBehaviour
     [SerializeField] private TextMeshProUGUI vocaTextGOVUI;
     [SerializeField] private TextMeshProUGUI vocaMeaningText;
     [SerializeField] private TextMeshProUGUI vocaMeaningTextGOVUI;
-    [SerializeField] private Transform selectDiffUI;
     [SerializeField] private Transform endLvUI;
     [SerializeField] private Transform gameOverUI;
     [SerializeField] private TextMeshProUGUI timerText;
     [SerializeField] private List<Transform> hearts;
-    [SerializeField] private Transform blurBlackScreen;
     [SerializeField] private Transform timeOutNoti;
     [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private Transform scoreFx;
     [SerializeField] private Transform addScoreFx;
     [SerializeField] private TextMeshProUGUI lvText;
-    [SerializeField] private int score = 0;
+    [SerializeField] private List<GameObject> perfectWordHolders;
+    [SerializeField] private TextMeshProUGUI titleEndLvText;
+    [SerializeField] private GameObject exitOrReplayNoti;
+    [SerializeField] private TextMeshProUGUI exitOrReplayTitleTxt;
+    [SerializeField] private TextMeshProUGUI scoreNotiOnExitOrReplayNoti;
     [SerializeField] private int addScore = 0;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;
-    [SerializeField] private List<GameObject> perfectWordHolders;
-    private int life = 3;
-    private float timer = 0;
-    private int lv = 1;
-    private bool timeOut = false;
-    private bool outOfVoca = false;
-    private bool startTimer = false;
+    
     private void Awake()
     {
         if (instance != null)
@@ -49,12 +44,13 @@ public class GameManager_SXChuCai : MonoBehaviour
         else
             instance = this;
     }
-    private void Start()
+    protected override void Start()
     {
-        selectDiffUI.gameObject.SetActive(true);
+        base.Start();
         endLvUI.gameObject.SetActive(false);
         scoreFx.gameObject.SetActive(false);
         addScoreFx.gameObject.SetActive(false);
+        exitOrReplayNoti.SetActive(false);
     }
     public void GetRandomEasyVocabulary()
     {
@@ -129,6 +125,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         }
         timerText.text = (int)timer + "";
         scoreText.text = score+"";
+        scoreNotiOnExitOrReplayNoti.text = score + "";
         lvText.text = "Level " + lv;
         if(addScoreFx.gameObject.activeInHierarchy)
             addScoreFx.GetComponent<AddScoreFx>().addScoreText.text = "+"+addScore;
@@ -144,6 +141,7 @@ public class GameManager_SXChuCai : MonoBehaviour
             life--;
             blurBlackScreen.gameObject.SetActive(true);
             timeOutNoti.gameObject.SetActive(true);
+            titleEndLvText.text = "Ouch!";
             Invoke("TimeOutFx", 1f);
         }
     }
@@ -155,27 +153,25 @@ public class GameManager_SXChuCai : MonoBehaviour
             Player.Instance.SetAnim("Dead");
         hearts[life].Find("Heart_RedFx").gameObject.SetActive(true);
     }
-    public void OnSelectDifficulty(int diff)
+    public override void OnSelectDifficulty(int diff)
     {
+        base.OnSelectDifficulty(diff);
         switch(diff)
         {
             case 0:
-                DifficultyManager.instance.Mode = Difficulty.easy;
                 timer = 16f;
                 GetRandomEasyVocabulary();
                 break;
             case 1:
-                DifficultyManager.instance.Mode = Difficulty.normal;
                 timer = 26f;
                 GetRandomMediumVocabulary();
                 break;
             case 2:
-                DifficultyManager.instance.Mode = Difficulty.hard;
                 timer = 41f;
                 GetRandomHardVocabulary();
                 break;
         }
-        selectDiffUI.gameObject.SetActive(false);
+        VocabularyManager.instance.ResetVocabulariesRemain();
         SetRunToNextLvState();
     }
     public Sprite GetSpriteByName(char alphabet)
@@ -246,10 +242,24 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void OnSelectExitBtn()
     {
+        exitOrReplayTitleTxt.text = "Bạn muốn chơi lại?";
+        exitOrReplayNoti.SetActive(true);
+    }
+    public void OnSelectQuitGameBtn()
+    {
+        exitOrReplayTitleTxt.text = "Bạn muốn thoát game?";
+        exitOrReplayNoti.SetActive(true);
+    }
+    public void OnClickOkExitOrReplayBtn()
+    {
         endLvUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(false);
         selectDiffUI.gameObject.SetActive(true);
         ResetGameState();
+    }
+    public void OnClickNoExitOrReplayBtn()
+    {
+        exitOrReplayNoti.SetActive(false);
     }
     public void EnableEndGameUI()
     {
@@ -268,7 +278,7 @@ public class GameManager_SXChuCai : MonoBehaviour
             {
                 if (!perfectWordHolders[i].GetComponent<PerfectWordHolder>().CheckPerfectWordWhenFullSlot())
                 {
-                    Debug.Log("h�ng "+i+" sai!");        
+                    Debug.Log("hàng "+i+" sai!");        
                     return false;
                 }
             }
@@ -277,13 +287,14 @@ public class GameManager_SXChuCai : MonoBehaviour
     }
     public void CheckEndLv()
     {
-        if (currentWordLength != currentAlphabetNumOnSlot)
+        if (currentWordLength != currentAlphabetNumOnSlot && DifficultyManager.instance.Mode != Difficulty.hard)
             return;
         if (this.CheckPerfectWordWhenFullSlot())
         {
             startTimer = false;
             PassLvEffect();
             scoreFx.gameObject.SetActive(true);
+            titleEndLvText.text = "Wonderful!";
             switch (DifficultyManager.instance.Mode)
             {
                 case Difficulty.easy:
@@ -352,6 +363,7 @@ public class GameManager_SXChuCai : MonoBehaviour
         currentAlphabetNumOnSlot = 0;
         addScore = 0;
         timeOut = false;
+        startTimer = false;
         for (int i = 0; i <= 3; i++)
         {
             perfectWordHolders[i].GetComponent<PerfectWordHolder>().ReturnAllAlphabetToHolder();
@@ -359,6 +371,9 @@ public class GameManager_SXChuCai : MonoBehaviour
         timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         playPartUI.SetOnState(false);
+        pauseUI.SetActive(false);
+        exitOrReplayNoti.SetActive(false);
+        Time.timeScale = 1;
         for(int i=0; i < 3; i++ )
         {
             hearts[i].GetComponent<Image>().color = Color.white;
@@ -384,4 +399,16 @@ public class GameManager_SXChuCai : MonoBehaviour
         Invoke("PlayWordAudio", .5f);
     }
     private void PlayWordAudio() => AudioManager.instance.PlayCurrentWordAudio();
+    public void OnClickPauseGame()
+    {
+        if(!startTimer)
+            return;
+        Time.timeScale = 0f;
+        pauseUI.SetActive(true);
+    }
+    public void OnClickContinueGame()
+    {
+        Time.timeScale = 1f;
+        pauseUI.SetActive(false);
+    }
 }

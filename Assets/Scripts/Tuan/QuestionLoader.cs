@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.IO;  // Cần thiết để sử dụng File.Exists()
+using System.IO;
+using UnityEngine.Video;
+
 
 public class QuestionLoader : MonoBehaviour
 {
@@ -14,51 +16,62 @@ public class QuestionLoader : MonoBehaviour
     void LoadQuestionsForCurrentScene()
     {
         string sceneName = UnityEngine.SceneManagement.SceneManager.GetActiveScene().name;
-        string jsonFileName = $"{sceneName}.json";  // Ví dụ: Level1.json
+        string jsonFileName = $"{sceneName}.json";
         string filePath = Path.Combine(Application.streamingAssetsPath, jsonFileName);
 
-        if (System.IO.File.Exists(filePath))  // Đảm bảo sử dụng System.IO.File.Exists
+        if (System.IO.File.Exists(filePath))
         {
-            string jsonData = System.IO.File.ReadAllText(filePath);  // Đọc dữ liệu từ file
+            string jsonData = System.IO.File.ReadAllText(filePath);
 
-            // Giải mã JSON thành đối tượng QuestionList
+
             QuestionList loadedQuestions = JsonUtility.FromJson<QuestionList>(jsonData);
 
-            quizDataScriptable.questions.Clear();  // Xóa câu hỏi cũ trong ScriptableObject
+            quizDataScriptable.questions.Clear();
 
             foreach (var question in loadedQuestions.questions)
             {
-                // Dựa vào kiểu câu hỏi để xử lý đúng
+                Debug.Log($"Question Type: {question.questionType}");
+
                 switch (question.questionType)
                 {
                     case QuestionType.TEXT:
-                        question.qustionImage = null;  // Không cần ảnh, video hoặc âm thanh
+                        question.qustionImage = null;
                         question.qustionClip = null;
                         question.qustionVideo = null;
                         break;
 
                     case QuestionType.IMAGE:
-                        // Giả sử bạn đã đưa đường dẫn ảnh vào
-                        question.qustionClip = null;  // Không cần audio hoặc video
+                        Debug.Log($"Loading image: {question.qustionImage}");
+                        question.qustionImage = Resources.Load<Sprite>("Images/" + question.qustionImage);
+                        if (question.qustionImage == null)
+                            Debug.LogError($"Image not found: {question.qustionImage}");
+                        question.qustionClip = null;
                         question.qustionVideo = null;
                         break;
 
                     case QuestionType.AUDIO:
-                        // Giả sử bạn đã đưa đường dẫn file âm thanh vào
-                        question.qustionImage = null;  // Không cần ảnh hoặc video
+                        Debug.Log($"Loading audio: {question.qustionClip}");
+                        question.qustionClip = Resources.Load<AudioClip>("Audio/" + question.qustionClip);
+                        if (question.qustionClip == null)
+                            Debug.LogError($"Audio not found: {question.qustionClip}");
+                        question.qustionImage = null;
                         question.qustionVideo = null;
                         break;
 
                     case QuestionType.VIDEO:
-                        // Giả sử bạn đã đưa đường dẫn video vào
-                        question.qustionImage = null;  // Không cần ảnh hoặc âm thanh
+                        Debug.Log($"Loading video: {question.qustionVideo}");
+                        question.qustionVideo = Resources.Load<VideoClip>("Video/" + question.qustionVideo);
+                        if (question.qustionVideo == null)
+                            Debug.LogError($"Video not found: {question.qustionVideo}");
+                        question.qustionImage = null;
                         question.qustionClip = null;
                         break;
                 }
 
-                quizDataScriptable.questions.Add(question);
-                // Thêm câu hỏi vào danh sách
+                quizDataScriptable.questions.Add(question);  // Thêm câu hỏi vào danh sách
             }
+
+
 
             Debug.Log($"Questions loaded for {sceneName}");
         }
@@ -67,7 +80,6 @@ public class QuestionLoader : MonoBehaviour
             Debug.LogError($"File not found: {filePath}");
         }
     }
-
 }
 
 [System.Serializable]

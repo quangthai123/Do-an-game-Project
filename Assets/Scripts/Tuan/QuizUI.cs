@@ -22,9 +22,14 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star1;
     [SerializeField] private GameObject Star2;
     [SerializeField] private GameObject Star3;
+
+
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
     [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
     [SerializeField] private Sprite[] numberSprites;   // Các sprite từ 0 đến 9
+
+
+    [SerializeField] private LevelUnlockSystem.GameUI gameUI;
 
 
     private Question question;
@@ -105,18 +110,25 @@ public class QuizUI : MonoBehaviour
 
     IEnumerator PlayAudio()
     {
-        if (question.questionType == QuestionType.AUDIO)
+        int playCount = 0;
+
+        while (playCount < 2)
         {
-            questionAudio.PlayOneShot(question.qustionClip);
-            yield return new WaitForSeconds(audioLength + 0.5f);
-            StartCoroutine(PlayAudio());
+            if (question.questionType == QuestionType.AUDIO)
+            {
+                questionAudio.PlayOneShot(question.qustionClip);
+                playCount++;
+                yield return new WaitForSeconds(audioLength + 0.5f);
+            }
+            else
+            {
+                break;
+            }
         }
-        else
-        {
-            StopCoroutine(PlayAudio());
-            yield return null;
-        }
+
+        yield return null;
     }
+
 
     void ImageHolder()
     {
@@ -139,12 +151,10 @@ public class QuizUI : MonoBehaviour
                 if (val)
                 {
                     btn.image.color = Color.green;
-                    Debug.Log("xanh");
                 }
                 else
                 {
                     btn.image.color = Color.red;
-                    Debug.Log("do");
                 }
             }
         }
@@ -173,6 +183,7 @@ public class QuizUI : MonoBehaviour
 
     public void ShowGameOverPanel(int score)
     {
+
         foreach (Transform child in scoreContainer)
         {
             Destroy(child.gameObject);
@@ -192,23 +203,13 @@ public class QuizUI : MonoBehaviour
             numberImage.sprite = numberSprites[number];
         }
 
+        int stars = 0;
+        if (score >= 100) stars = 3;
+        else if (score >= 50) stars = 2;
+        else if (score >= 10) stars = 1;
+
         gameOverPanel.SetActive(true);
-        Time.timeScale = 0;
-        if(_playerData.statusLv1 == true)
-        {
-            if(_playerData.scoreGame1< score)
-            {
-                _playerData.SetScoreGame1(score);
-            }
-        }
-        else if (_playerData.statusLv2 == true)
-        {
-            if (_playerData.scoreGame2 < score)
-            {
-                _playerData.SetScoreGame2(score);
-            }
-        }
-        
+
         if (score < 10)
         {
             Star1.SetActive(false);

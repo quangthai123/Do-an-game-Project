@@ -58,11 +58,20 @@ public class VocabularyManager : MonoBehaviour
         LoadVocabularyImage();
         LoadVocabularyAudio();
         LoadVocabularies();
-        easyVocabulariesRemain = new List<Vocabulary>(easyVocabularies);
-        mediumVocabulariesRemain = new List<Vocabulary>(mediumVocabularies);
-        hardVocabulariesRemain = hardVocabularies;
+        ResetVocabulariesRemain();
+    }
+    private void Update()
+    {
         easyVocaRemainQuantity = easyVocabulariesRemain.Count;
         mediumVocaRemainQuantity = mediumVocabulariesRemain.Count;
+        hardVocaRemainQuantity = hardVocabulariesRemain.Count;
+    }
+    public void ResetVocabulariesRemain()
+    {
+        easyVocabulariesRemain = new List<Vocabulary>(easyVocabularies);
+        mediumVocabulariesRemain = new List<Vocabulary>(mediumVocabularies);
+        hardVocabulariesRemain = new List<Vocabulary>(hardVocabularies);
+
     }
     public Vocabulary GetRandomEasyVocabulary()
     {

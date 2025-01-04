@@ -46,6 +46,8 @@ public class PerfectWordHolder : MonoBehaviour
         {
             if (!slot.gameObject.activeInHierarchy)
                 continue;
+            if(!slot.Find("Alphabet"))
+                return false;
             if (slot.Find("Alphabet").Find("RedFx").gameObject.activeInHierarchy)          
                 return false;       
         }

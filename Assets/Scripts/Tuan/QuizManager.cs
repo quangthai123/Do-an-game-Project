@@ -89,11 +89,9 @@ public class QuizManager : MonoBehaviour
             scoreCount += 10;
             quizUI.ScoreText.text = "Score: " + scoreCount;
             audioSource.PlayOneShot(correctAnswerSFX);
-            Debug.Log("Correct Answer!");
         }
         else
         {
-            Debug.Log("Wrong Answer!");
             audioSource.PlayOneShot(errorSFX);
             lifeRemaining--;
             quizUI.ReduceLife(lifeRemaining);
