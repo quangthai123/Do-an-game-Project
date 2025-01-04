@@ -90,7 +90,7 @@ public class TongsHandler : MonoBehaviour
         }
         canRotate = true;
         isPickingUp = false;
-        tongs.GetComponent<Tongs>().DisableItemOnFinishPickUp();
+        tongs.GetComponent<Tongs>().PulledUpImageAndCheck();
     }
     private void RotateTongs()
     {

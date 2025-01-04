@@ -52,9 +52,10 @@ public abstract class Spawner : MonoBehaviour
         obj.gameObject.SetActive(true);
         return obj;
     }
-    protected void Despawn(Transform go)
+    public void Despawn(Transform go)
     {
         go.gameObject.SetActive(false);
+        go.parent = holder;
         if(!poolObjs.Contains(go))
             poolObjs.Add(go);
     }

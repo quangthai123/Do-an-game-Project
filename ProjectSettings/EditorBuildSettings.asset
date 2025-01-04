@@ -18,9 +18,27 @@ EditorBuildSettings:
     path: Assets/Scenes/Thai/Minigame_SapXepChuCai.unity
     guid: b51dd882b1e62bd4ea4fff750ab68719
   - enabled: 1
+    path: Assets/Scenes/Thai/Minigame_DaoAnh.unity
+    guid: 726c6ba768382b843be0367dadeb30de
+  - enabled: 1
+    path: Assets/Scenes/Tuan/StartScene.unity
+    guid: 6194e5b1e4df2884caba8180da6a0f70
+  - enabled: 1
+    path: Assets/Scenes/Tuan/LevelSelect.unity
+    guid: 2b0a6352b6fe6344eaf459dd1964ccf9
+  - enabled: 1
     path: Assets/Scenes/Tuan/Level1.unity
     guid: 7e21425d8932e0649a2dcf08abedbfda
   - enabled: 1
     path: Assets/Scenes/Tuan/Level2.unity
     guid: d8fafc3bfab3d4441abde684111c089e
+  - enabled: 1
+    path: Assets/Scenes/Tuan/Level3.unity
+    guid: 2a5b1a519ea486a4eac3cecb3900ac53
+  - enabled: 1
+    path: Assets/Scenes/Tuan/Level4.unity
+    guid: a010c3857a01fc1499d45c59c5582431
+  - enabled: 1
+    path: Assets/Scenes/Tuan/Level5.unity
+    guid: 5cb9a62d31c657f4ca7e758ca22290ba
   m_configObjects: {}
