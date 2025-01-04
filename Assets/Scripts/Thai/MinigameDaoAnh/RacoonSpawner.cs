@@ -19,9 +19,9 @@ public class RacoonSpawner : Spawner
     protected override void Start()
     {
         base.Start();
-        GameManagerDaoChu.Instance.onInitializeLv += SpawnRacoonOnInitializeLv;      
+        GameManagerDaoAnh.Instance.onInitializeLv += SpawnRacoonOnInitializeLv;      
     }
-    private void SpawnRacoonOnInitializeLv()
+    public void SpawnRacoonOnInitializeLv()
     {
         switch(DifficultyManager.instance.Mode)
         {
@@ -36,9 +36,9 @@ public class RacoonSpawner : Spawner
                 break;
         }
     }
-
     private void SpawnRacoon(int racoonNum)
     {
+        ClearRacoon();
         for (int i = 1; i <= racoonNum; i++)
         {
             float rdPosX = Random.Range(-9f, 9f);
@@ -47,6 +47,14 @@ public class RacoonSpawner : Spawner
             int rdDir = Random.Range(0, 2);
             if (rdDir == 1)
                 racoon.GetComponent<RacoonMovement>().Flip();
+            racoon.GetComponent<RacoonImage>().SetImage(GameManagerDaoAnh.Instance.GetImageForRacoon(i-1));
+        }
+    }
+    private void ClearRacoon()
+    {
+        foreach(Transform racoon in holder)
+        {
+            Despawn(racoon);
         }
     }
 }
