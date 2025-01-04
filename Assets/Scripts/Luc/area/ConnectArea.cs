@@ -6,40 +6,56 @@ public class ConnectArea : MonoBehaviour
 {
     [SerializeField] private AudioSource SfxButton;
     [SerializeField] private checkConnect _checkConnect;
+    [SerializeField] private playerData _playerData;
     public void ConnectLibrary()
     {
-        if(_checkConnect)
-        SfxButton.Play();
-        SceneManager.LoadScene("Library");
+
+            SfxButton.Play();
+            SceneManager.LoadScene("Library");
+
     }
     public void ConnectGame1()
     {
-        if (_checkConnect)
+
             SfxButton.Play();
-        SceneManager.LoadScene("Library");
+            _playerData.statusLv1 = true;
+            SceneManager.LoadScene("StartScene");
     }
     public void ConnectGame2()
     {
-        if (_checkConnect)
-        SfxButton.Play();
-        SceneManager.LoadScene("Library");
+
+            SfxButton.Play();
+            _playerData.statusLv2 = true;
+            SceneManager.LoadScene("Library");
+
     }
     public void ConnectGame3()
     {
-        if (_checkConnect)
-        SfxButton.Play();
-        SceneManager.LoadScene("Library");
+
+            SfxButton.Play();
+            _playerData.statusLv3 = true;
+            SceneManager.LoadScene("Minigame_SapXepChuCai");
+
     }
     public void ConnectGame4()
     {
-        if (_checkConnect)
+
+            SfxButton.Play();
+            SceneManager.LoadScene("Library");
+    }
+    public void ConnectGame5()
+    {
+
         SfxButton.Play();
         SceneManager.LoadScene("Library");
     }
     public void Leave()
     {
         SfxButton.Play();
-        SceneManager.LoadScene("Main");
+        //_playerData.statusLv1 = false ;
+        //_playerData.statusLv2 = false ;
+        //_playerData.statusLv3 = false ;
+        SceneManager.LoadScene("Screen Main");
     }
 
 }

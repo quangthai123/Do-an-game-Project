@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
-
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MusicManager musicManager;
+
+
 
     public void Pause()
     {
@@ -48,6 +49,7 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelect");
         audioSource.PlayOneShot(touchSFX);
+        Time.timeScale = 1f;
     }
 
     public void Exit()

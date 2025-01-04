@@ -5,8 +5,5 @@ using UnityEngine;
 [System.Serializable]
 public class GameData
 {
-    public int exp;
-    public int maxExp;
-    public int level;
-
+    public int score;
 }
