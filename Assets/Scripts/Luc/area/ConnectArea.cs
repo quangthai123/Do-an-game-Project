@@ -19,7 +19,7 @@ public class ConnectArea : MonoBehaviour
 
             SfxButton.Play();
             _playerData.statusLv1 = true;
-            SceneManager.LoadScene("Level1");
+            SceneManager.LoadScene("StartScene");
     }
     public void ConnectGame2()
     {

@@ -8,6 +8,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] GameObject pauseMenu;
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
+    [SerializeField] private MusicManager musicManager;
 
 
 
@@ -46,12 +47,9 @@ public class PauseMenu : MonoBehaviour
 
     public void LevelSelect()
     {
-        SceneManager.LoadScene("Main");
+        SceneManager.LoadScene("LevelSelect");
         audioSource.PlayOneShot(touchSFX);
         Time.timeScale = 1f;
-        _playerData.statusLv1 = false;
-        _playerData.statusLv2 = false;
-        SceneManager.LoadScene("Screen Main");
     }
 
     public void Exit()

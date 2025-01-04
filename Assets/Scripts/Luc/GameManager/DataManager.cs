@@ -53,7 +53,7 @@ public class DataManager : MonoBehaviour
             if (Pass_sighup.text == Pass_sighupAgain.text)
             {
                 string UseID = System.Guid.NewGuid().ToString();
-                User newUser = new User(Username_sighup.text, Pass_sighup.text, 0,0,0,0);
+                User newUser = new User(Username_sighup.text, Pass_sighup.text, 0,0,0,0,0,0,0);
                 string json = JsonUtility.ToJson(newUser);
                 await Database.Child("user").Child(UseID).SetRawJsonValueAsync(json);
 

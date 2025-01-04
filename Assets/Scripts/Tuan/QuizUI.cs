@@ -188,7 +188,7 @@ public class QuizUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-
+        _playerData.SetScoreGame1(score);
         string scoreString = score.ToString();
 
         foreach (char digit in scoreString)

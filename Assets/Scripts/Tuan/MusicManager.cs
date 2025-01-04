@@ -31,9 +31,7 @@ public class MusicManager : MonoBehaviour
 
     public void StopMusic()
     {
-        if (musicSource.isPlaying)
-        {
+
             musicSource.Stop();
-        }
     }
 }

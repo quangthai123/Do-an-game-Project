@@ -32,6 +32,9 @@ public class saveData: MonoBehaviour
             { "ScoreGame1", _playerData.scoreGame1 },
             { "ScoreGame2", _playerData.scoreGame2 },
             { "ScoreGame3", _playerData.scoreGame3 },
+            { "ScoreGame4", _playerData.scoreGame4 },
+            { "ScoreGame5", _playerData.scoreGame5 },
+            { "ScoreGame6", _playerData.scoreGame6 },
             { "ScoreSum", _playerData.GetScoreSum()},
         };
         await Database.Child("user").Child(currentUserId).UpdateChildrenAsync(updatedData);

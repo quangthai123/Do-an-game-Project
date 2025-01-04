@@ -16,6 +16,9 @@ public class playerData : ScriptableObject
     public int scoreGame1;
     public int scoreGame2;
     public int scoreGame3;
+    public int scoreGame4;
+    public int scoreGame5;
+    public int scoreGame6;
     public int scoreSum;
     public string Name;
 
@@ -53,9 +56,36 @@ public class playerData : ScriptableObject
         scoreGame3 = newScore;
         UpdateScoreSum();
     }
+    public void SetScoreGame4(int newScore)
+    {
+        scoreGame4 = newScore;
+        UpdateScoreSum();
+    }
+    public int GetScoreGame4()
+    {
+        return scoreGame3;
+    }
+    public void SetScoreGame5(int newScore)
+    {
+        scoreGame5 = newScore;
+        UpdateScoreSum();
+    }
+    public int GetScoreGame5()
+    {
+        return scoreGame3;
+    }
+    public void SetScoreGame6(int newScore)
+    {
+        scoreGame6 = newScore;
+        UpdateScoreSum();
+    }
     public int GetScoreSum()
     {
         return scoreSum;
+    }
+    public int GetScoreGame6()
+    {
+        return scoreGame3;
     }
     public string GetName()
     {
@@ -63,6 +93,6 @@ public class playerData : ScriptableObject
     }
     private void UpdateScoreSum()
     {
-        scoreSum = scoreGame1 + scoreGame2 + scoreGame3;
+        scoreSum = scoreGame1 + scoreGame2 + scoreGame3 + scoreGame4 + scoreGame5 + scoreGame6 ;
     }
 }
