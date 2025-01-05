@@ -11,12 +11,9 @@ public class GameManager_SXChuCai : GameManager
     public int currentAlphabetNumOnSlot = 0;
     [Header("UI")]
     [SerializeField] private Image vocaImageGamePlay;
-    [SerializeField] private Image vocaImageEndLv;
     [SerializeField] private Image vocaImageGOVUI;
     [SerializeField] private TextMeshProUGUI vocaTextGamePlayTest;
-    [SerializeField] private TextMeshProUGUI vocaTextEndLv;
     [SerializeField] private TextMeshProUGUI vocaTextGOVUI;
-    [SerializeField] private TextMeshProUGUI vocaMeaningText;
     [SerializeField] private TextMeshProUGUI vocaMeaningTextGOVUI;
     [SerializeField] private List<GameObject> perfectWordHolders;
     [SerializeField] private BackgroundMoving bg;
@@ -242,12 +239,6 @@ public class GameManager_SXChuCai : GameManager
         {
             perfectWordHolders[i].GetComponent<PerfectWordHolder>().ReturnAllAlphabetToHolder();
         }
-        for(int i=0; i < 3; i++ )
-        {
-            hearts[i].GetComponent<Image>().color = Color.white;
-            hearts[i].Find("Heart_RedFx").gameObject.SetActive(false);
-            hearts[i].Find("Heart_BlurFx").gameObject.SetActive(false);
-        }
     }
     private void SetRunToNextLvState()
     {
@@ -264,5 +255,11 @@ public class GameManager_SXChuCai : GameManager
         Player.Instance.SetAnim("Idle");
         bg.StopMoveBG();
         Invoke("PlayWordAudio", .5f);
+    }
+    public override void OnClickOkExitOrReplayBtn()
+    {
+        base.OnClickOkExitOrReplayBtn();
+        playerData data = Resources.Load<playerData>("playerData");
+        data.SetScoreGame1(score);
     }
 }

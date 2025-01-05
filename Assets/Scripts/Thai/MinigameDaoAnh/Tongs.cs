@@ -32,6 +32,9 @@ public class Tongs : MonoBehaviour
                 RacoonSpawner.Instance.Despawn(transf);
                 GameManagerDaoAnh.Instance.SetNextVocaAfterPulledSucess();
                 GameManagerDaoAnh.Instance.SetNewImageAfterPulledSucess(transf.GetComponent<RacoonImage>().GetImage());
+            } else
+            {
+                transf.GetComponent<RacoonMovement>().RunAwayAfterPullWrong();
             }
         }
     }

@@ -7,6 +7,7 @@ public class AddScoreFx : MonoBehaviour
 {
     private Animator anim;
     public TextMeshProUGUI addScoreText;
+    [SerializeField] private Minigame minigame = Minigame.SXChuCai;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -14,7 +15,10 @@ public class AddScoreFx : MonoBehaviour
     }
     private void OnFinishAnim()
     {
-        GameManager_SXChuCai.instance.AddBonusScore();
+        if(minigame == Minigame.SXChuCai)
+            GameManager_SXChuCai.instance.AddBonusScore();
+        else if(minigame == Minigame.DaoAnh) 
+            GameManagerDaoAnh.Instance.AddBonusScore();
         gameObject.SetActive(false);
     }
 }

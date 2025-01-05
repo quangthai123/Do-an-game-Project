@@ -6,9 +6,6 @@ public class RacoonSpawner : Spawner
 {
     public static RacoonSpawner Instance { get; private set; }
     public string RacoonName { get; private set; } = "Racoon";
-    [Header("Spawn Range")]
-    [SerializeField] private float rangeWidth = 9f;
-    [SerializeField] private Vector2 rangeHeigh = new Vector2(-1f, -4.5f);
     private void Awake()
     {
         if (Instance != null)
@@ -19,7 +16,7 @@ public class RacoonSpawner : Spawner
     protected override void Start()
     {
         base.Start();
-        GameManagerDaoAnh.Instance.onInitializeLv += SpawnRacoonOnInitializeLv;      
+        //GameManagerDaoAnh.Instance.onInitializeLv += SpawnRacoonOnInitializeLv;      
     }
     public void SpawnRacoonOnInitializeLv()
     {
@@ -48,6 +45,8 @@ public class RacoonSpawner : Spawner
             if (rdDir == 1)
                 racoon.GetComponent<RacoonMovement>().Flip();
             racoon.GetComponent<RacoonImage>().SetImage(GameManagerDaoAnh.Instance.GetImageForRacoon(i-1));
+            Debug.Log("Spawned " + racoon.name);
+            racoon.gameObject.SetActive(true);
         }
     }
     private void ClearRacoon()
