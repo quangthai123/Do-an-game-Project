@@ -29,7 +29,7 @@ public class listRank : MonoBehaviour
 
     public void creatAcount()
     {
-        float temple = 130f;
+        float temple = 110f;
         foreach (Transform child in leaderboardContainer)
         {
             Destroy(child.gameObject);
@@ -106,7 +106,38 @@ public class listRank : MonoBehaviour
                     topPlayers.Add(playerData);
 
                 }
-                topPlayers.Sort((x, y) => y.GetScoreSum().CompareTo(x.GetScoreSum()));
+
+                foreach (var player in topPlayers)
+                {
+                    Debug.Log($"Player: {player.name}, ScoreSum: {player.scoreSum}");
+                }
+                topPlayers.Sort((x, y) =>
+                {
+                    int scoreComparison = y.GetScoreSum().CompareTo(x.GetScoreSum());
+
+                    if (scoreComparison == 0)
+                    {
+                        int game1Comparison = y.scoreGame1.CompareTo(x.scoreGame1);
+                        if (game1Comparison != 0) return game1Comparison;
+
+                        int game2Comparison = y.scoreGame2.CompareTo(x.scoreGame2);
+                        if (game2Comparison != 0) return game2Comparison;
+
+                        int game3Comparison = y.scoreGame3.CompareTo(x.scoreGame3);
+                        if (game3Comparison != 0) return game3Comparison;
+
+                        int game4Comparison = y.scoreGame4.CompareTo(x.scoreGame4);
+                        if (game4Comparison != 0) return game4Comparison;
+
+                        int game5Comparison = y.scoreGame5.CompareTo(x.scoreGame5);
+                        if (game5Comparison != 0) return game5Comparison;
+
+                        int game6Comparison = y.scoreGame6.CompareTo(x.scoreGame6);
+                        if (game6Comparison != 0) return game6Comparison;
+                        return 0;
+                    }
+                    return scoreComparison; 
+                });
             }
         });
         Debug.Log("Leaderboard UI updated.");
