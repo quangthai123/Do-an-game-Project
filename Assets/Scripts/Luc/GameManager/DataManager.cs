@@ -86,6 +86,9 @@ public class DataManager : MonoBehaviour
                 _playerData.scoreGame1 = int.Parse(userSnapshot.Child("ScoreGame1").Value.ToString());
                 _playerData.scoreGame2 = int.Parse(userSnapshot.Child("ScoreGame2").Value.ToString());
                 _playerData.scoreGame3 = int.Parse(userSnapshot.Child("ScoreGame3").Value.ToString());
+                _playerData.scoreGame4 = int.Parse(userSnapshot.Child("ScoreGame4").Value.ToString());
+                _playerData.scoreGame5 = int.Parse(userSnapshot.Child("ScoreGame5").Value.ToString());
+                _playerData.scoreGame6 = int.Parse(userSnapshot.Child("ScoreGame6").Value.ToString());
                 _playerData.scoreSum = int.Parse(userSnapshot.Child("ScoreSum").Value.ToString());
                     Debug.Log("lay data ok");
                     start_Menu.Main_menu.SetActive(true);

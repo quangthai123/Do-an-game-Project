@@ -21,8 +21,8 @@ public class listRank : MonoBehaviour
 
     public void Awake()
     {
-        database = FirebaseDatabase.GetInstance(FirebaseApp.DefaultInstance,"https://game-3d-english-study-default-rtdb.asia-southeast1.firebasedatabase.app/").RootReference;
-       
+        database = FirebaseDatabase.GetInstance(FirebaseApp.DefaultInstance, "https://game-3d-english-study-default-rtdb.asia-southeast1.firebasedatabase.app/").RootReference;
+
         LoadLeaderboard();
         StartCoroutine(DelayedCreateAccount(0.5f));
     }
@@ -45,19 +45,43 @@ public class listRank : MonoBehaviour
             entry.gameObject.SetActive(true);
             var player = topPlayers[i];
             int rank = i + 1;
-            string rankString;
-            rankString = rank.ToString();
-            entry.transform.Find("STT").GetComponent<TextMeshProUGUI>().text = rankString;
-            entry.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = player.name.ToString();
-            entry.transform.Find("Game1").GetComponent<TextMeshProUGUI>().text = player.scoreGame1.ToString();
-            entry.transform.Find("Game2").GetComponent<TextMeshProUGUI>().text = player.scoreGame2.ToString();
-            entry.transform.Find("Game3").GetComponent<TextMeshProUGUI>().text = player.scoreGame3.ToString();
-            entry.transform.Find("Game4").GetComponent<TextMeshProUGUI>().text = player.scoreGame4.ToString();
-            entry.transform.Find("Game5").GetComponent<TextMeshProUGUI>().text = player.scoreGame5.ToString();
-            entry.transform.Find("Game6").GetComponent<TextMeshProUGUI>().text = player.scoreGame6.ToString();
-            entry.transform.Find("Sum").GetComponent<TextMeshProUGUI>().text = player.scoreSum.ToString();
-            Debug.Log("da them");
+            var sttText = entry.transform.Find("STT").GetComponent<TextMeshProUGUI>();
+            sttText.text = rank.ToString();
+            sttText.color = Color.white;
 
+            var userNameText = entry.transform.Find("UserName").GetComponent<TextMeshProUGUI>();
+            userNameText.text = player.name.ToString();
+            userNameText.color = Color.white;
+
+            var game1Text = entry.transform.Find("Game1").GetComponent<TextMeshProUGUI>();
+            game1Text.text = player.scoreGame1.ToString();
+            game1Text.color = Color.white;
+
+            var game2Text = entry.transform.Find("Game2").GetComponent<TextMeshProUGUI>();
+            game2Text.text = player.scoreGame2.ToString();
+            game2Text.color = Color.white;
+
+            var game3Text = entry.transform.Find("Game3").GetComponent<TextMeshProUGUI>();
+            game3Text.text = player.scoreGame3.ToString();
+            game3Text.color = Color.white;
+
+            var game4Text = entry.transform.Find("Game4").GetComponent<TextMeshProUGUI>();
+            game4Text.text = player.scoreGame4.ToString();
+            game4Text.color = Color.white;
+
+            var game5Text = entry.transform.Find("Game5").GetComponent<TextMeshProUGUI>();
+            game5Text.text = player.scoreGame5.ToString();
+            game5Text.color = Color.white;
+
+            var game6Text = entry.transform.Find("Game6").GetComponent<TextMeshProUGUI>();
+            game6Text.text = player.scoreGame6.ToString();
+            game6Text.color = Color.white;
+
+            var sumText = entry.transform.Find("Sum").GetComponent<TextMeshProUGUI>();
+            sumText.text = player.scoreSum.ToString();
+            sumText.color = Color.white;
+
+            Debug.Log("da them");
         }
         int index = 0;
         foreach (var playerMain in topPlayers)
@@ -104,7 +128,6 @@ public class listRank : MonoBehaviour
                     };
 
                     topPlayers.Add(playerData);
-
                 }
 
                 foreach (var player in topPlayers)

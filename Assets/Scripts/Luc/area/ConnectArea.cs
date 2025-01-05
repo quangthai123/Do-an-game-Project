@@ -49,12 +49,15 @@ public class ConnectArea : MonoBehaviour
         SfxButton.Play();
         SceneManager.LoadScene("Library");
     }
+    public void ConnectGame6()
+    {
+
+        SfxButton.Play();
+        SceneManager.LoadScene("Library");
+    }
     public void Leave()
     {
         SfxButton.Play();
-        //_playerData.statusLv1 = false ;
-        //_playerData.statusLv2 = false ;
-        //_playerData.statusLv3 = false ;
         SceneManager.LoadScene("Screen Main");
     }
 
