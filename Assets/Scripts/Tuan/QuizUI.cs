@@ -22,15 +22,20 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star1;
     [SerializeField] private GameObject Star2;
     [SerializeField] private GameObject Star3;
+<<<<<<<<< Temporary merge branch 1
+=========
+
+    [SerializeField] private MusicManager musicManager;
 
 
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
     [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
     [SerializeField] private Sprite[] numberSprites;   // Các sprite từ 0 đến 9
+    [SerializeField] private playerData _playerData;  
 
 
     [SerializeField] private LevelUnlockSystem.GameUI gameUI;
-
+    
 
     private Question question;
     private bool answered;
@@ -212,7 +217,36 @@ public class QuizUI : MonoBehaviour
         else if (score >= 10) stars = 1;
 
         gameOverPanel.SetActive(true);
+<<<<<<<<< Temporary merge branch 1
+        Time.timeScale = 0;
+        if(_playerData.statusLv1 == true)
+        {
+            if(_playerData.scoreGame1< score)
+            {
+                _playerData.SetScoreGame1(score);
+            }
+        }
+        else if (_playerData.statusLv2 == true)
+        {
+            if (_playerData.scoreGame2 < score)
+            {
+                _playerData.SetScoreGame2(score);
+            }
+        }
+        
+=========
 
+        if (musicManager != null)
+        {
+            musicManager.StopMusic();
+        }
+
+        if (gameUI != null)
+        {
+            gameUI.GameOver(stars);
+        }
+
+>>>>>>>>> Temporary merge branch 2
         if (score < 10)
         {
             Star1.SetActive(false);

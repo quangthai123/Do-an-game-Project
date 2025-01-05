@@ -10,8 +10,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MusicManager musicManager;
 
-
-
     public void Pause()
     {
         pauseMenu.SetActive(true);

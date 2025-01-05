@@ -68,7 +68,8 @@ public class QuestionLoader : MonoBehaviour
                         break;
                 }
 
-                quizDataScriptable.questions.Add(question);  // Thêm câu hỏi vào danh sách
+
+                quizDataScriptable.questions.Add(question);
             }
 
 
