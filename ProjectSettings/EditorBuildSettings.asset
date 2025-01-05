@@ -39,7 +39,7 @@ EditorBuildSettings:
     path: Assets/Scenes/Thai/Select Minigame.unity
     guid: 5360f3aee7a5c6645b04a6a48ded6f4a
   - enabled: 1
-    path: Assets/Scenes/Thai/Minigame_DaoChu.unity
+    path: Assets/Scenes/Thai/Minigame_DaoAnh.unity
     guid: 726c6ba768382b843be0367dadeb30de
   - enabled: 1
     path: Assets/Scenes/Thai/Minigame_GoChu.unity
