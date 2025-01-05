@@ -83,7 +83,7 @@ public class GameManager_SXChuCai : GameManager
         vocaMeaningText.text = currentVocabulary.mean;
         vocaMeaningTextGOVUI.text = currentVocabulary.mean;
         currentWordLength = currentVocabulary.vocabulary.Length;
-        AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
+        //AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
         for(int i=0; i<=3; i++)
         {
             perfectWordHolders[i].SetActive(false);
