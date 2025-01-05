@@ -3199,6 +3199,7 @@ MonoBehaviour:
   Star1: {fileID: 603765490}
   Star2: {fileID: 574158713}
   Star3: {fileID: 1173406214}
+  musicManager: {fileID: 0}
   numberPrefab: {fileID: 4690795452782756656, guid: 19f661309d98dea4f9ad1f3fc00cb623, type: 3}
   scoreContainer: {fileID: 2015657526}
   numberSprites:
@@ -3212,11 +3213,10 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 5bed0c1c1ff6bf94ababf9a933c19b35, type: 3}
   - {fileID: 21300000, guid: 3a3e77f192862d242b71404ff4e77291, type: 3}
   - {fileID: 21300000, guid: 817df79814134314fa8a577df1f86875, type: 3}
-<<<<<<<<< Temporary merge branch 1
+
   _playerData: {fileID: 11400000, guid: c6ceb5f4777e7734fb461adcddeff34b, type: 2}
-=========
-  gameUI: {fileID: 1429183488}
->>>>>>>>> Temporary merge branch 2
+  gameUI: {fileID: 0}
+
 --- !u!4 &1003814626
 Transform:
   m_ObjectHideFlags: 0

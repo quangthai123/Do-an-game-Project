@@ -10,7 +10,7 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MusicManager musicManager;
->>>>>>>>> Temporary merge branch 2
+
 
     public void Pause()
     {

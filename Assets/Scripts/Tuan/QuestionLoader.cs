@@ -69,10 +69,7 @@ public class QuestionLoader : MonoBehaviour
                 }
 
                 quizDataScriptable.questions.Add(question);
-<<<<<<<<< Temporary merge branch 1
-                // Thêm câu hỏi vào danh sách
-=========
->>>>>>>>> Temporary merge branch 2
+
             }
 
 
