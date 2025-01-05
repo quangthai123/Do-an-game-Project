@@ -6,11 +6,11 @@ using UnityEngine.SceneManagement;
 public class PauseMenu : MonoBehaviour
 {
     [SerializeField] GameObject pauseMenu;
+
     [SerializeField] private AudioClip touchSFX;
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MusicManager musicManager;
-
-
+>>>>>>>>> Temporary merge branch 2
 
     public void Pause()
     {

@@ -22,6 +22,10 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star1;
     [SerializeField] private GameObject Star2;
     [SerializeField] private GameObject Star3;
+<<<<<<<<< Temporary merge branch 1
+=========
+
+    [SerializeField] private MusicManager musicManager;
 
 
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
@@ -39,9 +43,14 @@ public class QuizUI : MonoBehaviour
     public TextMeshProUGUI ScoreText { get { return scoreText; } }
     public TextMeshProUGUI TimerText { get { return timerText; } }
     public GameObject GameOverPanel { get { return gameOverPanel; } }
-    public playerData _playerData;
 
 
+    public void Play()
+    {
+        mainMenuPanel.SetActive(false);
+        gameMenuPanel.SetActive(true);
+        audioSource.PlayOneShot(touchSFX);
+    }
     void Awake()
     {
 
@@ -58,12 +67,7 @@ public class QuizUI : MonoBehaviour
         }
 
     }
-    public void Play()
-    {
-        mainMenuPanel.SetActive(false);
-        gameMenuPanel.SetActive(true);
-        audioSource.PlayOneShot(touchSFX);
-    }
+
     public void SetQuestion(Question question)
     {
         //set the question
@@ -212,7 +216,36 @@ public class QuizUI : MonoBehaviour
         else if (score >= 10) stars = 1;
 
         gameOverPanel.SetActive(true);
+<<<<<<<<< Temporary merge branch 1
+        Time.timeScale = 0;
+        if(_playerData.statusLv1 == true)
+        {
+            if(_playerData.scoreGame1< score)
+            {
+                _playerData.SetScoreGame1(score);
+            }
+        }
+        else if (_playerData.statusLv2 == true)
+        {
+            if (_playerData.scoreGame2 < score)
+            {
+                _playerData.SetScoreGame2(score);
+            }
+        }
+        
+=========
 
+        if (musicManager != null)
+        {
+            musicManager.StopMusic();
+        }
+
+        if (gameUI != null)
+        {
+            gameUI.GameOver(stars);
+        }
+
+>>>>>>>>> Temporary merge branch 2
         if (score < 10)
         {
             Star1.SetActive(false);

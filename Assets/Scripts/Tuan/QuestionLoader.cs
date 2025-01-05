@@ -7,7 +7,7 @@ using UnityEngine.Video;
 public class QuestionLoader : MonoBehaviour
 {
     [SerializeField] private QuizDataScriptable quizDataScriptable;
-   
+
     void Start()
     {
         LoadQuestionsForCurrentScene();
@@ -68,7 +68,11 @@ public class QuestionLoader : MonoBehaviour
                         break;
                 }
 
-                quizDataScriptable.questions.Add(question);  // Thêm câu hỏi vào danh sách
+                quizDataScriptable.questions.Add(question);
+<<<<<<<<< Temporary merge branch 1
+                // Thêm câu hỏi vào danh sách
+=========
+>>>>>>>>> Temporary merge branch 2
             }
 
 

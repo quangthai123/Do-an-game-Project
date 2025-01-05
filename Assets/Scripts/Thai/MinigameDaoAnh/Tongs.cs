@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Tongs : MonoBehaviour
 {
@@ -8,7 +9,7 @@ public class Tongs : MonoBehaviour
     public float pickUpSpeedModifier { get; private set; }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(GetComponent<Rigidbody2D>().velocity.y > .1f)
+        if(GetComponent<Rigidbody2D>().velocity.y > .1f || canGoBack)
             return;
         if (collision.GetComponent<IItemType>() != null)
         {
@@ -19,12 +20,19 @@ public class Tongs : MonoBehaviour
         }
     }
     public float GetPickingUpItemSpeedModifier() => pickUpSpeedModifier;
-    public void DisableItemOnFinishPickUp()
+    public void PulledUpImageAndCheck()
     {
-        foreach(Transform transf in transform)
+        if (transform.childCount < 1)
+            return;
+        Transform transf = transform.GetChild(0);
+        if(transf.gameObject.activeInHierarchy)
         {
-            if(transf.gameObject.activeInHierarchy)
-                transf.gameObject.SetActive(false);
+            if(GameManagerDaoAnh.Instance.CheckImagePulled(transf.GetComponent<RacoonImage>().GetImage()))
+            {
+                RacoonSpawner.Instance.Despawn(transf);
+                GameManagerDaoAnh.Instance.SetNextVocaAfterPulledSucess();
+                GameManagerDaoAnh.Instance.SetNewImageAfterPulledSucess(transf.GetComponent<RacoonImage>().GetImage());
+            }
         }
     }
 }

@@ -18,7 +18,7 @@ public class TongsHandler : MonoBehaviour
     private bool isPickingUp = false;
     void Start()
     {
-        GameManagerDaoChu.Instance.onPlayerTouchingAction += StartPickUp;
+        GameManagerDaoAnh.Instance.onPlayerTouchingAction += StartPickUp;
         tongs = transform.Find("tongs");
     }
     void FixedUpdate()
@@ -90,7 +90,7 @@ public class TongsHandler : MonoBehaviour
         }
         canRotate = true;
         isPickingUp = false;
-        tongs.GetComponent<Tongs>().DisableItemOnFinishPickUp();
+        tongs.GetComponent<Tongs>().PulledUpImageAndCheck();
     }
     private void RotateTongs()
     {
