@@ -37788,6 +37788,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 238147958}
     - target: {fileID: 2785573343949567513, guid: 973d7e7eca5f7b7498c9e64e85b41351, type: 3}
+      propertyPath: playerdata
+      value: 
+      objectReference: {fileID: 11400000, guid: c6ceb5f4777e7734fb461adcddeff34b, type: 2}
+    - target: {fileID: 2785573343949567513, guid: 973d7e7eca5f7b7498c9e64e85b41351, type: 3}
       propertyPath: timeOutNoti
       value: 
       objectReference: {fileID: 1600226858}
