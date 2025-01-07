@@ -6,13 +6,14 @@ using UnityEngine.UI;
 public class RacoonMovement : MonoBehaviour
 {
     public bool canMove = true;
-    private bool canRun = false;
+    public bool canRun = false;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float runSpeed;
     [SerializeField] private float rangeWidth = 9f;
     [SerializeField] private float hideTime;
     private Rigidbody2D rb;
-    private int facingDir = -1;
+    [SerializeField] private int facingDir = -1;
+    //private int lastFacingDir;
     private void Start()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -23,16 +24,35 @@ public class RacoonMovement : MonoBehaviour
         Invoke("FlipByCycle", rdTime);
         canMove = true;
         canRun = false;
+        if (transform.localScale.x > 0)
+            facingDir = -1;
+        else if(transform.localScale.x < 0)
+            facingDir = 1;
         transform.parent = RacoonSpawner.Instance.holder;
+        Debug.Log("Reset State Racoon");
     }
     private void Update()
     {
         FlipController();
+        SetRacoonsAlwayInSafeArea();
     }
+
+    private void SetRacoonsAlwayInSafeArea()
+    {
+        if (canRun)
+            return;
+        if (transform.position.x > rangeWidth)
+            transform.position = new Vector2(rangeWidth, transform.position.y);
+        else if (transform.position.x < -rangeWidth)
+            transform.position = new Vector2(-rangeWidth, transform.position.y);
+    }
+
     public void Flip()
     {
         facingDir *= -1;
-        transform.Rotate(0f, 180f, 0f);
+        Vector2 localScale = transform.localScale;
+        localScale.x *= -1;
+        transform.localScale = localScale;
     } 
     private void FlipController()
     {
@@ -46,9 +66,9 @@ public class RacoonMovement : MonoBehaviour
     private void FixedUpdate()
     {
         if (canMove)
-            rb.velocity = new Vector2(-transform.right.x * moveSpeed, 0f);
+            rb.velocity = new Vector2(transform.right.x * moveSpeed * facingDir, 0f);
         else if(canRun)
-            rb.velocity = new Vector2(-transform.right.x * runSpeed, 0f);
+            rb.velocity = new Vector2(transform.right.x * runSpeed * facingDir, 0f);
     }
     public void FlipByCycle()
     {
@@ -57,8 +77,7 @@ public class RacoonMovement : MonoBehaviour
             CancelInvoke();
             return;
         }
-        facingDir *= -1;
-        transform.Rotate(0f, 180f, 0f);
+        Flip();
         float rdTime = Random.Range(2f, 10f);
         Invoke("Flip", rdTime);
     }

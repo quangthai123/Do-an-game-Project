@@ -191,7 +191,6 @@ public abstract class GameManager : MonoBehaviour
         lv = 1;
         addScore = 0;
         timeOut = false;
-        startTimer = false;
         timeOutNoti.gameObject.SetActive(false);
         blurBlackScreen.gameObject.SetActive(false);
         pauseUI.SetActive(false);

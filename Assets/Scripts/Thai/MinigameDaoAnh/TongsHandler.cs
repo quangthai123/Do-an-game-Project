@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class TongsHandler : MonoBehaviour
 {
+    public static TongsHandler Instance;
     [SerializeField] private float maxRotateAngle;
     [SerializeField] private float maxPickUpTime = 2f;
     [SerializeField] private float basePickUpSpeed = 2f;
@@ -16,10 +17,32 @@ public class TongsHandler : MonoBehaviour
     private float angle;
     private bool rotateRight = true;
     private bool isPickingUp = false;
+    private void Awake()
+    {
+        if (Instance != null)
+            Destroy(gameObject);
+        else
+            Instance = this;
+    }
     void Start()
     {
         GameManagerDaoAnh.Instance.onPlayerTouchingAction += StartPickUp;
         tongs = transform.Find("tongs");
+        GameManagerDaoAnh.Instance.onResetGameState += ResetTongs;
+    }
+    private void ResetTongs()
+    {
+        if(tongs.localPosition.y < -.76f)
+        {
+            tongs.localPosition = new Vector2(tongs.localPosition.x, -.75f);
+        }
+        if(tongs.childCount > 1)
+        {
+            if(tongs.GetChild(1).GetComponent<RacoonImage>() != null)
+                RacoonSpawner.Instance.Despawn(tongs.GetChild(1));
+            else if (tongs.GetChild(1).GetComponent<PowerUpController>() != null)
+                PowerUpSpawner.Instance.Despawn(tongs.GetChild(1));
+        }
     }
     void FixedUpdate()
     {
@@ -111,5 +134,11 @@ public class TongsHandler : MonoBehaviour
         angle = Mathf.MoveTowards(angle, maxRotateAngle, rotateSpeed);
         transform.rotation = Quaternion.Euler(new Vector3(0, 0, angle));
     }
+    public void IncreaseMoveSpeedTemp()
+    {
+        basePickUpSpeed *= 2.5f;
+        Invoke("BackToBaseSpeed", 15f);
+    }
+    private void BackToBaseSpeed() => basePickUpSpeed /= 2.5f;
 }
 

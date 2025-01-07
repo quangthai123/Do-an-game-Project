@@ -9,7 +9,7 @@ public class GameManagerDaoAnh : GameManager
 {
     public static GameManagerDaoAnh Instance;
     public Action onPlayerTouchingAction;
-    public Action onInitializeLv;
+    public Action onResetGameState;
     [SerializeField] private List<Vocabulary> currentVocabularies = new List<Vocabulary>();
     [SerializeField] private TextMeshProUGUI currentVocaTextEasy;
     [SerializeField] private TextMeshProUGUI currentVocaTextMedium;
@@ -19,6 +19,7 @@ public class GameManagerDaoAnh : GameManager
     [SerializeField] private List<Image> vocaPulledImagesHard = new List<Image>();
     [SerializeField] private GameObject rightArrowEndLv;
     [SerializeField] private GameObject leftArrowEndLv;
+    [SerializeField] private Sprite questionMarkSprite;
     private int currentVocaOnEndLv = 0;
     private int currentVocaNum = 0;
     private void Awake()
@@ -27,17 +28,16 @@ public class GameManagerDaoAnh : GameManager
             Destroy(gameObject); 
         else
             Instance = this;
-        onInitializeLv += SpawnNewRandomVoca;
         leftArrowEndLv.SetActive(false);
         rightArrowEndLv.SetActive(true);
     }
     public void OnTouching() => onPlayerTouchingAction?.Invoke();
-    private void InitializeLv() => onInitializeLv?.Invoke();
     public override void OnSelectDifficulty(int diff)
     {
         base.OnSelectDifficulty(diff);
-        InitializeLv();
+        SpawnNewRandomVoca();
         RacoonSpawner.Instance.SpawnRacoonOnInitializeLv();
+        PowerUpSpawner.Instance.SpawnPowerUpOnInitializeLv();
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
@@ -55,7 +55,8 @@ public class GameManagerDaoAnh : GameManager
         }
         startTimer = true;
         PlayWordAudio();
-        SetForEndLvUI();
+        SetVocaForEndLvUI();
+        ResetPulledImage();
     }
     private void SetQuizHolderAndVocaPullImages(int diff)
     {
@@ -90,14 +91,33 @@ public class GameManagerDaoAnh : GameManager
         base.OnClickNextLv();
         SpawnNewRandomVoca();
         RacoonSpawner.Instance.SpawnRacoonOnInitializeLv();
-        ResetPulledImageSize();
+        PowerUpSpawner.Instance.SpawnPowerUpOnInitializeLv();
+        ResetPulledImage();
         currentVocaNum = 0;
         currentVocaOnEndLv = 0;
         leftArrowEndLv.SetActive(false);
         rightArrowEndLv.SetActive(true);
-        SetForEndLvUI();
+        SetVocaForEndLvUI();
+        onResetGameState?.Invoke();
+        switch (DifficultyManager.instance.Mode)
+        {
+            case Difficulty.easy:
+                timer = 60f;
+                break;
+            case Difficulty.normal:
+                timer = 80f;
+                break;
+            case Difficulty.hard:
+                timer = 100f;
+                break;
+        }
+        if (!timeOut)
+            lv++;
+        else
+            timeOut = false;
+        startTimer = true;
     }
-    protected void SetForEndLvUI()
+    protected void SetVocaForEndLvUI()
     {
         vocaImageEndLv.sprite = currentVocabularies[0].image;
         vocaTextEndLv.text = currentVocabularies[0].vocabulary;
@@ -184,30 +204,35 @@ public class GameManagerDaoAnh : GameManager
     protected override void ResetGameState()
     {
         base.ResetGameState();
+        startTimer = true;
         currentVocaNum = 0;
         currentVocaOnEndLv = 0;
         leftArrowEndLv.SetActive(false);
         rightArrowEndLv.SetActive(true);
+        onResetGameState?.Invoke();
     }
-    private void ResetPulledImageSize()
+    private void ResetPulledImage()
     {
         switch(DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
                 foreach(Image im in vocaPulledImagesEasy)
                 {
+                    im.sprite = questionMarkSprite;
                     im.transform.localScale = new Vector2(.6f, .6f);
                 }
                 break;
             case Difficulty.normal:
                 foreach (Image im in vocaPulledImagesMedium)
                 {
+                    im.sprite = questionMarkSprite;
                     im.transform.localScale = new Vector2(.6f, .6f);
                 }
                 break;
             case Difficulty.hard:
                 foreach (Image im in vocaPulledImagesHard)
                 {
+                    im.sprite = questionMarkSprite;
                     im.transform.localScale = new Vector2(.6f, .6f);
                 }
                 break;
@@ -253,6 +278,11 @@ public class GameManagerDaoAnh : GameManager
         }
         Invoke("EnablePassLvUI", 3.5f);
     }
+    protected override void EnablePassLvUI()
+    {
+        AudioManager.instance.SetCurrentWordAudio(currentVocabularies[0].audio);
+        base.EnablePassLvUI();
+    }
     public void OnClickNextImageOnEndLv()
     {
         if (currentVocaOnEndLv < currentVocabularies.Count - 1)
@@ -273,6 +303,7 @@ public class GameManagerDaoAnh : GameManager
         vocaTextEndLv.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
         vocaMeaningText.text = currentVocabularies[currentVocaOnEndLv].mean;
         AudioManager.instance.SetCurrentWordAudio(currentVocabularies[currentVocaOnEndLv].audio);
+        PlayWordAudio();
     }
     public void OnClickPreImageOnEndLv()
     {
@@ -294,11 +325,14 @@ public class GameManagerDaoAnh : GameManager
         vocaTextEndLv.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
         vocaMeaningText.text = currentVocabularies[currentVocaOnEndLv].mean;
         AudioManager.instance.SetCurrentWordAudio(currentVocabularies[currentVocaOnEndLv].audio);
+        PlayWordAudio();
     }
     public override void OnClickOkExitOrReplayBtn()
     {
         base.OnClickOkExitOrReplayBtn();
-        playerData data = Resources.Load<playerData>("playerData");
-        data.SetScoreGame2(score);
+        startTimer = false;
+        //playerData data = Resources.Load<playerData>("playerData");
+        //data.SetScoreGame2(score);
     }
+    public void AddBonusTime() => timer += 15;
 }

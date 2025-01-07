@@ -233,6 +233,7 @@ public class GameManager_SXChuCai : GameManager
     protected override void ResetGameState()
     {
         base.ResetGameState();
+        startTimer = false;
         currentAlphabetNumOnSlot = 0;
         playPartUI.SetOnState(false);
         for (int i = 0; i <= 3; i++)

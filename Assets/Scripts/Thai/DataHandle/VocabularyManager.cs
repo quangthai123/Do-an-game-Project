@@ -75,10 +75,9 @@ public class VocabularyManager : MonoBehaviour
     }
     public Vocabulary GetRandomEasyVocabulary()
     {
-        if (easyVocabulariesRemain.Count < 1)
+        if (easyVocabulariesRemain.Count < 5)
         {
-            Debug.Log("Out of voca!");
-            return null;
+            ResetVocabulariesRemain();
         }
         int rd = UnityEngine.Random.Range(0, easyVocabulariesRemain.Count);
         int index = easyVocabularies.IndexOf(easyVocabulariesRemain[rd]);
@@ -88,10 +87,9 @@ public class VocabularyManager : MonoBehaviour
     }
     public Vocabulary GetRandomMediumVocabulary()
     {
-        if (mediumVocabulariesRemain.Count < 1)
+        if (mediumVocabulariesRemain.Count < 6)
         {
-            Debug.Log("Out of voca!");
-            return null;
+            ResetVocabulariesRemain();
         }
         int rd = UnityEngine.Random.Range(0, mediumVocabulariesRemain.Count);
         int index = mediumVocabularies.IndexOf(mediumVocabulariesRemain[rd]);
@@ -101,10 +99,9 @@ public class VocabularyManager : MonoBehaviour
     }
     public Vocabulary GetRandomHardVocabulary()
     {
-        if (hardVocabulariesRemain.Count < 1)
+        if (hardVocabulariesRemain.Count < 7)
         {
-            Debug.Log("Out of voca!");
-            return null;
+            ResetVocabulariesRemain();
         }
         int rd = UnityEngine.Random.Range(0, hardVocabulariesRemain.Count);
         int index = hardVocabularies.IndexOf(hardVocabulariesRemain[rd]);
