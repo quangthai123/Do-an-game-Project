@@ -88,7 +88,7 @@ public class listRank : MonoBehaviour
         {
             if (_playerData.GetName() == playerMain.name)
             {
-                PlayerAccount.transform.Find("STT").GetComponent<TextMeshProUGUI>().text = (index+1).ToString();
+                PlayerAccount.transform.Find("STT").GetComponent<TextMeshProUGUI>().text = (index + 1).ToString();
                 PlayerAccount.transform.Find("UserName").GetComponent<TextMeshProUGUI>().text = _playerData.GetName().ToString();
                 PlayerAccount.transform.Find("Game1").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame1().ToString();
                 PlayerAccount.transform.Find("Game2").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame2().ToString();
@@ -99,9 +99,9 @@ public class listRank : MonoBehaviour
                 PlayerAccount.transform.Find("Sum").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreSum().ToString();
                 Debug.Log("da lay");
 
-                break; 
+                break;
             }
-            index++; 
+            index++;
         }
     }
     public void LoadLeaderboard()
@@ -129,7 +129,6 @@ public class listRank : MonoBehaviour
 
                     topPlayers.Add(playerData);
                 }
-
                 foreach (var player in topPlayers)
                 {
                     Debug.Log($"Player: {player.name}, ScoreSum: {player.scoreSum}");
@@ -159,13 +158,11 @@ public class listRank : MonoBehaviour
                         if (game6Comparison != 0) return game6Comparison;
                         return 0;
                     }
-                    return scoreComparison; 
+                    return scoreComparison;
                 });
             }
         });
         Debug.Log("Leaderboard UI updated.");
-
-
     }
     public void reload()
     {
@@ -176,7 +173,7 @@ public class listRank : MonoBehaviour
     }
     public void playerAccount()
     {
-        
+
     }
     private IEnumerator DelayedCreateAccount(float delay)
     {
@@ -184,5 +181,5 @@ public class listRank : MonoBehaviour
         yield return new WaitForSeconds(delay);
         creatAcount();
     }
-   
+
 }

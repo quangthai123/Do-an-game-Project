@@ -9,10 +9,6 @@ using static Cinemachine.DocumentationSortingAttribute;
 public class playerData : ScriptableObject
 {
     public Vector3 position;
-    public classPlayerData data;
-    public bool statusLv1 = false;
-    public bool statusLv2 = false;
-    public bool statusLv3 = false;
     public int scoreGame1;
     public int scoreGame2;
     public int scoreGame3;
@@ -36,7 +32,7 @@ public class playerData : ScriptableObject
         scoreGame1 = newScore;
         UpdateScoreSum();
     }
- 
+
     public int GetScoreGame2()
     {
         return scoreGame2;
@@ -93,6 +89,6 @@ public class playerData : ScriptableObject
     }
     private void UpdateScoreSum()
     {
-        scoreSum = scoreGame1 + scoreGame2 + scoreGame3 + scoreGame4 + scoreGame5 + scoreGame6 ;
+        scoreSum = scoreGame1 + scoreGame2 + scoreGame3 + scoreGame4 + scoreGame5 + scoreGame6;
     }
 }

@@ -12,7 +12,6 @@ TagManager:
   - Noti_success
   - Noti_fail
   - Game5
-  - Game6
   layers:
   - Default
   - TransparentFX

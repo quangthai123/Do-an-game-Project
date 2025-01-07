@@ -99,12 +99,27 @@ MonoBehaviour:
   - {fileID: 21300000, guid: cc92773fdf964fc46810cf4001795b61, type: 3}
   - {fileID: 21300000, guid: 6c557d669ac6a574a887f0fbd4391b66, type: 3}
   currentVocabularies: []
-  currentVocaText: {fileID: 0}
+  currentVocaTextEasy: {fileID: 0}
+  currentVocaTextMedium: {fileID: 0}
+  currentVocaTextHard: {fileID: 0}
   vocaPulledImagesEasy:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  vocaPulledImagesMedium: []
-  vocaPulledImagesHard: []
+  vocaPulledImagesMedium:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  vocaPulledImagesHard:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}

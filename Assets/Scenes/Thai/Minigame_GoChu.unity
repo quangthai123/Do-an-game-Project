@@ -26,7 +26,7 @@ RenderSettings:
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 10304, guid: 0000000000000000f000000000000000, type: 0}
+  m_SkyboxMaterial: {fileID: 2100000, guid: 59573b088aaea0442bf29e0a0e9d1339, type: 2}
   m_HaloStrength: 0.5
   m_FlareStrength: 1
   m_FlareFadeSpeed: 3
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.42221254, g: 0.64316183, b: 0.793691, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -6936,6 +6936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &441228238
 GameObject:
   m_ObjectHideFlags: 0
@@ -11765,6 +11766,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &743402583
 GameObject:
   m_ObjectHideFlags: 0
@@ -15706,6 +15708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &1013108353
 GameObject:
   m_ObjectHideFlags: 0
@@ -16087,6 +16090,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  minigame: 0
 --- !u!1 &1030601281
 GameObject:
   m_ObjectHideFlags: 0
@@ -25737,12 +25741,31 @@ MonoBehaviour:
   selectDiffUI: {fileID: 1938759848}
   pauseUI: {fileID: 409882618}
   blurBlackScreen: {fileID: 1120951477}
+  titleEndLvText: {fileID: 1655786037}
+  exitOrReplayNoti: {fileID: 713437121}
+  exitOrReplayTitleTxt: {fileID: 462788195}
+  scoreNotiOnExitOrReplayNoti: {fileID: 2044718361}
+  endLvUI: {fileID: 411618847}
+  gameOverUI: {fileID: 238147958}
+  timerText: {fileID: 1108407760}
+  hearts:
+  - {fileID: 1862039531}
+  - {fileID: 992786413}
+  - {fileID: 1164638524}
+  timeOutNoti: {fileID: 1600226858}
+  scoreText: {fileID: 757563568}
+  scoreFx: {fileID: 1021251370}
+  addScoreFx: {fileID: 2141445229}
+  lvText: {fileID: 1714190445}
+  vocaImageEndLv: {fileID: 831693802}
+  vocaTextEndLv: {fileID: 1967975800}
+  vocaMeaningText: {fileID: 1356912318}
+  addScore: 0
   currentVocabulary:
     vocabulary: 
     mean: 
     image: {fileID: 0}
     audio: {fileID: 0}
-  currentWordLength: 0
   allAlphabetSprites:
   - {fileID: 21300000, guid: 1387277862c06824692f475289382191, type: 3}
   - {fileID: 21300000, guid: b0d6153f1c20d2441afbcdbaf91561c7, type: 3}
@@ -25771,39 +25794,21 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c0750a511166c0544aea2940dde320fe, type: 3}
   - {fileID: 21300000, guid: cc92773fdf964fc46810cf4001795b61, type: 3}
   - {fileID: 21300000, guid: 6c557d669ac6a574a887f0fbd4391b66, type: 3}
+  currentWordLength: 0
   currentAlphabetNumOnSlot: 0
   vocaImageGamePlay: {fileID: 448778842}
-  vocaImageEndLv: {fileID: 831693802}
   vocaImageGOVUI: {fileID: 351911794}
   vocaTextGamePlayTest: {fileID: 2135875979}
-  vocaTextEndLv: {fileID: 1967975800}
   vocaTextGOVUI: {fileID: 647641778}
-  vocaMeaningText: {fileID: 1356912318}
   vocaMeaningTextGOVUI: {fileID: 144136405}
-  endLvUI: {fileID: 411618847}
-  gameOverUI: {fileID: 238147958}
-  timerText: {fileID: 1108407760}
-  hearts:
-  - {fileID: 1862039531}
-  - {fileID: 992786413}
-  - {fileID: 1164638524}
-  timeOutNoti: {fileID: 1600226858}
-  scoreText: {fileID: 757563568}
-  scoreFx: {fileID: 1021251370}
-  addScoreFx: {fileID: 2141445229}
-  lvText: {fileID: 1714190445}
   perfectWordHolders:
   - {fileID: 622559371}
   - {fileID: 287248328}
   - {fileID: 1648164100}
   - {fileID: 2091239188}
-  titleEndLvText: {fileID: 1655786037}
-  exitOrReplayNoti: {fileID: 713437121}
-  exitOrReplayTitleTxt: {fileID: 462788195}
-  scoreNotiOnExitOrReplayNoti: {fileID: 2044718361}
-  addScore: 0
   bg: {fileID: 2080327944}
   playPartUI: {fileID: 681888832}
+  playerdata: {fileID: 0}
 --- !u!1 &1834150787
 GameObject:
   m_ObjectHideFlags: 0
@@ -26147,7 +26152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3aa631891ae43f148bea129a830404d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vocaImage: {fileID: 0}
+  vocaImage: {fileID: 448778842}
   vocaText: {fileID: 0}
   meanText: {fileID: 0}
 --- !u!1 &1850865139
@@ -30122,7 +30127,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2135875979
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30409,6 +30414,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addScoreText: {fileID: 0}
+  minigame: 0
 --- !u!1001 &4869277304632341968
 PrefabInstance:
   m_ObjectHideFlags: 0

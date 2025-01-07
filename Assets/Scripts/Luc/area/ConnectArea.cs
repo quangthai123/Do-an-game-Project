@@ -18,23 +18,20 @@ public class ConnectArea : MonoBehaviour
     {
 
             SfxButton.Play();
-            _playerData.statusLv1 = true;
             SceneManager.LoadScene("StartScene");
     }
     public void ConnectGame2()
     {
 
             SfxButton.Play();
-            _playerData.statusLv2 = true;
-            SceneManager.LoadScene("Library");
+            SceneManager.LoadScene("Minigame_SapXepChuCai");
 
     }
     public void ConnectGame3()
     {
 
             SfxButton.Play();
-            _playerData.statusLv3 = true;
-            SceneManager.LoadScene("Minigame_SapXepChuCai");
+            SceneManager.LoadScene("Minigame_DaoAnh");
 
     }
     public void ConnectGame4()
@@ -58,6 +55,9 @@ public class ConnectArea : MonoBehaviour
     public void Leave()
     {
         SfxButton.Play();
+        //_playerData.statusLv1 = false ;
+        //_playerData.statusLv2 = false ;
+        //_playerData.statusLv3 = false ;
         SceneManager.LoadScene("Screen Main");
     }
 

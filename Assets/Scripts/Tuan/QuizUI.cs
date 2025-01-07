@@ -22,15 +22,17 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star1;
     [SerializeField] private GameObject Star2;
     [SerializeField] private GameObject Star3;
+
     [SerializeField] private MusicManager musicManager;
+    [SerializeField] private playerData playerdata;
+
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
     [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
     [SerializeField] private Sprite[] numberSprites;   // Các sprite từ 0 đến 9
-    [SerializeField] private playerData _playerData;  
 
 
     [SerializeField] private LevelUnlockSystem.GameUI gameUI;
-    
+
 
     private Question question;
     private bool answered;
@@ -188,12 +190,13 @@ public class QuizUI : MonoBehaviour
         {
             Destroy(child.gameObject);
         }
-        if(_playerData.scoreGame1< score)
-        {
-            _playerData.SetScoreGame1(score);
-        }
+
         string scoreString = score.ToString();
 
+        if(playerdata.GetScoreGame1() < score)
+        {
+            playerdata.SetScoreGame1(score);
+        }
         foreach (char digit in scoreString)
         {
             int number = digit - '0'; // Chuyển ký tự thành số nguyên
@@ -222,8 +225,6 @@ public class QuizUI : MonoBehaviour
         {
             gameUI.GameOver(stars);
         }
-
-
 
         if (score < 10)
         {

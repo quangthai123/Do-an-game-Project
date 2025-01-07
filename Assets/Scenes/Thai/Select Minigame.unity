@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -282,6 +282,63 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7390085}
   m_CullTransparentMesh: 1
+--- !u!1001 &19289432
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 677006756}
+    m_Modifications:
+    - target: {fileID: 1670691688284790965, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_Name
+      value: VocabularyManager
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
 --- !u!1 &21015801
 GameObject:
   m_ObjectHideFlags: 0
@@ -3986,8 +4043,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "Luy\u1EC7n tr\xED nh\u1EDB"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
-  m_sharedMaterial: {fileID: -1724516698229531064, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7090,8 +7147,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "T\u1EA5n c\xF4ng t\u1EEB v\u1EF1ng"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
-  m_sharedMaterial: {fileID: -1724516698229531064, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -7409,6 +7466,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &441228238
 GameObject:
   m_ObjectHideFlags: 0
@@ -11501,8 +11559,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1671800301}
   - {fileID: 1826975509}
+  - {fileID: 1965923654}
   - {fileID: 5917364456005451680}
   - {fileID: 774184002}
   m_Father: {fileID: 0}
@@ -11644,8 +11702,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "\u0110\xE0o \u1EA2nh"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
-  m_sharedMaterial: {fileID: -1724516698229531064, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -12663,6 +12721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &743402583
 GameObject:
   m_ObjectHideFlags: 0
@@ -16686,6 +16745,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bdaeec1a228715946a17d8f3943176dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minigame: 0
 --- !u!1 &1013108353
 GameObject:
   m_ObjectHideFlags: 0
@@ -17067,6 +17127,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scoreText: {fileID: 0}
+  minigame: 0
 --- !u!1 &1030601281
 GameObject:
   m_ObjectHideFlags: 0
@@ -22984,8 +23045,8 @@ MonoBehaviour:
       m_Calls: []
   m_text: "S\u1EAFp x\u1EBFp ch\u1EEF c\xE1i"
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
-  m_sharedMaterial: {fileID: -1724516698229531064, guid: bec941f259357fe4fa977daa3b1a3489, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -25510,11 +25571,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1670783838}
   m_CullTransparentMesh: 1
---- !u!4 &1671800301 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-  m_PrefabInstance: {fileID: 3546447353349793900}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1673878260
 GameObject:
   m_ObjectHideFlags: 0
@@ -27699,12 +27755,31 @@ MonoBehaviour:
   selectDiffUI: {fileID: 1938759848}
   pauseUI: {fileID: 409882618}
   blurBlackScreen: {fileID: 1120951477}
+  titleEndLvText: {fileID: 1655786037}
+  exitOrReplayNoti: {fileID: 713437121}
+  exitOrReplayTitleTxt: {fileID: 462788195}
+  scoreNotiOnExitOrReplayNoti: {fileID: 2044718361}
+  endLvUI: {fileID: 411618847}
+  gameOverUI: {fileID: 238147958}
+  timerText: {fileID: 1108407760}
+  hearts:
+  - {fileID: 1862039531}
+  - {fileID: 992786413}
+  - {fileID: 1164638524}
+  timeOutNoti: {fileID: 1600226858}
+  scoreText: {fileID: 757563568}
+  scoreFx: {fileID: 1021251370}
+  addScoreFx: {fileID: 2141445229}
+  lvText: {fileID: 1714190445}
+  vocaImageEndLv: {fileID: 831693802}
+  vocaTextEndLv: {fileID: 1967975800}
+  vocaMeaningText: {fileID: 1356912318}
+  addScore: 0
   currentVocabulary:
     vocabulary: 
     mean: 
     image: {fileID: 0}
     audio: {fileID: 0}
-  currentWordLength: 0
   allAlphabetSprites:
   - {fileID: 21300000, guid: 1387277862c06824692f475289382191, type: 3}
   - {fileID: 21300000, guid: b0d6153f1c20d2441afbcdbaf91561c7, type: 3}
@@ -27733,37 +27808,18 @@ MonoBehaviour:
   - {fileID: 21300000, guid: c0750a511166c0544aea2940dde320fe, type: 3}
   - {fileID: 21300000, guid: cc92773fdf964fc46810cf4001795b61, type: 3}
   - {fileID: 21300000, guid: 6c557d669ac6a574a887f0fbd4391b66, type: 3}
+  currentWordLength: 0
   currentAlphabetNumOnSlot: 0
   vocaImageGamePlay: {fileID: 448778842}
-  vocaImageEndLv: {fileID: 831693802}
   vocaImageGOVUI: {fileID: 351911794}
   vocaTextGamePlayTest: {fileID: 2135875979}
-  vocaTextEndLv: {fileID: 1967975800}
   vocaTextGOVUI: {fileID: 647641778}
-  vocaMeaningText: {fileID: 1356912318}
   vocaMeaningTextGOVUI: {fileID: 144136405}
-  endLvUI: {fileID: 411618847}
-  gameOverUI: {fileID: 238147958}
-  timerText: {fileID: 1108407760}
-  hearts:
-  - {fileID: 1862039531}
-  - {fileID: 992786413}
-  - {fileID: 1164638524}
-  timeOutNoti: {fileID: 1600226858}
-  scoreText: {fileID: 757563568}
-  scoreFx: {fileID: 1021251370}
-  addScoreFx: {fileID: 2141445229}
-  lvText: {fileID: 1714190445}
   perfectWordHolders:
   - {fileID: 622559371}
   - {fileID: 287248328}
   - {fileID: 1648164100}
   - {fileID: 2091239188}
-  titleEndLvText: {fileID: 1655786037}
-  exitOrReplayNoti: {fileID: 713437121}
-  exitOrReplayTitleTxt: {fileID: 462788195}
-  scoreNotiOnExitOrReplayNoti: {fileID: 2044718361}
-  addScore: 0
   bg: {fileID: 2080327944}
   playPartUI: {fileID: 681888832}
 --- !u!1 &1834150787
@@ -30367,6 +30423,11 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!4 &1965923654 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3227832506430081005, guid: 19bc5a6398bd7984e9c83984b3c60a11, type: 3}
+  m_PrefabInstance: {fileID: 19289432}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1967975798
 GameObject:
   m_ObjectHideFlags: 0
@@ -32505,63 +32566,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   addScoreText: {fileID: 0}
---- !u!1001 &3546447353349793900
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 677006756}
-    m_Modifications:
-    - target: {fileID: 1670691688284790965, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_Name
-      value: VocabularyManager
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3227832506430081005, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 412cac60db52bab4cbb5e98febf16e8d, type: 3}
+  minigame: 0
 --- !u!1001 &4869277304632341968
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -7,16 +7,10 @@ public class SoundControll : MonoBehaviour
 {
     public AudioSource SoundBackground;
     public Slider SettingVolume;
-    public MusicManager musicManager;
     void Start()
     {
         SoundBackground.Play();
         SettingVolume.value = SoundBackground.volume;
-        musicManager = FindObjectOfType<MusicManager>();
-        if (musicManager != null)
-        {
-            musicManager.StopMusic();
-        }
     }
 
     public void ChangeVolume()
@@ -25,5 +19,4 @@ public class SoundControll : MonoBehaviour
         SoundBackground.volume = volume;
         PlayerPrefs.SetFloat("Volume", volume);
     }
-
 }

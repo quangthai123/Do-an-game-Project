@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public abstract class GameManager : MonoBehaviour
 {
@@ -24,6 +26,9 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField] protected Transform scoreFx;
     [SerializeField] protected Transform addScoreFx;
     [SerializeField] protected TextMeshProUGUI lvText;
+    [SerializeField] protected Image vocaImageEndLv;
+    [SerializeField] protected TextMeshProUGUI vocaTextEndLv;
+    [SerializeField] protected TextMeshProUGUI vocaMeaningText;
     [SerializeField] protected int addScore = 0;
     public Vocabulary currentVocabulary;
     public List<Sprite> allAlphabetSprites;
@@ -110,11 +115,11 @@ public abstract class GameManager : MonoBehaviour
         exitOrReplayTitleTxt.text = "Bạn muốn thoát game?";
         exitOrReplayNoti.SetActive(true);
     }
-    public void OnClickOkExitOrReplayBtn()
+    public virtual void OnClickOkExitOrReplayBtn()
     {
         endLvUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(false);
-        selectDiffUI.gameObject.SetActive(true);
+        selectDiffUI.gameObject.SetActive(true); 
         ResetGameState();
     }
     public void OnClickNoExitOrReplayBtn()
@@ -165,7 +170,7 @@ public abstract class GameManager : MonoBehaviour
                 timer = 0;
         }
     }
-    protected void PlayWordAudio() => AudioManager.instance.PlayCurrentWordAudio();
+    public void PlayWordAudio() => AudioManager.instance.PlayCurrentWordAudio();
     public void AddBonusScore() => score += addScore;
     public void OnClickPauseGame()
     {
@@ -192,5 +197,15 @@ public abstract class GameManager : MonoBehaviour
         pauseUI.SetActive(false);
         exitOrReplayNoti.SetActive(false);
         Time.timeScale = 1;
+        for (int i = 0; i < 3; i++)
+        {
+            hearts[i].GetComponent<Image>().color = Color.white;
+            hearts[i].Find("Heart_RedFx").gameObject.SetActive(false);
+            hearts[i].Find("Heart_BlurFx").gameObject.SetActive(false);
+        }
+    }
+    public void OnClickBackToMainEnvironment()
+    {
+        SceneManager.LoadScene("Screen Main");
     }
 }

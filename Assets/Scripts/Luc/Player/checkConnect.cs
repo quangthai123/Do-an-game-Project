@@ -59,7 +59,7 @@ public class checkConnect : MonoBehaviour
             {
                 Select_5.SetActive(true);
             }
-            else if (Location.gameObject.CompareTag("Game6"))
+            else if (Location.gameObject.CompareTag("Game5"))
             {
                 Select_6.SetActive(true);
             }
@@ -73,6 +73,7 @@ public class checkConnect : MonoBehaviour
             Select_4.SetActive(false);
             Select_5.SetActive(false);
             Select_6.SetActive(false);
+
         }
     }
 }

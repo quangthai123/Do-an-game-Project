@@ -6,7 +6,7 @@ public abstract class Spawner : MonoBehaviour
 {
     [SerializeField] protected List<Transform> objPrefabs;
     [SerializeField] protected List<Transform> poolObjs;
-    protected Transform holder;
+    public Transform holder { get; protected set; }
     protected void Reset()
     {
         LoadPrefabsAndHolder();
@@ -56,7 +56,7 @@ public abstract class Spawner : MonoBehaviour
     {
         go.gameObject.SetActive(false);
         go.parent = holder;
-        if(!poolObjs.Contains(go))
+        //if(!poolObjs.Contains(go))
             poolObjs.Add(go);
     }
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -65,10 +65,9 @@ public class MusicManager : MonoBehaviour
     }
     //public void StopMusic()
     //{
-    //    if (musicSource != null) 
+    //    if (musicSource.isPlaying)
     //    {
     //        musicSource.Stop();
     //    }
-       
     //}
 }

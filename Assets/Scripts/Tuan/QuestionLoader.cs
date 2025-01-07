@@ -69,7 +69,6 @@ public class QuestionLoader : MonoBehaviour
                 }
 
                 quizDataScriptable.questions.Add(question);
-
             }
 
 

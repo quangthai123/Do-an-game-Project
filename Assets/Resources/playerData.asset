@@ -12,10 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7d76dcbafd0198244a95321444d291e4, type: 3}
   m_Name: playerData
   m_EditorClassIdentifier: 
-  position: {x: 27.829159, y: 6.632295, z: 35.095028}
-  statusLv1: 0
-  statusLv2: 0
-  statusLv3: 0
+  position: {x: 140.4021, y: 2.845273, z: 59.996643}
   scoreGame1: 0
   scoreGame2: 0
   scoreGame3: 0
@@ -23,4 +20,4 @@ MonoBehaviour:
   scoreGame5: 0
   scoreGame6: 0
   scoreSum: 0
-  Name: 
+  Name: luc2

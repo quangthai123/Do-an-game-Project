@@ -48,14 +48,10 @@ MonoBehaviour:
   easyVocabularies: []
   mediumVocabularies: []
   hardVocabularies: []
-<<<<<<<<< Temporary merge branch 1
---- !u!114 &7586033223292107507
-=========
   easyVocaRemainQuantity: 0
   mediumVocaRemainQuantity: 0
   hardVocaRemainQuantity: 0
 --- !u!114 &7254208832748127528
->>>>>>>>> Temporary merge branch 2
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -67,12 +63,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 183d596a0c3869643bb2d7379cc0b8d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-<<<<<<<<< Temporary merge branch 1
-  csvFile_easy: {fileID: 4900000, guid: 802e11f67a40bdf478a75fec654b562d, type: 3}
-  csvFile_medium: {fileID: 4900000, guid: 1d78775b5f0479745ad47f6a97c902b6, type: 3}
-  csvFile_hard: {fileID: 4900000, guid: c7f4d6a00c60e7549aa53ea0180f6259, type: 3}
-=========
   csvFile_easy: {fileID: 4900000, guid: e5b648b379dd60a4991eee528c7384c0, type: 3}
   csvFile_medium: {fileID: 4900000, guid: 46f7619d29199654f9fa293cafb28d21, type: 3}
   csvFile_hard: {fileID: 4900000, guid: e5e4c371eb9ee5845995d009706e1634, type: 3}
->>>>>>>>> Temporary merge branch 2

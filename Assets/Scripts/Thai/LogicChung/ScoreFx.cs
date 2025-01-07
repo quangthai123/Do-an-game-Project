@@ -7,6 +7,7 @@ public class ScoreFx : MonoBehaviour
 {
     private Animator anim;
     public TextMeshProUGUI scoreText;
+    [SerializeField] private Minigame minigame = Minigame.SXChuCai;
     private void Awake()
     {
         anim = GetComponent<Animator>();
@@ -14,7 +15,15 @@ public class ScoreFx : MonoBehaviour
     }
     private void OnFinshAnim()
     {
-        GameManager_SXChuCai.instance.AddScore();
+        switch (minigame)
+        {
+            case Minigame.SXChuCai:
+                GameManager_SXChuCai.instance.AddScore();
+                break;
+            case Minigame.DaoAnh:
+                GameManagerDaoAnh.Instance.AddScore();
+                break;
+        }
         gameObject.SetActive(false);
     }
 }

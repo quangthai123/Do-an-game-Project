@@ -11,7 +11,6 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private AudioSource audioSource;
     [SerializeField] private MusicManager musicManager;
 
-
     public void Pause()
     {
         pauseMenu.SetActive(true);
@@ -49,7 +48,6 @@ public class PauseMenu : MonoBehaviour
     {
         SceneManager.LoadScene("LevelSelect");
         audioSource.PlayOneShot(touchSFX);
-        Time.timeScale = 1f;
     }
 
     public void Exit()
