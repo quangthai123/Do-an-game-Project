@@ -17,6 +17,14 @@ public class Player : MonoBehaviour
     {
         anim = GetComponent<Animator>();
         anim.SetBool("Idle", true);
+        if(GameManagerDaoAnh.Instance != null)
+            GameManagerDaoAnh.Instance.onPlayerTouchingAction += SetPickUpAnim;
+    }
+    private void SetPickUpAnim()
+    {
+        if (TongsHandler.Instance.isPickingUp)
+            return;
+        SetAnim("Pick");
     }
     public void SetAnim(string _animName)
     {

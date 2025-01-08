@@ -11,10 +11,7 @@ public class GameManager_SXChuCai : GameManager
     public int currentAlphabetNumOnSlot = 0;
     [Header("UI")]
     [SerializeField] private Image vocaImageGamePlay;
-    [SerializeField] private Image vocaImageGOVUI;
     [SerializeField] private TextMeshProUGUI vocaTextGamePlayTest;
-    [SerializeField] private TextMeshProUGUI vocaTextGOVUI;
-    [SerializeField] private TextMeshProUGUI vocaMeaningTextGOVUI;
     [SerializeField] private List<GameObject> perfectWordHolders;
     [SerializeField] private BackgroundMoving bg;
     [SerializeField] private PlayPartUI playPartUI;

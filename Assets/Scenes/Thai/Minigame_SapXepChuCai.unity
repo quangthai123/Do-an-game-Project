@@ -24731,6 +24731,9 @@ MonoBehaviour:
   vocaImageEndLv: {fileID: 831693802}
   vocaTextEndLv: {fileID: 1967975800}
   vocaMeaningText: {fileID: 1356912318}
+  vocaImageGOVUI: {fileID: 351911794}
+  vocaTextGOVUI: {fileID: 647641778}
+  vocaMeaningTextGOVUI: {fileID: 144136405}
   addScore: 0
   currentVocabulary:
     vocabulary: 
@@ -24768,10 +24771,7 @@ MonoBehaviour:
   currentWordLength: 0
   currentAlphabetNumOnSlot: 0
   vocaImageGamePlay: {fileID: 448778842}
-  vocaImageGOVUI: {fileID: 351911794}
   vocaTextGamePlayTest: {fileID: 2135875979}
-  vocaTextGOVUI: {fileID: 647641778}
-  vocaMeaningTextGOVUI: {fileID: 144136405}
   perfectWordHolders:
   - {fileID: 622559371}
   - {fileID: 287248328}
@@ -25835,6 +25835,10 @@ PrefabInstance:
     - target: {fileID: 883468007494196, guid: acf1a24a95b194d479abcd5ebfde4d24, type: 3}
       propertyPath: m_Name
       value: SelectDifficultyUI (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 883468007494196, guid: acf1a24a95b194d479abcd5ebfde4d24, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 429735816853979851, guid: acf1a24a95b194d479abcd5ebfde4d24, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target

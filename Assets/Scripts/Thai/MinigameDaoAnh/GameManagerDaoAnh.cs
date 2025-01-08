@@ -19,17 +19,21 @@ public class GameManagerDaoAnh : GameManager
     [SerializeField] private List<Image> vocaPulledImagesHard = new List<Image>();
     [SerializeField] private GameObject rightArrowEndLv;
     [SerializeField] private GameObject leftArrowEndLv;
+    [SerializeField] private GameObject rightArrowGoUI;
+    [SerializeField] private GameObject leftArrowGoUI;
     [SerializeField] private Sprite questionMarkSprite;
+    [SerializeField] private Image thunderFx;
     private int currentVocaOnEndLv = 0;
     private int currentVocaNum = 0;
+    private Coroutine corouChecker = null;
+    private bool isPowerUpping = false;
     private void Awake()
     {
         if(Instance != null)
             Destroy(gameObject); 
         else
             Instance = this;
-        leftArrowEndLv.SetActive(false);
-        rightArrowEndLv.SetActive(true);
+        onResetGameState += DisableThunderFx;
     }
     public void OnTouching() => onPlayerTouchingAction?.Invoke();
     public override void OnSelectDifficulty(int diff)
@@ -55,8 +59,12 @@ public class GameManagerDaoAnh : GameManager
         }
         startTimer = true;
         PlayWordAudio();
-        SetVocaForEndLvUI();
+        SetVocaForEndLvAndGoUI();
         ResetPulledImage();
+        leftArrowEndLv.SetActive(false);
+        rightArrowEndLv.SetActive(true);
+        leftArrowGoUI.SetActive(false);
+        rightArrowGoUI.SetActive(true);
     }
     private void SetQuizHolderAndVocaPullImages(int diff)
     {
@@ -95,10 +103,12 @@ public class GameManagerDaoAnh : GameManager
         ResetPulledImage();
         currentVocaNum = 0;
         currentVocaOnEndLv = 0;
+        SetVocaForEndLvAndGoUI();
+        onResetGameState?.Invoke();
         leftArrowEndLv.SetActive(false);
         rightArrowEndLv.SetActive(true);
-        SetVocaForEndLvUI();
-        onResetGameState?.Invoke();
+        leftArrowGoUI.SetActive(false);
+        rightArrowGoUI.SetActive(true);
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
@@ -117,11 +127,15 @@ public class GameManagerDaoAnh : GameManager
             timeOut = false;
         startTimer = true;
     }
-    protected void SetVocaForEndLvUI()
+    protected void SetVocaForEndLvAndGoUI()
     {
         vocaImageEndLv.sprite = currentVocabularies[0].image;
         vocaTextEndLv.text = currentVocabularies[0].vocabulary;
         vocaMeaningText.text = currentVocabularies[0].mean;
+
+        vocaImageGOVUI.sprite = currentVocabularies[0].image;
+        vocaTextGOVUI.text = currentVocabularies[0].vocabulary;
+        vocaMeaningTextGOVUI.text = currentVocabularies[0].mean;
         AudioManager.instance.SetCurrentWordAudio(currentVocabularies[0].audio);
     }
     protected override void Update()
@@ -289,19 +303,30 @@ public class GameManagerDaoAnh : GameManager
         {
             leftArrowEndLv.SetActive(true);
             rightArrowEndLv.SetActive(true);
+            leftArrowGoUI.SetActive(true);
+            rightArrowGoUI.SetActive(true);
             currentVocaOnEndLv++;
             if(currentVocaOnEndLv == currentVocabularies.Count - 1)
+            {
                 rightArrowEndLv.SetActive(false);
+                rightArrowGoUI.SetActive(false);
+            }
         }
         else
         {
             leftArrowEndLv.SetActive(true);
             rightArrowEndLv.SetActive(false);
+            leftArrowGoUI.SetActive(true);
+            rightArrowGoUI.SetActive(false);
             return;
         }
         vocaImageEndLv.sprite = currentVocabularies[currentVocaOnEndLv].image;
         vocaTextEndLv.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
         vocaMeaningText.text = currentVocabularies[currentVocaOnEndLv].mean;
+
+        vocaImageGOVUI.sprite = currentVocabularies[currentVocaOnEndLv].image;
+        vocaTextGOVUI.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
+        vocaMeaningTextGOVUI.text = currentVocabularies[currentVocaOnEndLv].mean;
         AudioManager.instance.SetCurrentWordAudio(currentVocabularies[currentVocaOnEndLv].audio);
         PlayWordAudio();
     }
@@ -311,19 +336,30 @@ public class GameManagerDaoAnh : GameManager
         {
             leftArrowEndLv.SetActive(true);
             rightArrowEndLv.SetActive(true);
+            leftArrowGoUI.SetActive(true);
+            rightArrowGoUI.SetActive(true);
             currentVocaOnEndLv--;
             if (currentVocaOnEndLv == 0)
+            {
                 leftArrowEndLv.SetActive(false);
+                leftArrowGoUI.SetActive(false);
+            }
         }
         else
         {
             leftArrowEndLv.SetActive(false);
             rightArrowEndLv.SetActive(true);
+            leftArrowGoUI.SetActive(false);
+            rightArrowGoUI.SetActive(true);
             return;
         }
         vocaImageEndLv.sprite = currentVocabularies[currentVocaOnEndLv].image;
         vocaTextEndLv.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
         vocaMeaningText.text = currentVocabularies[currentVocaOnEndLv].mean;
+
+        vocaImageGOVUI.sprite = currentVocabularies[currentVocaOnEndLv].image;
+        vocaTextGOVUI.text = currentVocabularies[currentVocaOnEndLv].vocabulary;
+        vocaMeaningTextGOVUI.text = currentVocabularies[currentVocaOnEndLv].mean;
         AudioManager.instance.SetCurrentWordAudio(currentVocabularies[currentVocaOnEndLv].audio);
         PlayWordAudio();
     }
@@ -335,4 +371,52 @@ public class GameManagerDaoAnh : GameManager
         //data.SetScoreGame2(score);
     }
     public void AddBonusTime() => timer += 15;
+    public void ShowThunderFx()
+    {
+        thunderFx.fillAmount = 1;
+        thunderFx.gameObject.SetActive(true);
+        Debug.Log("Show thunder fx");
+        if (corouChecker != null)
+            StopAllCoroutines();           
+        corouChecker = StartCoroutine(SetThunderFxDecreaseByTime());
+    }
+    private void DisableThunderFx() => thunderFx.gameObject.SetActive(false);
+    private IEnumerator SetThunderFxDecreaseByTime()
+    {
+        float timer = 15f;
+        while(timer > 0f)
+        {
+            yield return null;
+            timer -= Time.deltaTime;
+            thunderFx.fillAmount -= 1 / 15f * Time.deltaTime;
+        }
+        thunderFx.gameObject.SetActive(false);
+        thunderFx.fillAmount = 1;
+        corouChecker = null;
+    }
+    public void SetAllRacoonToAnswerImageOnPowerUp()
+    {
+        isPowerUpping = true;
+        foreach (Transform racoon in RacoonSpawner.Instance.holder)
+        {
+            if (!racoon.gameObject.activeInHierarchy)
+                continue;
+            racoon.GetComponent<RacoonImage>().SetToAnswerImageOnPowerUp(currentVocabulary.image);
+            racoon.GetComponent<RacoonImage>().ShowFx();
+        }
+    }
+    public void SetAllRacoonBackToTheirImage()
+    {
+        if (!isPowerUpping)
+            return;
+        isPowerUpping = false;
+        int cnt = currentVocaNum;
+        foreach (Transform racoon in RacoonSpawner.Instance.holder)
+        {
+            if (!racoon.gameObject.activeInHierarchy)
+                continue;
+            racoon.GetComponent<RacoonImage>().SetImage(currentVocabularies[cnt++].image);
+            racoon.GetComponent<RacoonImage>().ShowFx();
+        }
+    }
 }

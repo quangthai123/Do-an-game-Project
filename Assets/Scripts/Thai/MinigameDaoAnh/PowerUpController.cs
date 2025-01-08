@@ -22,12 +22,18 @@ public class PowerUpController : MonoBehaviour, IItemType
     }
     public void GetRandomPowerUp()
     {
-        //int rd = Random.Range(0, 3);
-        //if(rd == 0)
-        //{
-        //bonusTimeFx.SetActive(true);
-        //}
-        TongsHandler.Instance.IncreaseMoveSpeedTemp();
+        Player.Instance.SetAnim("Buff");
+        int rd = Random.Range(0, 3);
+        if (rd == 0)
+        {
+            bonusTimeFx.SetActive(true);
+        }
+        else if (rd == 1)
+        {
+            TongsHandler.Instance.IncreaseMoveSpeedTemp();
+        }
+        else
+            GameManagerDaoAnh.Instance.SetAllRacoonToAnswerImageOnPowerUp();
         PowerUpSpawner.Instance.Despawn(transform);
     }
 }

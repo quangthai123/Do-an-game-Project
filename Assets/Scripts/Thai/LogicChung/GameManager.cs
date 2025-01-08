@@ -29,6 +29,9 @@ public abstract class GameManager : MonoBehaviour
     [SerializeField] protected Image vocaImageEndLv;
     [SerializeField] protected TextMeshProUGUI vocaTextEndLv;
     [SerializeField] protected TextMeshProUGUI vocaMeaningText;
+    [SerializeField] protected Image vocaImageGOVUI;
+    [SerializeField] protected TextMeshProUGUI vocaTextGOVUI;
+    [SerializeField] protected TextMeshProUGUI vocaMeaningTextGOVUI;
     [SerializeField] protected int addScore = 0;
     public Vocabulary currentVocabulary;
     public List<Sprite> allAlphabetSprites;

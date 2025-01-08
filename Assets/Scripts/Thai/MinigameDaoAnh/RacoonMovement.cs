@@ -11,15 +11,15 @@ public class RacoonMovement : MonoBehaviour
     [SerializeField] private float runSpeed;
     [SerializeField] private float rangeWidth = 9f;
     [SerializeField] private float hideTime;
-    private Rigidbody2D rb;
     [SerializeField] private int facingDir = -1;
-    //private int lastFacingDir;
-    private void Start()
-    {
-        rb = GetComponent<Rigidbody2D>();
-    }
+    private Rigidbody2D rb;
+    private Animator anim;
     private void OnEnable()
     {
+        rb = GetComponent<Rigidbody2D>();
+        anim = transform.Find("Character").GetComponent<Animator>();
+        GetComponent<BoxCollider2D>().enabled = true;
+        SetAnim("Walk");
         float rdTime = Random.Range(2f, 10f);
         Invoke("FlipByCycle", rdTime);
         canMove = true;
@@ -89,11 +89,14 @@ public class RacoonMovement : MonoBehaviour
     public void SetBePickedUp(Transform tongs)
     {
         StopMove();
+        SetAnim("Idle");
         transform.SetParent(tongs, true);
         transform.localPosition = Vector3.zero;
     }
     public void RunAwayAfterPullWrong()
     {
+        SetAnim("Run");
+        GetComponent<BoxCollider2D>().enabled = false;
         CancelInvoke();
         transform.parent = RacoonSpawner.Instance.holder;
         transform.localPosition = new Vector2(0f, .75f);
@@ -103,6 +106,8 @@ public class RacoonMovement : MonoBehaviour
     private IEnumerator GoBackAfterRunAway()
     {
         yield return new WaitForSeconds(hideTime);
+        SetAnim("Walk");
+        GetComponent<RacoonImage>().ShowFx();
         float rdPosX = Random.Range(-9f, 9f);
         float rdPosY = Random.Range(-1f, -4.5f);
         int rdDir = Random.Range(0, 2);
@@ -111,7 +116,16 @@ public class RacoonMovement : MonoBehaviour
         transform.localPosition = new Vector2(rdPosX, rdPosY);
         canRun = false;
         canMove = true;
+        GetComponent<BoxCollider2D>().enabled = true;
         float rdTime = Random.Range(2f, 10f);
         Invoke("FlipByCycle", rdTime);
+    }
+    private void SetAnim(string stateName)
+    {
+        foreach(AnimatorControllerParameter param in anim.parameters)
+        {
+            anim.SetBool(param.name, false);
+        }
+        anim.SetBool(stateName, true);
     }
 }
