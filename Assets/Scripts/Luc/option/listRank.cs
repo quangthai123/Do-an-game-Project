@@ -73,10 +73,6 @@ public class listRank : MonoBehaviour
             game5Text.text = player.scoreGame5.ToString();
             game5Text.color = Color.white;
 
-            var game6Text = entry.transform.Find("Game6").GetComponent<TextMeshProUGUI>();
-            game6Text.text = player.scoreGame6.ToString();
-            game6Text.color = Color.white;
-
             var sumText = entry.transform.Find("Sum").GetComponent<TextMeshProUGUI>();
             sumText.text = player.scoreSum.ToString();
             sumText.color = Color.white;
@@ -95,7 +91,6 @@ public class listRank : MonoBehaviour
                 PlayerAccount.transform.Find("Game3").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame3().ToString();
                 PlayerAccount.transform.Find("Game4").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame4().ToString();
                 PlayerAccount.transform.Find("Game5").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame5().ToString();
-                PlayerAccount.transform.Find("Game6").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreGame6().ToString();
                 PlayerAccount.transform.Find("Sum").GetComponent<TextMeshProUGUI>().text = _playerData.GetScoreSum().ToString();
                 Debug.Log("da lay");
 
@@ -123,7 +118,6 @@ public class listRank : MonoBehaviour
                         scoreGame3 = int.Parse(userSnapshot.Child("ScoreGame3").Value.ToString()),
                         scoreGame4 = int.Parse(userSnapshot.Child("ScoreGame4").Value.ToString()),
                         scoreGame5 = int.Parse(userSnapshot.Child("ScoreGame5").Value.ToString()),
-                        scoreGame6 = int.Parse(userSnapshot.Child("ScoreGame6").Value.ToString()),
                         scoreSum = int.Parse(userSnapshot.Child("ScoreSum").Value.ToString())
                     };
 
@@ -153,9 +147,6 @@ public class listRank : MonoBehaviour
 
                         int game5Comparison = y.scoreGame5.CompareTo(x.scoreGame5);
                         if (game5Comparison != 0) return game5Comparison;
-
-                        int game6Comparison = y.scoreGame6.CompareTo(x.scoreGame6);
-                        if (game6Comparison != 0) return game6Comparison;
                         return 0;
                     }
                     return scoreComparison;

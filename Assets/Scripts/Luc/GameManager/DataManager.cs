@@ -53,7 +53,7 @@ public class DataManager : MonoBehaviour
             if (Pass_sighup.text == Pass_sighupAgain.text)
             {
                 string UseID = System.Guid.NewGuid().ToString();
-                User newUser = new User(Username_sighup.text, Pass_sighup.text, 0, 0, 0, 0, 0, 0, 0);
+                User newUser = new User(Username_sighup.text, Pass_sighup.text, 0, 0, 0, 0, 0, 0);
                 string json = JsonUtility.ToJson(newUser);
                 await Database.Child("user").Child(UseID).SetRawJsonValueAsync(json);
 
@@ -88,7 +88,6 @@ public class DataManager : MonoBehaviour
                 _playerData.scoreGame3 = int.Parse(userSnapshot.Child("ScoreGame3").Value.ToString());
                 _playerData.scoreGame4 = int.Parse(userSnapshot.Child("ScoreGame4").Value.ToString());
                 _playerData.scoreGame5 = int.Parse(userSnapshot.Child("ScoreGame5").Value.ToString());
-                _playerData.scoreGame6 = int.Parse(userSnapshot.Child("ScoreGame6").Value.ToString());
                 _playerData.scoreSum = int.Parse(userSnapshot.Child("ScoreSum").Value.ToString());
                 Debug.Log("lay data ok");
                 start_Menu.Main_menu.SetActive(true);

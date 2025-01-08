@@ -14,7 +14,6 @@ public class playerData : ScriptableObject
     public int scoreGame3;
     public int scoreGame4;
     public int scoreGame5;
-    public int scoreGame6;
     public int scoreSum;
     public string Name;
 
@@ -70,25 +69,17 @@ public class playerData : ScriptableObject
     {
         return scoreGame3;
     }
-    public void SetScoreGame6(int newScore)
-    {
-        scoreGame6 = newScore;
-        UpdateScoreSum();
-    }
     public int GetScoreSum()
     {
         return scoreSum;
     }
-    public int GetScoreGame6()
-    {
-        return scoreGame3;
-    }
+
     public string GetName()
     {
         return Name;
     }
     private void UpdateScoreSum()
     {
-        scoreSum = scoreGame1 + scoreGame2 + scoreGame3 + scoreGame4 + scoreGame5 + scoreGame6;
+        scoreSum = scoreGame1 + scoreGame2 + scoreGame3 + scoreGame4 + scoreGame5;
     }
 }

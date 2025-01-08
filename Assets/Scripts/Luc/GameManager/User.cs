@@ -8,9 +8,8 @@ public class User
     public int ScoreGame3;
     public int ScoreGame4;
     public int ScoreGame5;
-    public int ScoreGame6;
     public int ScoreSum;
-    public User(string name, string password, int scoregame1, int scoregame2, int scoregame3, int scoregame4, int scoregame5, int scoregame6, int scoresum)
+    public User(string name, string password, int scoregame1, int scoregame2, int scoregame3, int scoregame4, int scoregame5, int scoresum)
     {
         this.Username = name;
         this.Password = password;
@@ -19,7 +18,6 @@ public class User
         this.ScoreGame3 = scoregame3;
         this.ScoreGame4 = scoregame4;
         this.ScoreGame5 = scoregame5;
-        this.ScoreGame6 = scoregame6;
         this.ScoreSum = scoresum;
     }
 }
