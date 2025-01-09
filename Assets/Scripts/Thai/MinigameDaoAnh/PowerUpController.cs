@@ -34,6 +34,7 @@ public class PowerUpController : MonoBehaviour, IItemType
         }
         else
             GameManagerDaoAnh.Instance.SetAllRacoonToAnswerImageOnPowerUp();
+        AudioManager.instance.PlaySfx(2);
         PowerUpSpawner.Instance.Despawn(transform);
     }
 }

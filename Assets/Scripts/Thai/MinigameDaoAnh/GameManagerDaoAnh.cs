@@ -45,7 +45,7 @@ public class GameManagerDaoAnh : GameManager
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
-                timer = 60f;
+                timer = 2f;
                 SetQuizHolderAndVocaPullImages(1);
                 break;
             case Difficulty.normal:
@@ -65,6 +65,7 @@ public class GameManagerDaoAnh : GameManager
         rightArrowEndLv.SetActive(true);
         leftArrowGoUI.SetActive(false);
         rightArrowGoUI.SetActive(true);
+        AudioManager.instance.PlayBgm(1);
     }
     private void SetQuizHolderAndVocaPullImages(int diff)
     {
@@ -112,7 +113,7 @@ public class GameManagerDaoAnh : GameManager
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
-                timer = 60f;
+                timer = 2f;
                 break;
             case Difficulty.normal:
                 timer = 80f;
@@ -213,7 +214,8 @@ public class GameManagerDaoAnh : GameManager
         }
         currentVocabulary = currentVocabularies[currentVocaNum];
         AudioManager.instance.SetCurrentWordAudio(currentVocabulary.audio);
-        PlayWordAudio();
+        AudioManager.instance.PlaySfx(0);
+        Invoke("PlayWordAudio", 1f);
     }
     protected override void ResetGameState()
     {
@@ -257,6 +259,8 @@ public class GameManagerDaoAnh : GameManager
         startTimer = false;
         scoreFx.gameObject.SetActive(true);
         titleEndLvText.text = "Wonderful!";
+        Player.Instance.SetAnim("Victory");
+        AudioManager.instance.PlaySfx(1);
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:

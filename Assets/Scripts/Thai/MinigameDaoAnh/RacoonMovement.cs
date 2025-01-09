@@ -96,6 +96,7 @@ public class RacoonMovement : MonoBehaviour
     public void RunAwayAfterPullWrong()
     {
         SetAnim("Run");
+        AudioManager.instance.PlaySfx(3);
         GetComponent<BoxCollider2D>().enabled = false;
         CancelInvoke();
         transform.parent = RacoonSpawner.Instance.holder;
