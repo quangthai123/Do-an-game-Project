@@ -148,7 +148,7 @@ public abstract class GameManager : MonoBehaviour
         AudioManager.instance.DecreaseBGMVolumeWhilePausedGame();
         PlayWordAudio();
     }
-    public void EnableEndGameUI()
+    public virtual void EnableEndGameUI()
     {
         if (life != 0)
             endLvUI.gameObject.SetActive(true);

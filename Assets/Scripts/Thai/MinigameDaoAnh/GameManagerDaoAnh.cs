@@ -45,7 +45,7 @@ public class GameManagerDaoAnh : GameManager
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
-                timer = 2f;
+                timer = 60f;
                 SetQuizHolderAndVocaPullImages(1);
                 break;
             case Difficulty.normal:
@@ -113,7 +113,7 @@ public class GameManagerDaoAnh : GameManager
         switch (DifficultyManager.instance.Mode)
         {
             case Difficulty.easy:
-                timer = 2f;
+                timer = 60f;
                 break;
             case Difficulty.normal:
                 timer = 80f;
@@ -220,11 +220,8 @@ public class GameManagerDaoAnh : GameManager
     protected override void ResetGameState()
     {
         base.ResetGameState();
-        startTimer = true;
         currentVocaNum = 0;
         currentVocaOnEndLv = 0;
-        leftArrowEndLv.SetActive(false);
-        rightArrowEndLv.SetActive(true);
         onResetGameState?.Invoke();
     }
     private void ResetPulledImage()
@@ -422,5 +419,10 @@ public class GameManagerDaoAnh : GameManager
             racoon.GetComponent<RacoonImage>().SetImage(currentVocabularies[cnt++].image);
             racoon.GetComponent<RacoonImage>().ShowFx();
         }
+    }
+    public override void EnableEndGameUI()
+    {
+        AudioManager.instance.SetCurrentWordAudio(currentVocabularies[0].audio);
+        base.EnableEndGameUI();
     }
 }
