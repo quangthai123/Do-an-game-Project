@@ -12,9 +12,9 @@ public class TestGetData : MonoBehaviour
     void Start()
     {
 
-        vocaImage = transform.Find("Vocabulary's Image").GetComponent<Image>();
-        vocaText = transform.Find("Vocabulary").GetComponent<TextMeshProUGUI>();
-        meanText = transform.Find("Mean").GetComponent<TextMeshProUGUI>();
+       // vocaImage = transform.Find("Vocabulary's Image").GetComponent<Image>();
+        // vocaText = transform.Find("Vocabulary").GetComponent<TextMeshProUGUI>();
+       // meanText = transform.Find("Mean").GetComponent<TextMeshProUGUI>();
     }
     public void GetRandomEasyVocabulary()
     {

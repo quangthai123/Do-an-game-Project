@@ -24,7 +24,7 @@ public class QuizUI : MonoBehaviour
     [SerializeField] private GameObject Star3;
 
     [SerializeField] private MusicManager musicManager;
-
+    [SerializeField] private playerData playerdata;
 
     [SerializeField] private GameObject numberPrefab;  // Prefab của UI Image cho số
     [SerializeField] private Transform scoreContainer; // GameObject chứa các ảnh số
@@ -193,6 +193,10 @@ public class QuizUI : MonoBehaviour
 
         string scoreString = score.ToString();
 
+        if(playerdata.GetScoreGame1() < score)
+        {
+            playerdata.SetScoreGame1(score);
+        }
         foreach (char digit in scoreString)
         {
             int number = digit - '0'; // Chuyển ký tự thành số nguyên

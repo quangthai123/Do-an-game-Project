@@ -62,7 +62,7 @@ public abstract class Spawner : MonoBehaviour
     {
         go.gameObject.SetActive(false);
         go.parent = holder;
-        if(!poolObjs.Contains(go))
+        //if(!poolObjs.Contains(go))
             poolObjs.Add(go);
     }
 }
