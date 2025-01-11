@@ -22949,7 +22949,6 @@ GameObject:
   - component: {fileID: 767609820}
   - component: {fileID: 767609819}
   - component: {fileID: 767609818}
-  - component: {fileID: 767609817}
   m_Layer: 5
   m_Name: Model
   m_TagString: Untagged
@@ -22976,18 +22975,6 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &767609817
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 767609815}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b14042388d100cd47b5962ddf917b52a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &767609818
 Animator:
   serializedVersion: 5
@@ -22998,7 +22985,7 @@ Animator:
   m_GameObject: {fileID: 767609815}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 837cb7639c8041b46afa62abc1ed6642, type: 2}
+  m_Controller: {fileID: 9100000, guid: a3672c5dac7f2254f89880062779b085, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
