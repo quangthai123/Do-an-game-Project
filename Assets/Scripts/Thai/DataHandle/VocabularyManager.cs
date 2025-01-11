@@ -46,7 +46,7 @@ public class VocabularyManager : MonoBehaviour
     private List<AudioClip> hardAudios;
     private void Awake()
     {
-        if(instance != null)
+        if (instance != null)
             Destroy(instance);
         else
             instance = this;
@@ -108,6 +108,72 @@ public class VocabularyManager : MonoBehaviour
         hardVocabulariesRemain.Remove(hardVocabulariesRemain[rd]);
         hardVocaRemainQuantity = hardVocabulariesRemain.Count;
         return hardVocabularies[index];
+    }
+    public Sprite GetRandomEasyVocaSprite(Sprite avoidSprite)
+    {
+        int rd = UnityEngine.Random.Range(0, easyVocabularies.Count);
+        Sprite result = easyVocabularies[rd].image;
+        while (result == avoidSprite)
+        {
+            rd = UnityEngine.Random.Range(0, easyVocabularies.Count);
+            result = easyVocabularies[rd].image;
+        }
+        return result;
+    }
+    public Sprite GetRandomMediumVocaSprite(Sprite avoidSprite)
+    {
+        int rd = UnityEngine.Random.Range(0, mediumVocabularies.Count);
+        Sprite result = mediumVocabularies[rd].image;
+        while (result == avoidSprite)
+        {
+            rd = UnityEngine.Random.Range(0, mediumVocabularies.Count);
+            result = mediumVocabularies[rd].image;
+        }
+        return result;
+    }
+    public Sprite GetRandomHardVocaSprite(Sprite avoidSprite)
+    {
+        int rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
+        Sprite result = hardVocabularies[rd].image;
+        while (result == avoidSprite)
+        {
+            rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
+            result = hardVocabularies[rd].image;
+        }
+        return result;
+    }
+    public string GetRandomEasyVocaText(string avoidText)
+    {
+        int rd = UnityEngine.Random.Range(0, easyVocabularies.Count);
+        string result = easyVocabularies[rd].vocabulary;
+        while (result == avoidText)
+        {
+            rd = UnityEngine.Random.Range(0, easyVocabularies.Count);
+            result = easyVocabularies[rd].vocabulary;
+        }
+        return result;
+    }
+    public string GetRandomMediumVocaText(string avoidText)
+    {
+        int rd = UnityEngine.Random.Range(0, mediumVocabularies.Count);
+        string result = mediumVocabularies[rd].vocabulary;
+        while (result == avoidText)
+        {
+            rd = UnityEngine.Random.Range(0, mediumVocabularies.Count);
+            result = mediumVocabularies[rd].vocabulary;
+        }
+        return result;
+    }
+    public string GetRandomHardVocaText(string avoidText)
+    {
+        int rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
+        string result = hardVocabularies[rd].vocabulary;
+        while (result == avoidText)
+        {
+            rd = UnityEngine.Random.Range(0, hardVocabularies.Count);
+            result = hardVocabularies[rd].vocabulary;
+        }
+        return result;
     }
     private void LoadVocabularies()
     {
