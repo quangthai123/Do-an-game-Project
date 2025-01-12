@@ -26,6 +26,9 @@ public class ScoreFx : MonoBehaviour
             case Minigame.LuyenTriNho:
                 GameManagerLuyenTriNho.Instance.AddScore();
                 break;
+            case Minigame.TanCongTuVung:
+                GameManagerTanCongTuVung.Instance.AddScore();
+                break;
         }
         gameObject.SetActive(false);
     }

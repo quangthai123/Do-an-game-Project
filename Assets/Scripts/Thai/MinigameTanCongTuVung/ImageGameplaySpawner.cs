@@ -21,11 +21,27 @@ public class ImageGameplaySpawner : Spawner
     public void SpawnVocaImage()
     {
         Transform vocaImage = Spawn(vocaSpriteImageName, imageSpawnPos, Quaternion.identity);
+        vocaImage.localPosition = imageSpawnPos;
+        vocaImage.localScale = new Vector2(1.75f, 1.75f);
         vocaImage.Find("Image").GetComponent<Image>().sprite = GameManagerTanCongTuVung.Instance.GetSpriteFromVocaList();
     }
     public void SpawnVocaText()
     {
         Transform vocaText = Spawn(vocaTextImageName, textSpawnPos, Quaternion.identity);
+        vocaText.localPosition = textSpawnPos;
+        vocaText.localScale = new Vector2(1.75f, 1.75f);
+        switch (DifficultyManager.instance.Mode)
+        {
+            case Difficulty.easy:
+                vocaText.Find("Text").GetComponent<TextMeshProUGUI>().fontSize = 20;
+                break;
+            case Difficulty.normal:
+                vocaText.Find("Text").GetComponent<TextMeshProUGUI>().fontSize = 15;
+                break;
+            case Difficulty.hard:
+                vocaText.Find("Text").GetComponent<TextMeshProUGUI>().fontSize = 13;
+                break;
+        }
         vocaText.Find("Text").GetComponent<TextMeshProUGUI>().text = GameManagerTanCongTuVung.Instance.GetTextFromVocaList();
     }
 }

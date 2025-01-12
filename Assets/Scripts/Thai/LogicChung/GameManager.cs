@@ -133,6 +133,11 @@ public abstract class GameManager : MonoBehaviour
     }
     public virtual void OnClickOkExitOrReplayBtn()
     {
+        if (exitOrReplayTitleTxt.text == "Bạn muốn thoát game?")
+        {
+            OnClickBackToMainEnvironment();
+            return;
+        }
         endLvUI.gameObject.SetActive(false);
         gameOverUI.gameObject.SetActive(false);
         selectDiffUI.gameObject.SetActive(true); 

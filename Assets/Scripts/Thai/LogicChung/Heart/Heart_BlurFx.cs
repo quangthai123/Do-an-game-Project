@@ -29,6 +29,9 @@ public class Heart_BlurFx : MonoBehaviour
             case Minigame.LuyenTriNho:
                 GameManagerLuyenTriNho.Instance.EnableEndGameUI();
                 break;
+            case Minigame.TanCongTuVung:
+                GameManagerTanCongTuVung.Instance.EnableEndGameUI();
+                break;
         }
         gameObject.SetActive(false);
     }

@@ -108,6 +108,7 @@ public class GameManager_SXChuCai : GameManager
         }
         VocabularyManager.instance.ResetVocabulariesRemain();
         SetRunToNextLvState();
+        AudioManager.instance.PlayBgm(0);
     }
     public Sprite GetSpriteByName(char alphabet)
     {
@@ -199,6 +200,7 @@ public class GameManager_SXChuCai : GameManager
             PassLvEffect();
             scoreFx.gameObject.SetActive(true);
             titleEndLvText.text = "Wonderful!";
+            AudioManager.instance.PlaySfx(1);
             switch (DifficultyManager.instance.Mode)
             {
                 case Difficulty.easy:
@@ -257,7 +259,7 @@ public class GameManager_SXChuCai : GameManager
     public override void OnClickOkExitOrReplayBtn()
     {
         base.OnClickOkExitOrReplayBtn();
-        playerData data = Resources.Load<playerData>("playerData");
-        data.SetScoreGame1(score);
+        //playerData data = Resources.Load<playerData>("playerData");
+        //data.SetScoreGame1(score);
     }
 }

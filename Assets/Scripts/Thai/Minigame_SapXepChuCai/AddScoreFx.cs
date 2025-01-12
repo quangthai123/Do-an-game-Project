@@ -21,6 +21,8 @@ public class AddScoreFx : MonoBehaviour
             GameManagerDaoAnh.Instance.AddBonusScore();
         else if(minigame == Minigame.LuyenTriNho)
             GameManagerLuyenTriNho.Instance.AddBonusScore();
+        else if(minigame == Minigame.TanCongTuVung)
+            GameManagerTanCongTuVung.Instance.AddBonusScore();
         gameObject.SetActive(false);
     }
 }

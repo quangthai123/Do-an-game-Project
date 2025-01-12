@@ -25572,11 +25572,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1278008234}
   m_CullTransparentMesh: 1
---- !u!1 &1288765316 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 686517110993449214, guid: 973d7e7eca5f7b7498c9e64e85b41351, type: 3}
-  m_PrefabInstance: {fileID: 8804149366574241032}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1296275264
 GameObject:
   m_ObjectHideFlags: 0
@@ -27617,7 +27612,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2785573343949567513, guid: 973d7e7eca5f7b7498c9e64e85b41351, type: 3}
   m_PrefabInstance: {fileID: 8804149366574241032}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1288765316}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f98d47636363cc24aa1e97de241c5ef7, type: 3}
@@ -34891,13 +34886,13 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1288765316}
-        m_TargetAssemblyTypeName: 
-        m_MethodName: 
+      - m_Target: {fileID: 1483730577}
+        m_TargetAssemblyTypeName: GameManager, Assembly-CSharp
+        m_MethodName: OnSelectQuitGameBtn
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: 
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
           m_StringArgument: 

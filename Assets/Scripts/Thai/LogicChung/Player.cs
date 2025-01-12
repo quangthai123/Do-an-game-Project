@@ -35,4 +35,14 @@ public class Player : MonoBehaviour
         anim.SetBool(_animName, true);
     }
     private void OnFinshAnim() => SetAnim("Idle");
+    public void Flip(bool facingRight)
+    {
+        Vector2 localScale = transform.parent.localScale;
+        if (facingRight)
+            localScale.x = 1.1f;
+        else
+            localScale.x = -1.1f;
+        transform.parent.localScale = localScale;
+
+    } 
 }
